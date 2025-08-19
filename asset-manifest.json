@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/acceezz/static/css/main.a3f58c9f.css",
-    "main.js": "/acceezz/static/js/main.e6f09efa.js",
+    "main.js": "/acceezz/static/js/main.473f8b54.js",
     "static/css/869.4b21b1d3.chunk.css": "/acceezz/static/css/869.4b21b1d3.chunk.css",
     "static/js/869.49ff2c94.chunk.js": "/acceezz/static/js/869.49ff2c94.chunk.js",
     "static/css/589.6a94dc0a.chunk.css": "/acceezz/static/css/589.6a94dc0a.chunk.css",
-    "static/js/589.d780ed32.chunk.js": "/acceezz/static/js/589.d780ed32.chunk.js",
+    "static/js/589.1f8a85c0.chunk.js": "/acceezz/static/js/589.1f8a85c0.chunk.js",
     "static/css/742.ac96b02d.chunk.css": "/acceezz/static/css/742.ac96b02d.chunk.css",
     "static/js/742.e212e760.chunk.js": "/acceezz/static/js/742.e212e760.chunk.js",
     "static/css/663.dfc5c19f.chunk.css": "/acceezz/static/css/663.dfc5c19f.chunk.css",
@@ -14,11 +14,11 @@
     "static/js/831.da8dbe98.chunk.js": "/acceezz/static/js/831.da8dbe98.chunk.js",
     "index.html": "/acceezz/index.html",
     "main.a3f58c9f.css.map": "/acceezz/static/css/main.a3f58c9f.css.map",
-    "main.e6f09efa.js.map": "/acceezz/static/js/main.e6f09efa.js.map",
+    "main.473f8b54.js.map": "/acceezz/static/js/main.473f8b54.js.map",
     "869.4b21b1d3.chunk.css.map": "/acceezz/static/css/869.4b21b1d3.chunk.css.map",
     "869.49ff2c94.chunk.js.map": "/acceezz/static/js/869.49ff2c94.chunk.js.map",
     "589.6a94dc0a.chunk.css.map": "/acceezz/static/css/589.6a94dc0a.chunk.css.map",
-    "589.d780ed32.chunk.js.map": "/acceezz/static/js/589.d780ed32.chunk.js.map",
+    "589.1f8a85c0.chunk.js.map": "/acceezz/static/js/589.1f8a85c0.chunk.js.map",
     "742.ac96b02d.chunk.css.map": "/acceezz/static/css/742.ac96b02d.chunk.css.map",
     "742.e212e760.chunk.js.map": "/acceezz/static/js/742.e212e760.chunk.js.map",
     "663.dfc5c19f.chunk.css.map": "/acceezz/static/css/663.dfc5c19f.chunk.css.map",
@@ -28,6 +28,6 @@
   },
   "entrypoints": [
     "static/css/main.a3f58c9f.css",
-    "static/js/main.e6f09efa.js"
+    "static/js/main.473f8b54.js"
   ]
 }
