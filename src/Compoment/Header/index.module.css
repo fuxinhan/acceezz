@@ -1,0 +1,351 @@
+
+
+/* 新增的移动端样式 */
+.header {
+    background: #141414 !important;
+    padding: 0 !important;
+    height: 80px !important;
+    line-height: 80px !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* max-width: 1200px;
+    margin: 0 auto; */
+    padding: 0 24px;
+    height: 100%;
+}
+
+.logo a {
+    color: var(--accent-gold);
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: #d4b876;
+}
+
+.desktopNav {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.navLink {
+    color: #e0e0e0;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 8px 0;
+    cursor: pointer;
+}
+
+.navLink:hover {
+    color: var(--accent-gold);
+}
+
+.navLink::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-gold);
+    transition: width 0.3s ease;
+}
+
+.navLink:hover::after {
+    width: 100%;
+}
+
+.activeLink {
+    color: var(--accent-gold) !important;
+    font-weight: 600;
+}
+
+.activeLink::after {
+    width: 100% !important;
+    
+}
+
+.loginButton {
+    display: flex;
+    align-items: center;
+}
+
+.loginBtn {
+    border-radius: 50px !important;
+    padding: 8px 24px !important;
+    height: 40px !important;
+    border-color: var(--accent-gold) !important;
+    color: var(--accent-gold) !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.5px !important;
+    transition: all 0.3s ease !important;
+}
+
+.loginBtn:hover {
+    background: var(--accent-gold) !important;
+    color: #141414 !important;
+    border-color: var(--accent-gold) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(198, 169, 114, 0.3);
+}
+
+.mobileMenuButton {
+    display: none;
+}
+
+.mobileMenuIcon {
+    color: var(--accent-gold) !important;
+    font-size: 20px !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+.mobileMenuIcon:hover {
+    color: #d4b876 !important;
+    background: transparent !important;
+}
+
+/* 移动端抽屉样式 */
+.mobileDrawer {
+    background: #f8f8f8 !important;
+}
+
+/* .mobileDrawerContent {
+    background: #f8f8f8;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+} */
+
+.mobileCloseButton {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+}
+
+.closeBtn {
+    color: #141414 !important;
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    height: auto !important;
+    line-height: 1 !important;
+}
+
+.closeBtn:hover {
+    color: var(--accent-gold) !important;
+    background: transparent !important;
+}
+
+/* 移动端导航样式 */
+.mobileNav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 40px;
+}
+
+.mobileNavItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+    text-decoration: none;
+    color: #141414;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.mobileNavItem:hover {
+    color: var(--accent-gold);
+    background: rgba(198, 169, 114, 0.05);
+}
+
+.mobileNavText {
+    flex: 1;
+}
+
+.mobileNavArrow {
+    color: #141414;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.mobileNavItem:hover .mobileNavArrow {
+    color: var(--accent-gold);
+}
+
+/* 移动端操作按钮 */
+.mobileActionButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.subscribeBtn {
+    background: #141414 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 50px !important;
+    height: 50px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    transition: all 0.3s ease !important;
+}
+
+.subscribeBtn:hover {
+    background: var(--accent-gold) !important;
+    color: #141414 !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(20, 20, 20, 0.3);
+}
+
+.signInBtn {
+    background: #ffffff !important;
+    color: #141414 !important;
+    border: 2px solid #141414 !important;
+    border-radius: 50px !important;
+    height: 50px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px !important;
+    transition: all 0.3s ease !important;
+}
+
+.signInBtn:hover {
+    background: #141414 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(20, 20, 20, 0.3);
+}
+
+/* 语言选择器 */
+.languageSelector {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-top: 1px solid #e0e0e0;
+    margin-top: auto;
+}
+
+.languageText {
+    color: #141414;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.languageArrow {
+    color: #141414;
+    font-size: 16px;
+}
+
+.languageSelector:hover .languageText,
+.languageSelector:hover .languageArrow {
+    color: var(--accent-gold);
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+    .desktopNav {
+        display: none;
+    }
+    .loginButton{
+        display: none;
+    }
+    
+    .mobileMenuButton {
+        display: block;
+    }
+    
+    .headerContainer {
+        padding: 0 16px;
+    }
+    
+    .logo {
+        font-size: 24px;
+    }
+}
+
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .desktopNav {
+        display: none;
+    }
+    .loginButton{
+        display: none;
+    }
+    
+    .mobileMenuButton {
+        display: block;
+    }
+    
+    .headerContainer {
+        padding: 0 16px;
+    }
+    
+    .logo {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        height: 70px !important;
+        line-height: 70px !important;
+    }
+    
+    .headerContainer {
+        padding: 0 12px;
+    }
+    
+    .logo {
+        font-size: 22px;
+    }
+    
+    /* .mobileDrawerContent {
+        padding: 16px;
+    } */
+    
+    .mobileNavItem {
+        padding: 16px 0;
+        font-size: 16px;
+    }
+    
+    .subscribeBtn,
+    .signInBtn {
+        height: 45px !important;
+        font-size: 15px !important;
+    }
+}

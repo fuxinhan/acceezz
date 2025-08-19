@@ -1,0 +1,276 @@
+.highlightsContainer {
+  background: var(--cream-bg);
+  min-height: 80vh;
+  padding: 20px 0;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 0 20px;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: var(--deep-navy);
+  margin-bottom: 10px;
+  font-weight: 300;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--accent-gold);
+  font-weight: 400;
+}
+
+.carouselContainer {
+  max-width: 1314px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.rowContainer {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.secondRowContainer {
+  margin-bottom: 0;
+}
+
+.carouselRow {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  /* padding: 10px 0; */
+  border-radius: 10px;
+  user-select: none;
+  touch-action: pan-x;
+}
+
+.carouselRow::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+/* 错位半个图片宽度 + 间距的一半 */
+
+
+.propertyCard {
+  flex: 0 0 300px; /* 固定宽度，不缩放 */
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: var(--transition);
+  cursor: grab;
+}
+.propertyCardWidthOne{
+  flex: 0 0 300px; /* 固定宽度，不缩放 */
+
+}
+.propertyCard:hover {
+  /* transform: translateY(95px); */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.propertyCard:active {
+  cursor: grabbing;
+}
+
+.imageContainer {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+.imageContainerTran{
+  transform: translateX(-150px);
+}
+.propertyImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+  pointer-events: none;
+}
+
+.propertyCard:hover .propertyImage {
+  transform: scale(1.05);
+}
+
+.propertyName {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  color: white;
+  padding: 20px 15px 15px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: right;
+}
+
+.navigationButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.navigationButton:hover {
+  background: white;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.prevButton {
+  left: -100px;
+}
+
+.nextButton {
+  right: -100px;
+}
+
+.arrowIcon {
+  width: 20px;
+  height: 20px;
+  color: var(--deep-navy);
+}
+
+/* 移动端适配 */
+@media (max-width: 1024px) {
+  .propertyCard {
+    flex: 0 0 180px;
+  }
+  
+  .imageContainer {
+    height: 180px;
+  }
+  
+  .secondRow {
+    transform: translateX(calc(50% + 7.5px));
+  }
+  
+  .navigationButton {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .prevButton {
+    left: -22px;
+  }
+  
+  .nextButton {
+    right: -22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .highlightsContainer {
+    padding: 15px 0;
+  }
+  
+  .header {
+    margin-bottom: 25px;
+    padding: 0 15px;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+  }
+  
+  .carouselContainer {
+    padding: 0 15px;
+  }
+  
+  .rowContainer {
+    margin-bottom: 20px;
+  }
+  
+  .carouselRow {
+    gap: 12px;
+  }
+  
+  .propertyCard {
+    flex: 0 0 160px;
+  }
+  
+  .secondRow {
+    transform: translateX(calc(50% + 6px));
+  }
+  
+  .imageContainer {
+    height: 160px;
+  }
+  
+  .propertyName {
+    padding: 15px 10px 10px;
+    font-size: 0.8rem;
+  }
+  
+  .navigationButton {
+    width: 40px;
+    height: 40px;
+    top: 40%;
+  }
+  
+  .prevButton {
+    left: -20px;
+  }
+  
+  .nextButton {
+    right: -20px;
+  }
+  
+  .arrowIcon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carouselRow {
+    gap: 15px;
+  }
+  
+  .propertyCard {
+    flex: 0 0 200px;
+  }
+  
+  .secondRow {
+    transform: none; /* 单列时不需要错位 */
+  }
+  
+  .imageContainer {
+    height: 200px;
+  }
+  
+  .propertyName {
+    padding: 20px 15px 15px;
+    font-size: 0.9rem;
+  }
+  
+  .navigationButton {
+    display: none;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+}

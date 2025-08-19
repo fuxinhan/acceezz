@@ -1,0 +1,71 @@
+/* 主题变量延用 :root */
+.LoginPage {
+	min-height: 100vh;
+	background: var(--cream-bg, #f8f6f2);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 40px 16px;
+}
+
+.card {
+	width: 100%;
+	max-width: 520px;
+	background: #fff;
+	border-radius: 16px;
+	box-shadow: 0 12px 40px rgba(0,0,0,.08);
+	padding: 32px 28px 26px;
+	text-align: center;
+}
+
+/* .logo { color: var(--deep-navy, #1a1a2e); margin-bottom: 10px; } */
+.logo { color: var(--deep-navy, #1a1a2e); margin-bottom: 10px; font-size: 2rem; font-weight: 700; font-family: serif; }
+.heading { font-weight: 400; margin: 0 0 18px; font-size: 28px; color: var(--deep-navy, #1a1a2e);} 
+
+.form { display: flex; flex-direction: column; gap: 8px; }
+.label { text-align: left; font-size: 12px; color: #666; }
+.input {
+	width: 100%;
+	padding: 12px 14px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	outline: none;
+	font-size: 14px;
+	background: #fff;
+	transition: border-color .2s ease;
+}
+.input:focus { border-color: var(--accent-gold, #c6a972); }
+
+.primaryBtn {
+	margin-top: 10px;
+	width: 100%;
+	padding: 12px 16px;
+	border-radius: 999px;
+	border: none;
+	background: #000;
+	color: #fff;
+	cursor: pointer;
+	font-weight: 600;
+	transition: opacity .2s ease;
+}
+.primaryBtn:hover { opacity: .9; }
+
+.altText { margin: 12px 0 0; font-size: 12px; color: #666; }
+.link { color: var(--deep-navy, #1a1a2e); text-decoration: underline; }
+
+.ghostBtn {
+	margin-top: 16px;
+	width: 100%;
+	padding: 12px 16px;
+	border-radius: 999px;
+	border: 1px solid #ccc;
+	background: #fff;
+	color: var(--deep-navy, #1a1a2e);
+	cursor: pointer;
+}
+
+/* 移动端 */
+@media (max-width: 480px) {
+	.card { padding: 24px 18px; }
+	.heading { font-size: 22px; }
+}

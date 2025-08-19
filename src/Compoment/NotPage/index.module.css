@@ -1,0 +1,480 @@
+/* 404页面主容器 */
+.notPage {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+    color: #ffffff;
+    font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* 矩阵背景效果 */
+.matrixBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.1;
+}
+
+.matrixColumn {
+    position: absolute;
+    top: -100%;
+    animation: matrixRain 3s linear infinite;
+}
+
+.matrixChar {
+    display: block;
+    color: #00ff00;
+    font-size: 14px;
+    line-height: 1;
+    text-shadow: 0 0 5px #00ff00;
+    animation: matrixGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes matrixRain {
+    0% { top: -100%; }
+    100% { top: 100%; }
+}
+
+@keyframes matrixGlow {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* 错误容器 */
+.errorContainer {
+    max-width: 900px;
+    width: 100%;
+    background: rgba(20, 20, 20, 0.9);
+    border: 2px solid var(--accent-gold);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 2;
+}
+
+/* 错误代码 */
+.errorCode {
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.glitchText {
+    font-size: 8rem;
+    font-weight: 900;
+    color: var(--accent-gold);
+    text-shadow: 
+        2px 2px 0 #ff0000,
+        -2px -2px 0 #00ff00,
+        2px -2px 0 #0000ff;
+    animation: glitchEffect 2s infinite;
+    display: block;
+    position: relative;
+    z-index: 2;
+}
+
+.errorCodeShadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 8rem;
+    font-weight: 900;
+    color: var(--accent-gold);
+    opacity: 0.3;
+    z-index: 1;
+    animation: shadowFloat 3s ease-in-out infinite;
+}
+
+@keyframes glitchEffect {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+}
+
+@keyframes shadowFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* 错误标题 */
+.errorTitle {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.codeComment {
+    color: var(--accent-gold);
+    font-weight: 400;
+}
+
+/* 错误描述 */
+.errorDescription {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+    text-align: center;
+    margin-bottom: 40px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 技术信息 */
+.techInfo {
+    background: rgba(30, 30, 30, 0.8);
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.infoItem {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.infoLabel {
+    color: var(--accent-gold);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.infoValue {
+    color: #ffffff;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    word-break: break-all;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 5px 8px;
+    border-radius: 4px;
+    border-left: 3px solid var(--accent-gold);
+}
+
+/* 代码片段 */
+.codeSnippet {
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+.codeHeader {
+    background: #2d2d2d;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #333;
+}
+
+.codeLanguage {
+    color: var(--accent-gold);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.codeError {
+    background: #ff4444;
+    color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.codeContent {
+    padding: 20px;
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #ffffff;
+    background: #1e1e1e;
+}
+
+.keyword {
+    color: #569cd6;
+    font-weight: 600;
+}
+
+.function {
+    color: #dcdcaa;
+}
+
+.string {
+    color: #ce9178;
+}
+
+/* 操作按钮 */
+.actionButtons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.primaryButton,
+.secondaryButton,
+.tertiaryButton {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: inherit;
+}
+
+.primaryButton {
+    background: var(--accent-gold);
+    color: #000000;
+}
+
+.primaryButton:hover {
+    background: #d4b876;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(198, 169, 114, 0.4);
+}
+
+.secondaryButton {
+    background: transparent;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+}
+
+.secondaryButton:hover {
+    background: #ffffff;
+    color: #000000;
+    transform: translateY(-2px);
+}
+
+.tertiaryButton {
+    background: transparent;
+    color: var(--accent-gold);
+    border: 2px solid var(--accent-gold);
+}
+
+.tertiaryButton:hover {
+    background: var(--accent-gold);
+    color: #000000;
+    transform: translateY(-2px);
+}
+
+.buttonIcon {
+    font-size: 1.1rem;
+}
+
+/* 调试信息 */
+.debugInfo {
+    margin-bottom: 30px;
+}
+
+.debugDetails {
+    background: rgba(30, 30, 30, 0.8);
+    border: 1px solid #333;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.debugSummary {
+    background: #2d2d2d;
+    padding: 15px 20px;
+    cursor: pointer;
+    color: var(--accent-gold);
+    font-weight: 600;
+    font-size: 1rem;
+    border-bottom: 1px solid #333;
+    transition: background 0.3s ease;
+}
+
+.debugSummary:hover {
+    background: #3a3a3a;
+}
+
+.debugContent {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.debugItem {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    border-left: 3px solid var(--accent-gold);
+}
+
+.debugItem strong {
+    color: var(--accent-gold);
+}
+
+/* 页脚信息 */
+.pageFooter {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footerText {
+    color: #888;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .errorContainer {
+        padding: 30px 20px;
+        margin: 20px;
+    }
+    
+    .glitchText,
+    .errorCodeShadow {
+        font-size: 5rem;
+    }
+    
+    .errorTitle {
+        font-size: 2rem;
+    }
+    
+    .errorDescription {
+        font-size: 1rem;
+    }
+    
+    .techInfo {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .actionButtons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .primaryButton,
+    .secondaryButton,
+    .tertiaryButton {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+    
+    .debugContent {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .notPage {
+        padding: 10px;
+    }
+    
+    .errorContainer {
+        padding: 20px 15px;
+    }
+    
+    .glitchText,
+    .errorCodeShadow {
+        font-size: 4rem;
+    }
+    
+    .errorTitle {
+        font-size: 1.5rem;
+    }
+    
+    .errorDescription {
+        font-size: 0.9rem;
+    }
+    
+    .techInfo {
+        padding: 15px;
+    }
+    
+    .codeContent {
+        padding: 15px;
+        font-size: 0.8rem;
+    }
+    
+    .debugSummary {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .debugContent {
+        padding: 15px;
+    }
+}
+
+/* 确保在小屏幕上内容可读 */
+@media (max-height: 600px) {
+    .notPage {
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+    
+    .errorContainer {
+        margin: 0;
+    }
+    
+    .glitchText,
+    .errorCodeShadow {
+        font-size: 4rem;
+    }
+    
+    .errorTitle {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+    
+    .errorDescription {
+        margin-bottom: 25px;
+    }
+    
+    .techInfo {
+        margin-bottom: 20px;
+    }
+    
+    .actionButtons {
+        margin-bottom: 20px;
+    }
+}

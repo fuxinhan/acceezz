@@ -1,0 +1,190 @@
+/* 主题继承自 :root（见 src/index.module.css） */
+.MembershipPage {
+	background: var(--cream-bg, #f8f6f2);
+	min-height: 100vh;
+	color: var(--deep-navy, #1a1a2e);
+}
+
+.hero {
+	max-width: 1080px;
+	margin: 0 auto;
+	padding: 40px 20px 10px;
+	text-align: center;
+}
+
+.pageTitle {
+	margin: 0 0 8px;
+	font-size: 40px;
+	font-weight: 300;
+}
+
+.intro {
+	max-width: 820px;
+	margin: 0 auto 16px;
+	line-height: 1.7;
+	color: #4a4a4a;
+}
+
+.applyBtn {
+	margin-top: 8px;
+	padding: 10px 22px;
+	border-radius: 999px;
+	border: 1px solid var(--accent-gold, #c6a972);
+	background: transparent;
+	color: var(--accent-gold, #c6a972);
+	cursor: pointer;
+	transition: var(--transition, all .3s ease);
+}
+
+.applyBtn:hover {
+	background: var(--accent-gold, #c6a972);
+	color: var(--light-text, #fff);
+}
+
+.note {
+	margin-top: 10px;
+	font-size: 12px;
+	color: #666;
+}
+
+.tiersSection {
+	max-width: 1180px;
+	margin: 20px auto 40px;
+	padding: 0 20px 20px;
+}
+
+.tiersHeader {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin-bottom: 16px;
+}
+
+.tiersTitle {
+	margin: 0;
+	font-size: 22px;
+	font-weight: 500;
+}
+
+.underline {
+	height: 1px;
+	flex: 1;
+	background: #ddd;
+}
+
+.tiersGrid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+}
+
+.card {
+	background: #fff;
+	border-radius: 14px;
+	overflow: hidden;
+	box-shadow: 0 6px 24px rgba(0,0,0,.08);
+	display: flex;
+	flex-direction: column;
+}
+
+.cardImageWrap {
+	height: 220px;
+	overflow: hidden;
+}
+
+.cardImage {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform .6s ease;
+}
+
+.card:hover .cardImage {
+	transform: scale(1.04);
+}
+
+.cardBody {
+	padding: 16px 16px 18px;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+.cardTitle {
+	margin: 0 0 10px;
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.perksList {
+	margin: 0 0 16px;
+	padding-left: 18px;
+	color: #555;
+	line-height: 1.6;
+}
+
+.cardApplyBtn {
+	align-self: flex-start;
+	padding: 8px 16px;
+	border-radius: 999px;
+	border: 1px solid var(--accent-gold, #c6a972);
+	background: transparent;
+	color: var(--accent-gold, #c6a972);
+	cursor: pointer;
+	transition: var(--transition, all .3s ease);
+}
+
+.cardApplyBtn:hover {
+	background: var(--accent-gold, #c6a972);
+	color: var(--light-text, #fff);
+}
+
+.footer {
+	border-top: 1px solid #eee;
+	padding: 18px 20px 30px;
+	max-width: 1180px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: center;
+	color: #666;
+}
+
+.footerBrand {
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+
+.footerMeta {
+	text-align: center;
+}
+
+.footerLinks {
+	justify-self: end;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.dot {
+	width: 3px;
+	height: 3px;
+	background: #bbb;
+	border-radius: 50%;
+	display: inline-block;
+}
+
+/* 响应式 */
+@media (max-width: 1024px) {
+	.tiersGrid { grid-template-columns: repeat(2, 1fr); }
+	.cardImageWrap { height: 200px; }
+}
+
+@media (max-width: 640px) {
+	.pageTitle { font-size: 28px; }
+	.intro { font-size: 14px; }
+	.tiersGrid { grid-template-columns: 1fr; }
+	.cardImageWrap { height: 220px; }
+	.footer { grid-template-columns: 1fr; gap: 8px; text-align: center; }
+	.footerLinks { justify-self: center; }
+}
