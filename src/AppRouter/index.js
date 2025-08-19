@@ -1,13 +1,11 @@
 import React, { lazy } from 'react';
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Style from "./index.module.css"
 import HeaderCompoment from "../Compoment/Header";
 import HomePage from "../Page/Home";
 import FooterCompoment from "../Compoment/Footer";
 import {  Layout } from "antd";
 import { Content } from 'antd/es/layout/layout';
-// import MembershipPage from '../Page/Membership';
-// import NotPage from '../Compoment/NotPage';
 
 const HighlightsPage = lazy(()=>import('../Page/Highlights'))
 const NotPage = lazy(()=>import('../Compoment/NotPage'))

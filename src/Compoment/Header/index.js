@@ -40,7 +40,9 @@ useEffect(() => {
       <Header className={Style.header}>
       <div className={Style.headerContainer}>
           {/* Logo */}
-          <div className={Style.logo}>
+          <div className={Style.logo}
+          onClick={()=>setMenuItemsState('/')}
+          >
             <Link to={'/'}>
               ACCEZZ
             </Link>
@@ -76,7 +78,9 @@ useEffect(() => {
                   ghost 
                   className={Style.loginBtn}
               >
-                <Link to={'/Login'}> 
+                <Link to={'/Login'}
+                     onClick={()=>setMenuItemsState('/')}
+                > 
                     LOGIN
                 </Link> 
               </Button>

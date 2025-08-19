@@ -61,7 +61,7 @@ function HomePage() {
             {/* 页面内容 */}
             <div className={Style.pageContent}>
                 <div className={Style.contentContainer}>
-                    <h1 className={Style.mainTitle}>欢迎来到ACCZZ</h1>
+                    <h1 className={Style.mainTitle}>欢迎来到ACCEZZ</h1>
                     <p className={Style.mainDescription}>
                         这是一个充满创意和可能性的地方，我们致力于为您提供最优质的服务和体验。
                     </p>
@@ -131,7 +131,7 @@ function HomePage() {
           
           <p className={Style.subHeading}>
             Carving out a new space for people who want to engage with art through collecting. 
-            ACCZZ is a community where emerging collectors find exceptional artists and artwork.
+            ACCEZZ is a community where emerging collectors find exceptional artists and artwork.
           </p>
           
           <div className={Style.ctaButtons}>

@@ -73,7 +73,7 @@ function FooterCompoment() {
                     <div className={Style.subscriptionSection}>
                         <h3 className={Style.subscriptionTitle}>Subscribe</h3>
                         <p className={Style.subscriptionDescription}>
-                            Sign up to hear about events, news and updates from ACCZZ and our other businesses.
+                            Sign up to hear about events, news and updates from ACCEZZ and our other businesses.
                         </p>
                         <Button className={Style.subscribeButton}>
                             Subscribe
@@ -89,7 +89,7 @@ function FooterCompoment() {
                     <div className={Style.footerLowerLeft}>
                         <div className={Style.brandInfo}>
                             <AppstoreOutlined className={Style.brandIcon} />
-                            <span className={Style.brandName}>ACCZZ</span>
+                            <span className={Style.brandName}>ACCEZZ</span>
                         </div>
                         <div className={Style.languageSelector}>
                             <Select

@@ -164,7 +164,7 @@ function NotPage() {
                 {/* 页脚信息 */}
                 <div className={Style.pageFooter}>
                     <span className={Style.footerText}>
-                        <span className={Style.codeComment}>//</span> ACCZZ Error Handler v1.0.0
+                        <span className={Style.codeComment}>//</span> ACCEZZ Error Handler v1.0.0
                     </span>
                     <span className={Style.footerText}>
                         <span className={Style.codeComment}>//</span> Built with React & ❤️
