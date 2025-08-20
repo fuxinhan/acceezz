@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import Style from "./index.module.css"
 
 function HomePage() {
-    const [isVideo, setIsVideo] = useState(false);
     const [isPlaying, setIsPlaying] = useState(false);
     const videoRef = useRef(null);
 
@@ -61,9 +60,9 @@ function HomePage() {
             {/* 页面内容 */}
             <div className={Style.pageContent}>
                 <div className={Style.contentContainer}>
-                    <h1 className={Style.mainTitle}>欢迎来到ACCEZZ</h1>
+                    <h1 className={Style.mainTitle}>Welcome to ACCEZZ</h1>
                     <p className={Style.mainDescription}>
-                        这是一个充满创意和可能性的地方，我们致力于为您提供最优质的服务和体验。
+                    This is a place full of creativity and possibilities, and we are committed to providing you with the highest quality service and experience.
                     </p>
                     
                     {/* 操作按钮 */}

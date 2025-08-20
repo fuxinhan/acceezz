@@ -89,7 +89,27 @@
     display: flex;
     align-items: center;
 }
-
+ .loginCoure img{
+    height: 40px;
+    width: 40px;
+    border-radius: 50px;
+    display: flex;
+    cursor: pointer;
+ }
+.loginCoure .loginUserName{
+    cursor: pointer;
+    border: 2px solid var(--accent-gold);
+    padding: 8px 22px;
+    border-radius: 50px;
+    color: var(--light-text);
+}
+.loginCoure .loginUserName:hover{
+    background: var(--accent-gold) !important;
+    color: #141414 !important;
+    border-color: var(--accent-gold) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(198, 169, 114, 0.3);
+}
 .loginBtn {
     border-radius: 50px !important;
     padding: 8px 24px !important;
@@ -274,6 +294,29 @@
 .languageSelector:hover .languageArrow {
     color: var(--accent-gold);
 }
+.loginPopover{
+    background-color: var(--accent-gold);
+}
+
+.loginSeting button{
+    display: block;
+    width: 150px;
+    margin: 5px;
+    border: none;
+    background-color:var(--cream-bg) ;
+    box-shadow: none;
+    color: var(--accent-gold) !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.5px !important;
+    transition: all 0.3s ease !important;
+}
+.loginSeting button:hover {
+    background: var(--accent-gold) !important;
+    color: #141414 !important;
+    border-color: var(--accent-gold) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(198, 169, 114, 0.3);
+}
 
 /* 响应式设计 */
 @media (max-width: 1200px) {
@@ -281,6 +324,9 @@
         display: none;
     }
     .loginButton{
+        display: none;
+    }
+    .loginCoure{
         display: none;
     }
     
@@ -306,7 +352,9 @@
     .loginButton{
         display: none;
     }
-    
+    .loginCoure{
+        display: none;
+    }
     .mobileMenuButton {
         display: block;
     }

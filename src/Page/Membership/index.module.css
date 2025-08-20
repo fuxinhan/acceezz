@@ -139,7 +139,7 @@
 	color: var(--light-text, #fff);
 }
 
-.footer {
+/* .footer {
 	border-top: 1px solid #eee;
 	padding: 18px 20px 30px;
 	max-width: 1180px;
@@ -164,15 +164,15 @@
 	display: flex;
 	align-items: center;
 	gap: 10px;
-}
+} */
 
-.dot {
+/* .dot {
 	width: 3px;
 	height: 3px;
 	background: #bbb;
 	border-radius: 50%;
 	display: inline-block;
-}
+} */
 
 /* 响应式 */
 @media (max-width: 1024px) {
@@ -185,6 +185,6 @@
 	.intro { font-size: 14px; }
 	.tiersGrid { grid-template-columns: 1fr; }
 	.cardImageWrap { height: 220px; }
-	.footer { grid-template-columns: 1fr; gap: 8px; text-align: center; }
-	.footerLinks { justify-self: center; }
+	/* .footer { grid-template-columns: 1fr; gap: 8px; text-align: center; }
+	.footerLinks { justify-self: center; } */
 }

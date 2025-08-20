@@ -61,7 +61,7 @@ const MembershipPage =()=>{
 				</div>
 			</section>
 
-			<footer className={style.footer}>
+			{/* <footer className={style.footer}>
 				<div className={style.footerBrand}>ACCEZZ</div>
 				<div className={style.footerMeta}>© 2025 ACCEZZ · All rights reserved</div>
 				<div className={style.footerLinks}>
@@ -69,7 +69,7 @@ const MembershipPage =()=>{
 					<span className={style.dot} />
 					<a href="#" aria-label="Terms of Service">Terms of Service</a>
 				</div>
-			</footer>
+			</footer> */}
 		</div>
 	)
 }

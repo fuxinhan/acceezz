@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 import style from './index.module.css';
 import { Link } from "react-router-dom";
+import Utils from "../../Util/webCofig";
+import ActionType from "../../Store/actionType";
 
 const LoginPage = ()=>{
 	const [email, setEmail] = useState("");
@@ -9,8 +11,20 @@ const LoginPage = ()=>{
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		const payload = { email, password };
+		const payload = { username:email, password:password };
+		const url = 'programmer/jwt/'
 		console.log("Login submit payload:", payload);
+		Utils.post({
+			url,
+			data:payload,
+			actionType:ActionType().Login,
+			Success:(data)=>{
+				console.log(data)
+			},
+			Error:(data)=>{
+				console.log(data)
+			}
+		})
 		// TODO: 在此处调用实际登录接口
 	};
 
