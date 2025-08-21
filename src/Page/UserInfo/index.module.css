@@ -1,0 +1,80 @@
+/* UserInfo 黄白主题 */
+.UserInfoPage{
+	min-height: 100vh;
+	background: var(--cream-bg);
+	color: var(--deep-navy);
+	padding: 2rem 1rem 4rem;
+}
+
+.layout{
+	max-width: 1200px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 280px 1fr;
+	gap: 2rem;
+}
+
+/* 侧边菜单 */
+.sideMenu{
+	background: #fff;
+	border: 1px solid var(--sand);
+	border-radius: 12px;
+	padding: .5rem 0;
+	height: max-content;
+}
+.menuItem{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: .9rem 1rem;
+	cursor: pointer;
+	border-left: 3px solid transparent;
+	transition: var(--transition);
+}
+.menuItem:hover{ background: #faf7ef; }
+.active{ border-left-color: var(--warm-orange); background: #fff7e6; }
+.arrow{ opacity: .6; }
+
+/* 内容区 */
+.content{}
+.section{}
+.headerBar{ margin-bottom: 1rem; }
+.title{ font-size: 1.8rem; font-weight: 800; }
+.sub{ color: #585858; }
+.link{ color: var(--deep-navy); font-weight: 700; }
+
+.profileTop{ display:flex; align-items:center; justify-content:space-between; margin: 1rem 0; }
+.leftIntro{ display:flex; align-items:center; gap:1rem; }
+.nameBlock{}
+.name{ font-size: 1.5rem; font-weight: 800; }
+.location{ color:#666; }
+
+.fieldList{ margin: 1.2rem 0; }
+.fieldRow{ display:grid; grid-template-columns: 180px 1fr; padding:.75rem 0; border-bottom: 1px solid #eee; }
+.fieldLabel{ color:#666; }
+.fieldValue{ color:#1f1f1f; }
+
+.primaryBtn{ background: var(--deep-navy) !important; color:#fff !important; border-radius:24px; height:auto; padding:.7rem 1.2rem; font-weight:700; }
+
+/* 通用卡片 */
+.card{ background:#fff; border:1px solid var(--sand); border-radius:12px; padding:1rem; margin-bottom:1rem; }
+.metaGrid{ display:grid; grid-template-columns: repeat(3,1fr); gap:1rem; }
+.metaLabel{ color:#666; }
+.metaValue{ font-weight:700; }
+
+.blockTitle{ font-weight:800; margin-bottom:.6rem; }
+.inlineForm :global(.ant-form-item){ margin-right:.6rem; margin-bottom:.6rem; }
+
+.modalActions{ display:flex; justify-content:flex-end; gap:.6rem; margin-top:.5rem; }
+
+/* 响应式 */
+@media (max-width: 900px){
+	.layout{ grid-template-columns: 1fr; }
+	.fieldRow{ grid-template-columns: 140px 1fr; }
+}
+@media (max-width: 520px){
+	.UserInfoPage{ padding: 1.2rem .8rem 2.4rem; }
+	.title{ font-size: 1.5rem; }
+	.fieldRow{ grid-template-columns: 120px 1fr; }
+	.metaGrid{ grid-template-columns: 1fr; }
+}

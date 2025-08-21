@@ -4,6 +4,11 @@ import { message } from "antd";
 import { CheckCircleOutlined } from '@ant-design/icons'
 
 class Util{
+    // 退出登陆
+    LogOut(){
+        localStorage.clear();
+        window.location.reload(true);
+    }
      // 获取token
      getToken() {
         return localStorage.getItem("userToken");

@@ -160,10 +160,13 @@
 
 .mobileCloseButton {
     display: flex;
-    justify-content: flex-end;
-    margin-bottom: 30px;
+    justify-content: space-between;
 }
-
+.UserImg{
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+}
 .closeBtn {
     color: #141414 !important;
     font-size: 24px !important;

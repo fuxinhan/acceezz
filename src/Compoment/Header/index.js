@@ -13,24 +13,37 @@ function HeaderCompoment (){
 const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [menuItemsState,setMenuItemsState] = useState('/')
+  const [userName, setUserName] = useState("");
+  const [userInfo, setUserInfo] = useState("");
   const menuItems  =  [
-    { key: 'Accezz', label: 'ACCEZZ',  hasArrow: true },
+    // { key: 'Accezz', label: 'ACCEZZ',  hasArrow: true },
     { key: 'Highlights', label: 'HIGHLIGHTS',  hasArrow: true },
     { key: 'Membership', label: 'MEMBERSHIP',   hasArrow: true },
-    { key: 'about', label: 'ABOUT',  hasArrow: true },
-    { key: 'houses', label: 'HOUSES', hasArrow: true },
-    { key: 'bedrooms', label: 'BEDROOMS',  hasArrow: true },
-    { key: 'wellness', label: 'WELLNESS',  hasArrow: true },
-    { key: 'book', label: 'BOOK',  hasArrow: true },
-    { key: 'news', label: 'NEWS',  hasArrow: false },
-    { key: 'shop', label: 'SHOP',  hasArrow: true }
+    { key: 'Resources', label: 'RESOURCES', hasArrow: true },
+    { key: 'About', label: 'ABOUT',  hasArrow: true },
+    // { key: 'bedrooms', label: 'BEDROOMS',  hasArrow: true },
+    // { key: 'wellness', label: 'WELLNESS',  hasArrow: true },
+    // { key: 'book', label: 'BOOK',  hasArrow: true },
+    // { key: 'news', label: 'NEWS',  hasArrow: false },
+    // { key: 'shop', label: 'SHOP',  hasArrow: true }
   ]
 // 根据路径设置激活状态（示例）
 useEffect(() => {
-  const pathKey = location.pathname.replace('/', '');
-  if (menuItems.some(item => item.key === pathKey)) {
-    setMenuItemsState(pathKey);
-  }
+    const pathKey = location.pathname.replace('/', '');
+    if (menuItems.some(item => item.key === pathKey)) {
+        setMenuItemsState(pathKey);
+    }
+    try{
+        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        if(userInfo && userInfo.user_info && userInfo.user_info.username){
+            setUserName(userInfo.user_info.username);
+            setUserInfo(userInfo)
+        } else {
+            setUserName('Accezz');
+        }
+    }catch(e){
+        setUserName('Accezz');
+    }
 }, [location]);
   const showMobileMenu = () => {
       setMobileMenuOpen(true);
@@ -40,7 +53,7 @@ useEffect(() => {
       setMobileMenuOpen(false);
   };
   const contIsLogin = Utils.getToken()
-  const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+//   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     return(
       <Header className={Style.header}>
       <div className={Style.headerContainer}>
@@ -67,15 +80,7 @@ useEffect(() => {
               ))}
           </nav>
 
-          {/* Mobile Menu Button */}
-          <div className={Style.mobileMenuButton}>
-              <Button
-                  type="text"
-                  icon={<MenuOutlined />}
-                  onClick={showMobileMenu}
-                  className={Style.mobileMenuIcon}
-              />
-          </div>
+          
 
           {/* Login Button */}
           {
@@ -85,17 +90,14 @@ useEffect(() => {
                     arrow={false}
                     content={
                         <div className={Style.loginSeting}>
-                            <Button>Personal Center</Button>
-                            <Button onClick={()=>{
-                                localStorage.clear();
-                                window.location.reload(true);
-                            }}>Log out</Button>
+                            <Button><Link to={'/UserInfo'}>Personal Center</Link></Button>
+                            <Button onClick={()=>Utils.LogOut()}>Log out</Button>
                         </div>
                     }
-                    color={'#f8f6f2'}
+                    // color={'#f8f6f2'}
                 >
-                    {userInfo.user_info.cover&&<img src={userInfo.user_info.cover} alt={userInfo.user_info.username} />}
-                    {!userInfo.user_info.cover&&<span className={Style.loginUserName}>{userInfo.user_info.username}</span>}
+                    {userInfo&&userInfo.user_info.cover&&<img src={userInfo.user_info.cover} alt={userInfo.user_info.username} />}
+                    {userInfo&&!userInfo.user_info.cover&&<span className={Style.loginUserName}>{userInfo.user_info.username}</span>}
                 </Popover>
                 {/* <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&h=900&fit=crop" /> */}
                 
@@ -112,7 +114,15 @@ useEffect(() => {
             </Button>
         </div>
           }
-          
+          {/* Mobile Menu Button */}
+          <div className={Style.mobileMenuButton}>
+              <Button
+                  type="text"
+                  icon={<MenuOutlined />}
+                  onClick={showMobileMenu}
+                  className={Style.mobileMenuIcon}
+              />
+          </div>
       </div>
 
       {/* Mobile Drawer */}
@@ -130,6 +140,14 @@ useEffect(() => {
           <div className={Style.mobileDrawerContent}>
               {/* Close Button */}
               <div className={Style.mobileCloseButton}>
+                <div>
+                    {
+                        contIsLogin&&<>
+                        {userInfo&& <img src={userInfo.user_info.cover} alt={userInfo.user_info.username} />}
+                        {userName&& <span className={Style.loginUserName}>{userInfo.user_info.userName}</span>}
+                        </>
+                    }
+                </div>
                   <Button
                       type="text"
                       onClick={closeMobileMenu}
@@ -141,7 +159,12 @@ useEffect(() => {
 
               {/* Mobile Navigation */}
               <div className={Style.mobileNav}>
-                  {menuItems.map((item) => (
+                {
+                    contIsLogin&&<Link className={Style.mobileNavItem} to={'/UserInfo'}  onClick={closeMobileMenu}>
+                        Personal Center
+                    </Link>
+                }
+                {menuItems.map((item) => (
                       <Link
                           key={item.key}
                           to={`/${item.key}`}
@@ -151,24 +174,38 @@ useEffect(() => {
                           <span className={Style.mobileNavText}>{item.label}</span>
                           {item.hasArrow && <RightOutlined className={Style.mobileNavArrow} />}
                       </Link>
-                  ))}
+                ))}
+                  
               </div>
 
               {/* Mobile Action Buttons */}
-              <div className={Style.mobileActionButtons}>
+              {
+                !contIsLogin&&<div className={Style.mobileActionButtons}>
                   <Button className={Style.subscribeBtn}>
                       SUBSCRIBE
                   </Button>
-                  <Button className={Style.signInBtn}>
-                      SIGN IN
+                  <Button className={Style.signInBtn} onClick={()=>setMobileMenuOpen(false)}>
+                    <Link to={'/Login'}>SIGN IN</Link>
                   </Button>
               </div>
+              }
+              {
+                contIsLogin&&<div className={Style.mobileActionButtons}>
+                   
+                  <Button className={Style.signInBtn} onClick={()=>{
+                     Utils.LogOut()
+                    setMobileMenuOpen(false)
+                    }}>
+                     Log out 
+                  </Button>
+              </div>
+              }
 
               {/* Language Selector */}
-              <div className={Style.languageSelector}>
+              {/* <div className={Style.languageSelector}>
                   <span className={Style.languageText}>LANGUAGE</span>
                   <RightOutlined className={Style.languageArrow} />
-              </div>
+              </div> */}
           </div>
       </Drawer>
   </Header>
