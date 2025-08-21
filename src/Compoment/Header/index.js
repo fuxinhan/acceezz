@@ -1,9 +1,9 @@
 import React, { useState,useEffect } from "react";
 import Style from "./index.module.css"
-import { Layout, Button, Drawer, Avatar, Popover } from 'antd';
+import { Layout, Button, Drawer, Popover } from 'antd';
 import { MenuOutlined, RightOutlined } from '@ant-design/icons';
 import { Link,useLocation  } from "react-router-dom";
-import IsLogin from "../../Util/isLogin";
+// import IsLogin from "../../Util/isLogin";
 import Utils from "../../Util/webCofig";
 
 const {Header} = Layout
@@ -14,6 +14,7 @@ const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [menuItemsState,setMenuItemsState] = useState('/')
   const menuItems  =  [
+    { key: 'Accezz', label: 'ACCEZZ',  hasArrow: true },
     { key: 'Highlights', label: 'HIGHLIGHTS',  hasArrow: true },
     { key: 'Membership', label: 'MEMBERSHIP',   hasArrow: true },
     { key: 'about', label: 'ABOUT',  hasArrow: true },

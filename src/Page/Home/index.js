@@ -1,162 +1,83 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Style from "./index.module.css"
+import { Button, } from 'antd';
+
 
 function HomePage() {
-    const [isPlaying, setIsPlaying] = useState(false);
-    const videoRef = useRef(null);
+    const [userName, setUserName] = useState("");
 
-    // 模拟背景媒体数据 - 可以是图片或视频
-    const backgroundMedia = {
-        type: 'video', // 或 'image'
-        src: 'https://www.w3school.com.cn/example/html5/mov_bbb.mp4', // 视频URL
-        poster: 'https://example.com/background-image.jpg', // 视频封面图片
-        imageSrc: 'https://example.com/background-image.jpg' // 图片URL
-    };
+    return(
+        <div className={Style.homeContainer}>
+           
 
-    const handlePlayPause = () => {
-        if (videoRef.current) {
-            if (isPlaying) {
-                videoRef.current.pause();
-            } else {
-                videoRef.current.play();
-            }
-            setIsPlaying(!isPlaying);
-        }
-    };
-
-    const handleVideoEnded = () => {
-        setIsPlaying(false);
-    };
-
-    return (
-        <div>
-<div className={Style.homepage}>
-
-            {/* 背景媒体容器 */}
-            <div className={Style.backgroundMediaContainer}>
-                {backgroundMedia.type === 'video' ? (
-                    <video
-                        ref={videoRef}
-                        className={Style.backgroundVideo}
-                        poster={backgroundMedia.poster}
-                        muted
-                        loop
-                        onEnded={handleVideoEnded}
-                    >
-                        <source src={backgroundMedia.src} type="video/mp4" />
-                        您的浏览器不支持视频标签。
-                    </video>
-                ) : (
-                    <img
-                        src={backgroundMedia.imageSrc}
-                        alt="背景图片"
-                        className={Style.backgroundImage}
-                    />
-                )}
-                {/* 背景遮罩 */}
-                <div className={Style.backgroundOverlay}></div>
-            </div>
-
-            {/* 页面内容 */}
-            <div className={Style.pageContent}>
-                <div className={Style.contentContainer}>
-                    <h1 className={Style.mainTitle}>Welcome to ACCEZZ</h1>
-                    <p className={Style.mainDescription}>
-                    This is a place full of creativity and possibilities, and we are committed to providing you with the highest quality service and experience.
-                    </p>
-                    
-                    {/* 操作按钮 */}
-                    <div className={Style.actionButtons}>
-                        <button className={Style.primaryButton}>
-                            开始探索
-                        </button>
-                        <button className={Style.secondaryButton}>
-                            了解更多
-                        </button>
-                    </div>
-                    {/* 播放按钮 - 仅在视频时显示 */}
-                {backgroundMedia.type === 'video' && (
-                    <div className={Style.playButtonContainer}>
-                        <button
-                            className={`${Style.playButton} ${isPlaying ? Style.pauseButton : ''}`}
-                            onClick={handlePlayPause}
-                            aria-label={isPlaying ? '暂停' : '播放'}
-                        >
-                            {isPlaying ? (
-                                <svg viewBox="0 0 24 24" fill="currentColor" className={Style.playIcon}>
-                                    <rect x="6" y="4" width="4" height="16" />
-                                    <rect x="14" y="4" width="4" height="16" />
-                                </svg>
-                            ) : (
-                                <svg viewBox="0 0 24 24" fill="currentColor" className={Style.playIcon}>
-                                    <polygon points="5,3 19,12 5,21" />
-                                </svg>
-                            )}
-                        </button>
-                    </div>
-                )}
-
-                    {/* 特色内容 */}
-                    {/* <div className={Style.features}>
-                        <div className={Style.featureItem}>
-                            <div className={Style.featureIcon}>🏠</div>
-                            <h3>优质住宅</h3>
-                            <p>为您提供舒适宜居的生活空间</p>
-                        </div>
-                        <div className={Style.featureItem}>
-                            <div className={Style.featureIcon}>🌟</div>
-                            <h3>卓越服务</h3>
-                            <p>24/7全天候专业服务支持</p>
-                        </div>
-                        <div className={Style.featureItem}>
-                            <div className={Style.featureIcon}>🎯</div>
-                            <h3>精准定位</h3>
-                            <p>满足您的个性化需求</p>
-                        </div>
+            {/* 欢迎区域 */}
+            <section className={Style.welcomeSection}>
+                <div className={Style.welcomeContent}>
+                    <h1 className={Style.welcomeTitle}>Welcome</h1>
+                    {/* <div className={Style.nameInput}>
+                        <input 
+                            type="text" 
+                            placeholder="Enter your name" 
+                            value={userName}
+                            onChange={(e) => setUserName(e.target.value)}
+                            className={Style.nameField}
+                        />
                     </div> */}
                 </div>
-            </div>
+            </section>
+
+            {/* 主图片区域 */}
+            <section  >
+                    {/* <div className={Style.pageIndicator}>P8</div> */}
+                        <div className={Style.imagePlaceholder}>
+                            <img src="https://ix-marketing.imgix.net/liftkit-hero.png?auto=format,compress&w=2618" />
+                        </div>
+            </section>
+
+            {/* 会员申请区域 */}
+            <section className={Style.membershipSection}>
+                <div className={Style.membershipContent}>
+                    <h2 className={Style.membershipTitle}>It's easy to propose a new member.</h2>
+                    <p className={Style.membershipText}>Membership applications are now open to all members.</p>
+                    <Button className={Style.referButton} type="primary">
+                        Refer
+                    </Button>
+                </div>
+            </section>
+
+            {/* 即将到来的活动区域 */}
+            <section className={Style.upcomingSection}>
+                <h2 className={Style.upcomingTitle}>Upcoming</h2>
+                <div className={Style.eventsGrid}>
+                    <div className={Style.eventCard}>
+                        <div className={Style.eventImage}>
+                            <img src="https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=400&h=300&fit=crop" alt="Gallery Walk" />
+                        </div>
+                        <div className={Style.eventContent}>
+                            <h3 className={Style.eventTitle}>Gallery Walk</h3>
+                            <p className={Style.eventDescription}>Join us for an exciting gallery walk event featuring local artists and their amazing works.</p>
+                            <Button className={Style.rsvpButton} type="primary">
+                                RSVP
+                            </Button>
+                        </div>
+                    </div>
+                    
+                    <div className={Style.eventCard}>
+                        <div className={Style.eventImage}>
+                            <img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=400&h=300&fit=crop" alt="XXXX Event" />
+                        </div>
+                        <div className={Style.eventContent}>
+                            <h3 className={Style.eventTitle}>XXXX</h3>
+                            <p className={Style.eventDescription}>Another exciting event coming up soon. Stay tuned for more details.</p>
+                            <Button className={Style.rsvpButton} type="primary">
+                                RSVP
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-        <div className={Style.heroContent}>
-        <div className={Style.heroLeft}>
-          <div className={Style.currentPage}>
-            <div className={Style.pageIndicator}>Current page / Landing page</div>
-            <div className={Style.pageLabel}>PT</div>
-          </div>
-          
-          <h1 className={Style.mainHeading}>
-            Gamify Access for the <span>future generation</span> of collectors across all pockets of the art world
-          </h1>
-          
-          <p className={Style.subHeading}>
-            Carving out a new space for people who want to engage with art through collecting. 
-            ACCEZZ is a community where emerging collectors find exceptional artists and artwork.
-          </p>
-          
-          <div className={Style.ctaButtons}>
-            <button className={Style.primaryBtn}>
-              JOIN COMMUNITY <i className={Style.faArrowRight}></i>
-            </button>
-            <button className={Style.secondaryBtn}>
-              EXPLORE WORKS
-            </button>
-          </div>
-        </div>
-        
-        <div className={Style.heroRight}>
-          <div className={Style.imageGrid}>
-            <div className={Style.imageCard}>
-              <div className={Style.placeholder}>ARTWORK SHOWCASE</div>
-            </div>
-            <div className={Style.imageCard}>
-              <div className={Style.placeholder}>COLLECTOR STORY</div>
-            </div>
-          </div>
-        </div>
-      </div>
-        </div>
-        
-    );
+    ) 
 }
 
 export default HomePage;

@@ -14,6 +14,7 @@ const MembershipPage = lazy(()=>import('../Page/Membership'))
 const AboutPage = lazy(()=>import('../Page/About'))
 const LoginPage = lazy(()=>import('../Page/Login'))
 const RegisterPage = lazy(()=>import('../Page/Register'))
+const AccezzPage = lazy(()=>import('../Page/Accezz'))
 
 function AppRouter (){
     return(
@@ -22,7 +23,8 @@ function AppRouter (){
             <Content className={Style.RouterCentent}>
                 <Routes>
                     <Route exact  path='/' element={<HomePage/>} />
-                    <Route   path='/Highlights' element={<HighlightsPage />} />
+                    <Route path='/Accezz' element={<AccezzPage />} />
+                    <Route path='/Highlights' element={<HighlightsPage />} />
                     <Route path='/Membership' element={<MembershipPage />}/>
                     <Route path='/About' element={IsLogin(AboutPage)} />
                     <Route path='/Login' element={<LoginPage />} />

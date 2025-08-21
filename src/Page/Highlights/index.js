@@ -109,7 +109,6 @@ const HighlightsPage = () => {
 
     // 鼠标拖拽事件处理
     const handleMouseDown = (e, rowType) => {
-        console.log(e,rowType)
         setIsDragging(true);
         setActiveRow(rowType);
         const currentRowRef = rowType === 'first' ? firstRowRef.current : secondRowRef.current;
@@ -118,7 +117,6 @@ const HighlightsPage = () => {
     };
 
     const handleMouseMove = (e) => {
-        console.log(e)
         if (!isDragging || !activeRow) return;
         e.preventDefault();
         
