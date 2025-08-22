@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/acceezz/static/css/main.91cea99d.css",
-    "main.js": "/acceezz/static/js/main.1fa2b3c5.js",
+    "main.js": "/acceezz/static/js/main.6086f89e.js",
     "static/css/869.4b21b1d3.chunk.css": "/acceezz/static/css/869.4b21b1d3.chunk.css",
     "static/js/869.c7614150.chunk.js": "/acceezz/static/js/869.c7614150.chunk.js",
     "static/css/589.6a94dc0a.chunk.css": "/acceezz/static/css/589.6a94dc0a.chunk.css",
@@ -21,7 +21,7 @@
     "static/js/340.5ebe8adf.chunk.js": "/acceezz/static/js/340.5ebe8adf.chunk.js",
     "index.html": "/acceezz/index.html",
     "main.91cea99d.css.map": "/acceezz/static/css/main.91cea99d.css.map",
-    "main.1fa2b3c5.js.map": "/acceezz/static/js/main.1fa2b3c5.js.map",
+    "main.6086f89e.js.map": "/acceezz/static/js/main.6086f89e.js.map",
     "869.4b21b1d3.chunk.css.map": "/acceezz/static/css/869.4b21b1d3.chunk.css.map",
     "869.c7614150.chunk.js.map": "/acceezz/static/js/869.c7614150.chunk.js.map",
     "589.6a94dc0a.chunk.css.map": "/acceezz/static/css/589.6a94dc0a.chunk.css.map",
@@ -42,6 +42,6 @@
   },
   "entrypoints": [
     "static/css/main.91cea99d.css",
-    "static/js/main.1fa2b3c5.js"
+    "static/js/main.6086f89e.js"
   ]
 }
