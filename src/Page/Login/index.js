@@ -4,6 +4,8 @@ import style from './index.module.css';
 import { Link } from "react-router-dom";
 import Utils from "../../Util/webCofig";
 import ActionType from "../../Store/actionType";
+import { useSelector } from "react-redux";
+import { Spin } from "antd";
 
 const LoginPage = ()=>{
 	const [email, setEmail] = useState("");
@@ -24,9 +26,11 @@ const LoginPage = ()=>{
 		console.log("Go to register");
 		// TODO: 在此处跳转注册页路由
 	};
+	const getLoginData = useSelector(data => data.Login)
 
 	return(
 		<div className={style.LoginPage}>
+			
 			<div className={style.card}>
 				{/* LOGO */}
 				{/* <div className={style.logo} aria-label="Logo" role="img">
@@ -70,19 +74,25 @@ const LoginPage = ()=>{
 						required
 					/>
 
-					<button type="submit" className={style.primaryBtn}>Sign in</button>
+					<button type="submit" className={style.primaryBtn}>Sign in <Spin spinning={getLoginData?getLoginData.loading:false }/> </button>
 				</form>
 
 				<p className={style.altText}>
 					We’ll sign you in with your email and password. Forgot? <Link to="/Resetpassword" className={style.link}>Reset it</Link>.
 				</p>
 
-				<button type="button" className={style.ghostBtn} onClick={handleRegister}>
+				<button 
+				type="button" 
+				className={style.ghostBtn} 
+				onClick={handleRegister} 
+				
+				>
                     <Link to={'/Register'}>
                     	Don’t have an account?
                     </Link>
                     </button>
 			</div>
+			
 		</div>
 	)
 }

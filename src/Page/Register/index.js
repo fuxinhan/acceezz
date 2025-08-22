@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import style from "./index.module.css";
 import Utils from "../../Util/webCofig";
 import ActionType from "../../Store/actionType";
-import { message } from "antd";
+import { message, Spin } from "antd";
+import { useSelector } from "react-redux";
 
 const RegisterPage = () => {
     // 基本信息状态
@@ -77,7 +78,7 @@ const RegisterPage = () => {
         })
         console.log("注册表单提交数据:", formData);
     };
-
+    const getResourcesData = useSelector(data=>data.PostRegister)
     return (
         <div className={style.RegisterPage}>
             <div className={style.card}>
@@ -381,8 +382,8 @@ const RegisterPage = () => {
 
                     {/* 按钮组 */}
                     <div className={style.buttonGroup}>
-                        <button type="submit" className={style.primaryBtn}>
-                            Submit Registration
+                        <button type="submit" className={style.primaryBtn}  >
+                            Submit Registration <Spin spinning={getResourcesData?getResourcesData.loading:false} />
                         </button>
                         <Link to="/Login" className={style.loginBtn}>
                             Do you already have an account? Log in now
