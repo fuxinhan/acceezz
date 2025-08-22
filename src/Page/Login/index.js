@@ -13,19 +13,11 @@ const LoginPage = ()=>{
 		e.preventDefault();
 		const payload = { username:email, password:password };
 		const url = 'programmer/jwt/'
-		console.log("Login submit payload:", payload);
 		Utils.post({
 			url,
 			data:payload,
-			actionType:ActionType().Login,
-			Success:(data)=>{
-				console.log(data)
-			},
-			Error:(data)=>{
-				console.log(data)
-			}
+			actionType:ActionType().Login
 		})
-		// TODO: 在此处调用实际登录接口
 	};
 
 	const handleRegister = () => {
@@ -87,10 +79,8 @@ const LoginPage = ()=>{
 
 				<button type="button" className={style.ghostBtn} onClick={handleRegister}>
                     <Link to={'/Register'}>
-                    Don’t have an account?
+                    	Don’t have an account?
                     </Link>
-                    
-                    
                     </button>
 			</div>
 		</div>

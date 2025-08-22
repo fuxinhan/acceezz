@@ -67,6 +67,28 @@
 
 .modalActions{ display:flex; justify-content:flex-end; gap:.6rem; margin-top:.5rem; }
 
+/* 裁剪弹窗样式 */
+.avatarClickable{ cursor: pointer; position: relative; }
+.avatarClickable::after{ content: ""; position:absolute; inset:0; border-radius:50%; background: rgba(0,0,0,0); transition: background .2s; }
+.avatarClickable:hover::after{ background: rgba(0,0,0,0.06); }
+
+.avatarModal :global(.ant-modal-body){ padding-top: .5rem; }
+.cropperBody{ display:flex; flex-direction: column; gap: 1rem; }
+.emptyUploader{ display:flex; align-items:center; justify-content:center; height: 260px; border:1px dashed var(--sand); border-radius:12px; background:#fff; }
+
+.cropBox{ position: relative; width: 320px; height: 320px; margin: 0 auto; background:#111; border-radius: 12px; overflow: hidden; touch-action: none; cursor: grab; }
+.cropBox:active{ cursor: grabbing; }
+.cropImage{ position:absolute; top:50%; left:50%; transform: translate(-50%, -50%); transform-origin: center center; user-select:none; -webkit-user-drag: none; }
+.cropMask{ position:absolute; inset:0; box-shadow: 0 0 0 9999px rgba(0,0,0,.45); border-radius: 0; pointer-events: none; }
+
+.controls{ display:flex; flex-direction: column; gap: .6rem; }
+.scaleRow{ display:flex; align-items:center; gap:.8rem; }
+.scaleLabel{ color:#666; min-width: 36px; }
+.scaleSlider{
+	width: 100%;
+}
+.actionRow{ display:flex; justify-content:flex-end; gap:.6rem; }
+
 /* 响应式 */
 @media (max-width: 900px){
 	.layout{ grid-template-columns: 1fr; }
@@ -77,4 +99,6 @@
 	.title{ font-size: 1.5rem; }
 	.fieldRow{ grid-template-columns: 120px 1fr; }
 	.metaGrid{ grid-template-columns: 1fr; }
+	.cropBox{ width: 86vw; height: 86vw; }
+	.emptyUploader{ height: 58vw; }
 }

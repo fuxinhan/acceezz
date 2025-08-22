@@ -2,7 +2,7 @@ import axios from "axios";
 import store from './../Store/index'
 import { message } from "antd";
 import { CheckCircleOutlined } from '@ant-design/icons'
-
+import '@ant-design/v5-patch-for-react-19';
 class Util{
     // 退出登陆
     LogOut(){
@@ -19,7 +19,7 @@ class Util{
         let host = window.location.host;
         let ip = `${http}//${host}/`;
         ip = ip.replace(":3000", ":8000");
-        ip = ip.replace(":3001", ":8001");
+        ip = ip.replace(":3001", ":8000");
         ip = ip.replace('172.17.0.2', '127.0.0.1');
         return ip;
     }
@@ -85,9 +85,6 @@ class Util{
         data['url'] = url
 
         axios(data).then((res) => {
-            if (res.status === 299) {
-                message.warning('必须要购买才能查看')
-            }
             let RequestData = res.data
             RequestData = this.returnIndexAB(RequestData)
             store.dispatch({ type: data['actionType'], data: RequestData, loading: false })
@@ -109,7 +106,6 @@ class Util{
                     this.isUser(RequestData, 'accounting') ||
                     this.isUser(RequestData, 'dealer_captain')
                 ) {
-                    console.log(this.isUser('accounting'))
                     message.error('此用户为后台管理人员，请前往后台登录')
                 } else {
                     let userToken = RequestData.jwt_token;
@@ -146,12 +142,11 @@ class Util{
     // API返回的错误信息处理
     requestMessage(data, Message) {
         let status = data.status
-        // console.log(data)
         if(status===400) return message.error('400')
         if (status === 200 || status === 201 || status === 204) {
             if (Message) message.success(<CheckCircleOutlined />) 
         } else if (status === 401) {
-            message.error(data.data.info)
+            message.error(data&&data.response&&data.response.data||'Username or password error, please try again!')
         } else if (!status && data.code && data.code === 'ERR_BAD_REQUEST') {
             let errorText = (
                 (
