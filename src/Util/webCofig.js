@@ -90,25 +90,14 @@ class Util{
             RequestData = this.returnIndexAB(RequestData)
             store.dispatch({ type: data['actionType'], data: RequestData, loading: false })
             if (data['actionType'] === 'Login') {
-                if (this.isLocal()) {
-                    let userToken = RequestData.jwt_token;
-                    let userInfo = JSON.stringify(RequestData);
-                    localStorage.setItem("userToken", userToken);
-                    localStorage.setItem("userInfo", userInfo);
-                    let path = window.location.pathname
-
-                    if (path === '/Login') {
-                        path = '/'
-                    }
-                    window.location.href = path;
-                } else if (
-                    this.isUser(RequestData, 'word_editor') ||
-                    this.isUser(RequestData, 'admin') ||
-                    this.isUser(RequestData, 'accounting') ||
-                    this.isUser(RequestData, 'dealer_captain')
-                ) {
-                    message.error('此用户为后台管理人员，请前往后台登录')
-                } else {
+                //  if (
+                //     this.isUser(RequestData, 'word_editor') ||
+                //     this.isUser(RequestData, 'admin') ||
+                //     this.isUser(RequestData, 'accounting') ||
+                //     this.isUser(RequestData, 'dealer_captain')
+                // ) {
+                //     message.error('此用户为后台管理人员，请前往后台登录')
+                // } else {
                     let userToken = RequestData.jwt_token;
                     let userInfo = JSON.stringify(RequestData);
                     localStorage.setItem("userToken", userToken);
@@ -119,7 +108,7 @@ class Util{
                         path = '/'
                     }
                     window.location.href = path;
-                }
+                // }
             }
             if (data.Success) data.Success(RequestData)
             this.requestMessage(res, data.message)
