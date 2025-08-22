@@ -15,7 +15,7 @@ class Util{
     }
     // 获取当前rul
     currentUrl() {
-        if(this.isLocal() ) return 'https://www.theaccezz.com/'
+        if(this.isLocal() ) return 'https://console.theaccezz.com/'
         let http = window.location.protocol;
         let host = window.location.host;
         let ip = `${http}//${host}/`;

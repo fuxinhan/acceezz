@@ -53,7 +53,6 @@ useEffect(() => {
       setMobileMenuOpen(false);
   };
   const contIsLogin = Utils.getToken()
-//   const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     return(
       <Header className={Style.header}>
       <div className={Style.headerContainer}>
@@ -105,10 +104,11 @@ useEffect(() => {
             <Button 
                 ghost 
                 className={Style.loginBtn}
+                onClick={()=>{
+                    setMenuItemsState('/')
+                }}
             >
-              <Link to={'/Login'}
-                   onClick={()=>setMenuItemsState('/')}
-              > 
+              <Link to={'/Login'} > 
                   LOGIN
               </Link> 
             </Button>
@@ -184,8 +184,12 @@ useEffect(() => {
                   <Button className={Style.subscribeBtn}>
                       SUBSCRIBE
                   </Button>
-                  <Button className={Style.signInBtn} onClick={()=>setMobileMenuOpen(false)}>
-                    <Link to={'/Login'}>SIGN IN</Link>
+                  <Button className={Style.signInBtn} >
+                    <Link to={'/Login'} onClick={()=>{
+                    setMobileMenuOpen(false)
+                    }}>
+                        SIGN IN
+                    </Link>
                   </Button>
               </div>
               }
