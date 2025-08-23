@@ -1,6 +1,9 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
 import style from './index.module.css';
 import { Avatar, Button, Form, Input, DatePicker, Modal, message, Slider } from 'antd';
+import Utils from "../../Util/webCofig";
+import ActionType from "../../Store/actionType";
+import dayjs from "dayjs";
 
 const MENU = {
     PROFILE: 'profile',
@@ -26,7 +29,7 @@ function toInitialProfile(){
         email: info.email || 'member@example.com',
         avatar: info.cover || null,
         location: info.location || '—',
-        dateOfBirth: info.dateOfBirth || null,
+        date_of_birth: info.date_of_birth || null,
         address: info.address || '',
         phone: info.phone || ''
     };
@@ -49,20 +52,42 @@ const UserInfoPage = ()=>{
     const fileInputRef = useRef(null);
     const cropBoxRef = useRef(null);
 
+    const onGetUserInfo = ()=>{
+        Utils.get({
+            url:'api_v1/user/-1/',
+            actionType:ActionType().GetUserInfo,
+            Success:(data)=>{
+                setProfile((prev)=>({...prev,...data}))
+            }
+        })
+    }
     useEffect(()=>{
         setProfile(toInitialProfile());
+        onGetUserInfo()
     },[]);
+
+    // 修改用户信息
 
     const handleEditSubmit = (values)=>{
         /* 打印提交字段 */
         // 合并默认值
-        const submitted = { ...profile, ...values };
+        const submitted = { ...values };
+        
         // 控制台输出
         // eslint-disable-next-line no-console
         console.log('profile_update', submitted);
         message.success('已打印到控制台');
+        Utils.patch({
+            url:'/api_v1/user/-1/',
+            data:submitted,
+            actionType:ActionType().PatchUserInfo,
+            Success:()=>{
+                onGetUserInfo()
+                setProfile(prev=>({ ...prev, ...values }));
+            }
+        })
         setEditOpen(false);
-        setProfile(prev=>({ ...prev, ...values }));
+        
     };
 
     const handlePwdSubmit = (values)=>{
@@ -288,20 +313,56 @@ const UserInfoPage = ()=>{
         ctx.drawImage(img, drawX, drawY, renderW, renderH);
         return canvas.toDataURL('image/png');
     };
-
+    // 修改头像
     const onSubmitAvatar = ()=>{
         const dataUrl = performCrop();
         if(!dataUrl){
             message.error('裁剪失败，请重试');
             return;
         }
+           // 将 base64 转换为二进制数据
+           const base64Data = dataUrl.split(',')[1]; // 移除 data:image/xxx;base64, 前缀
+           const binaryString = atob(base64Data);
+           const bytes = new Uint8Array(binaryString.length);
+           for (let i = 0; i < binaryString.length; i++) {
+               bytes[i] = binaryString.charCodeAt(i);
+           }
+           
+           // 创建 Blob 对象
+           const blob = new Blob([bytes], { type: 'image/jpeg' });
+           
+        const formData = new FormData();
+        formData.append("cover", blob, "avatar.jpg"); // 使用二进制 blob  
+        Utils.post({
+            url:"programmer/set_password/",
+            data:formData,
+            actionType:ActionType().PostUserCover,
+            Success:(data)=>{
+                let stored = readUserFromStorage();
+                let userSub = {
+                    ...stored.user_info,
+                    cover:data.src
+                }
+                stored['user_info']  = userSub
+                localStorage.setItem("userInfo", JSON.stringify(stored));
+                // 更新页面状态，立即显示新头像
+                setProfile(prev=>({ ...prev, avatar: data.src }));
+                
+                // 触发自定义事件，通知 Header 组件更新头像
+                window.dispatchEvent(new CustomEvent('userAvatarUpdated', {
+                    detail: { avatar: data.src }
+                }));
+            },
+            Error:(data)=>{
+                console.log(data)
+            }
+        })
         // eslint-disable-next-line no-console
         console.log('submit_avatar', { avatarDataUrl: dataUrl });
         message.success('已打印到控制台');
-        setProfile(prev=>({ ...prev, avatar: dataUrl }));
         setAvatarOpen(false);
     };
-
+    //左侧菜单栏
     const SideMenu = useMemo(()=> (
         <aside className={style.sideMenu}>
             <div className={active===MENU.PROFILE?`${style.menuItem} ${style.active}`:style.menuItem} onClick={()=>setActive(MENU.PROFILE)}>
@@ -329,6 +390,7 @@ const UserInfoPage = ()=>{
 
     return(
         <div className={style.UserInfoPage}>
+            
             <div className={style.layout}>
                 {SideMenu}
                 <main className={style.content}>
@@ -342,7 +404,7 @@ const UserInfoPage = ()=>{
                             <div className={style.profileTop}>
                                 <div className={style.leftIntro}>
                                     <div className={style.avatarClickable} onClick={onOpenAvatar} title="点击更换头像">
-                                        <Avatar size={80} src={profile.avatar} >{profile.username?.[0]}</Avatar>
+                                        <Avatar size={80} src={Utils.returnFileUrl(profile.avatar) } >{profile.username?.[0]}</Avatar>
                                     </div>
                                     <div className={style.nameBlock}>
                                         <div className={style.name}>{profile.username}</div>
@@ -350,7 +412,7 @@ const UserInfoPage = ()=>{
                                     </div>
                                 </div>
                             </div>
-
+                            {console.log(profile)}
                             <div className={style.fieldList}>
                                 <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}>Email</div>
@@ -358,7 +420,7 @@ const UserInfoPage = ()=>{
                                 </div>
                                 <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}>Date of birth</div>
-                                    <div className={style.fieldValue}>{profile.dateOfBirth || '—'}</div>
+                                    <div className={style.fieldValue}>{profile.date_of_birth || '—'}</div>
                                 </div>
                                 <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}>Address</div>
@@ -383,7 +445,12 @@ const UserInfoPage = ()=>{
                                     <Form.Item label="Email" name="email" rules={[{ required:true, message:'请输入邮箱' }]}>
                                         <Input placeholder="your@email.com"/>
                                     </Form.Item>
-                                    <Form.Item label="Date of birth" name="dateOfBirth">
+                                    <Form.Item 
+                                    label="Date of birth" 
+                                    name="date_of_birth"  
+                                    getValueProps={(value) => ({ value: value ? dayjs(value) : null })}
+                                    normalize={(value) => value ? dayjs(value).format('YYYY-MM-DD') : null}
+                                    >
                                         <DatePicker style={{ width:'100%' }} />
                                     </Form.Item>
                                     <Form.Item label="Address" name="address">

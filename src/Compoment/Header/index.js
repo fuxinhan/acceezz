@@ -33,18 +33,34 @@ useEffect(() => {
     if (menuItems.some(item => item.key === pathKey)) {
         setMenuItemsState(pathKey);
     }
-    try{
-        const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-        if(userInfo && userInfo.user_info && userInfo.user_info.username){
-            setUserName(userInfo.user_info.username);
-            setUserInfo(userInfo)
-        } else {
+    const loadUserInfo = () => {
+        try{
+            const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+            if(userInfo && userInfo.user_info && userInfo.user_info.username){
+                setUserName(userInfo.user_info.username);
+                setUserInfo(userInfo)
+            } else {
+                setUserName('Accezz');
+            }
+        }catch(e){
             setUserName('Accezz');
         }
-    }catch(e){
-        setUserName('Accezz');
-    }
+    };
+    // 初始加载用户信息
+    loadUserInfo();
+     // 监听头像更新事件
+     const handleAvatarUpdate = (event) => {
+        loadUserInfo(); // 重新加载用户信息
+    };
+    
+    window.addEventListener('userAvatarUpdated', handleAvatarUpdate);
+    
+    // 清理事件监听器
+    return () => {
+        window.removeEventListener('userAvatarUpdated', handleAvatarUpdate);
+    };
 }, [location]);
+
   const showMobileMenu = () => {
       setMobileMenuOpen(true);
   };
@@ -95,7 +111,7 @@ useEffect(() => {
                     }
                     // color={'#f8f6f2'}
                 >
-                    {userInfo&&userInfo.user_info.cover&&<img src={userInfo.user_info.cover} alt={userInfo.user_info.username} />}
+                    {userInfo&&userInfo.user_info.cover&&<img src={Utils.returnFileUrl(userInfo.user_info.cover) } alt={userInfo.user_info.username} />}
                     {userInfo&&!userInfo.user_info.cover&&<span className={Style.loginUserName}>{userInfo.user_info.username}</span>}
                 </Popover>
                 {/* <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&h=900&fit=crop" /> */}
@@ -143,8 +159,8 @@ useEffect(() => {
                 <div>
                     {
                         contIsLogin&&<>
-                        {userInfo&& <img src={userInfo.user_info.cover} alt={userInfo.user_info.username} />}
-                        {userName&& <span className={Style.loginUserName}>{userInfo.user_info.userName}</span>}
+                        {userInfo&& <img src={userInfo.user_info.cover} alt={userInfo?.user_info?.username} />}
+                        {userName&& <span className={Style.loginUserName}>{userInfo?.user_info?.username}</span>}
                         </>
                     }
                 </div>

@@ -3,7 +3,11 @@ function ActionType() {
     return {
         DataA: 'DataA',
         Login: 'Login',
-        PostRegister:'PostRegister'
+        GetUserInfo:'GetUserInfo',
+        PostRegister:'PostRegister',
+        PostUserCover:'PostUserCover',
+        OnGetHomePageText:'OnGetHomePageText',
+        PatchUserInfo:'PatchUserInfo'
     }
 
 }

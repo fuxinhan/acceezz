@@ -176,6 +176,19 @@ class Util{
 
 
     }
+    returnFileUrl(url) {
+        if (!url) return url;
+        if(this.isLocal()) return this.currentUrl()+url;
+        if(!this.isLocal()) return 'https://console.theaccezz.com/'+url
+        // let newUrl = url.substring(0, 5);
+        // if (newUrl === "https") {
+        //     return url;
+        // } else if (newUrl === "data:") {
+        //     return url;
+        // } else {
+        //     return this.wordUrl() + url;
+        // }
+    }
 }
 
 let Utils = new Util()

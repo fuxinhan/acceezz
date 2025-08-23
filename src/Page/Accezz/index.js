@@ -1,9 +1,29 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Style from "./index.module.css"
+import Utils from "../../Util/webCofig";
+import ActionType from "../../Store/actionType";
 
 function AccezzPage() {
     const [isPlaying, setIsPlaying] = useState(false);
     const videoRef = useRef(null);
+
+    useEffect(()=>{
+        onGetHomePageText()
+    },[])
+
+    const onGetHomePageText =()=>{
+        Utils.get({
+            url:'api_back/resources_text/',
+            data:{
+                purpose_obj:3,
+                page:1000,
+            },
+            actionType:ActionType().OnGetHomePageText,
+            Success:(data)=>{
+                console.log(data)
+            }
+        })
+    }
 
     // 模拟背景媒体数据 - 可以是图片或视频
     const backgroundMedia = {
