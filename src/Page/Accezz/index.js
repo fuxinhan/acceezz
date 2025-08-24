@@ -2,38 +2,115 @@ import React, { useState, useRef, useEffect } from "react";
 import Style from "./index.module.css"
 import Utils from "../../Util/webCofig";
 import ActionType from "../../Store/actionType";
-
+const homeSelect1ObgId = 9;   // 首页select1的分类ID
+const homeSelect2ObgId = 10;   // 首页select2的分类ID
 function AccezzPage() {
     const [isPlaying, setIsPlaying] = useState(false);
+    const [homeInitData,setHomeInitData]=useState({
+        select1Text:{
+            media_type:'text',
+            media_type_display:'文字',
+            text:'Welcome to ACCEZZ',
+            sub_text :  "This is a place full of creativity and possibilities, and we are committed to providing you with the highest quality service and experience.",
+        },
+        select1FileVideo:{
+            media_type:'image',
+            abs_file_obj_display:'https://www.w3school.com.cn/example/html5/mov_bbb.mp4'
+        },
+        select2Text:{
+            media_type:'text',
+            media_type_display:'文字',
+            text:'Gamify Access for the future generation of collectors across all pockets of the art world',
+            sub_text :  "Carving out a new space for people who want to engage with art through collecting. ACCEZZ is a community where emerging collectors find exceptional artists and artwork.",
+        },
+        select2File:[]
+    })
     const videoRef = useRef(null);
 
     useEffect(()=>{
-        onGetHomePageText()
+        onGetHomeSelect1Content()
+        onGetHomeSelect2Content()
     },[])
-
-    const onGetHomePageText =()=>{
+    // select1
+    const onGetHomeSelect1Content =()=>{  
         Utils.get({
             url:'api_back/resources_text/',
-            data:{
-                purpose_obj:3,
-                page:1000,
+            params:{
+                purpose_obj:homeSelect1ObgId,
+                page:1,
+                pagesize:100
             },
-            actionType:ActionType().OnGetHomePageText,
+            actionType:ActionType().OnGetHomePageSelect1Text,
             Success:(data)=>{
-                console.log(data)
+                let contentDatab = data?.results?.[0]||{}
+                let initSelect1Text = homeInitData.select1Text
+                let toData = {...initSelect1Text,...contentDatab}
+                setHomeInitData(prev=>({
+                    ...prev,
+                    select1Text:toData
+                 }))
+            }
+        })
+        Utils.get({
+            url:'api_back/resources_file/',
+            params:{
+                purpose_obj:homeSelect1ObgId,
+                page:1,
+                pagesize:100
+            },
+            actionType:ActionType().OnGetHomePageSelect1File,
+            Success:(data)=>{
+                let contentDatab = data?.results?.[0]||{}
+                let initSelect1Text = homeInitData.select1FileVideo
+                let toData = {...initSelect1Text,...contentDatab}
+                console.log(toData)
+                setHomeInitData(prev=>({
+                    ...prev,
+                    select1FileVideo:toData
+                 }))
             }
         })
     }
-
-    // 模拟背景媒体数据 - 可以是图片或视频
-    const backgroundMedia = {
-        type: 'video', // 或 'image'
-        src: 'https://www.w3school.com.cn/example/html5/mov_bbb.mp4', // 视频URL
-        poster: 'https://example.com/background-image.jpg', // 视频封面图片
-        imageSrc: 'https://example.com/background-image.jpg' // 图片URL
-    };
+// select2
+const onGetHomeSelect2Content =()=>{  
+    Utils.get({
+        url:'api_back/resources_text/',
+        params:{
+            purpose_obj:homeSelect2ObgId,
+            page:1,
+            pagesize:100
+        },
+        actionType:ActionType().OnGetHomePageSelect2Text,
+        Success:(data)=>{
+            let contentDatab = data?.results?.[0]||{}
+            let initSelect1Text = homeInitData.select2Text
+            let toData = {...initSelect1Text,...contentDatab}
+            setHomeInitData(prev=>({
+                ...prev,
+                select2Text:toData
+             }))
+        }
+    })
+    Utils.get({
+        url:'api_back/resources_file/',
+        params:{
+            purpose_obj:homeSelect2ObgId,
+            page:1,
+            pagesize:100
+        },
+        actionType:ActionType().OnGetHomePageSelect2File,
+        Success:(data)=>{
+            let contentDatab = data?.results
+            setHomeInitData(prev=>({
+                ...prev,
+                select2File:contentDatab
+             }))
+        }
+    })
+}
 
     const handlePlayPause = () => {
+        console.log(videoRef)
         if (videoRef.current) {
             if (isPlaying) {
                 videoRef.current.pause();
@@ -54,21 +131,20 @@ function AccezzPage() {
 
             {/* 背景媒体容器 */}
             <div className={Style.backgroundMediaContainer}>
-                {backgroundMedia.type === 'video' ? (
+                {homeInitData?.select1FileVideo?.media_type === 'video' ? (
                     <video
                         ref={videoRef}
                         className={Style.backgroundVideo}
-                        poster={backgroundMedia.poster}
                         muted
                         loop
                         onEnded={handleVideoEnded}
                     >
-                        <source src={backgroundMedia.src} type="video/mp4" />
+                        <source src={Utils.returnFileUrl(homeInitData?.select1FileVideo?.abs_file_obj_display) } type="video/mp4" />
                         您的浏览器不支持视频标签。
                     </video>
                 ) : (
                     <img
-                        src={backgroundMedia.imageSrc}
+                        src={Utils.returnFileUrl(homeInitData?.select1FileVideo?.abs_file_obj_display)}
                         alt="背景图片"
                         className={Style.backgroundImage}
                     />
@@ -80,9 +156,9 @@ function AccezzPage() {
             {/* 页面内容 */}
             <div className={Style.pageContent}>
                 <div className={Style.contentContainer}>
-                    <h1 className={Style.mainTitle}>Welcome to ACCEZZ</h1>
+                    <h1 className={Style.mainTitle}>{homeInitData?.select1Text?.text||'Welcome to ACCEZZ'}</h1>
                     <p className={Style.mainDescription}>
-                    This is a place full of creativity and possibilities, and we are committed to providing you with the highest quality service and experience.
+                    {homeInitData?.select1Text?.sub_text||'This is a place full of creativity and possibilities, and we are committed to providing you with the highest quality service and experience.'}
                     </p>
                     
                     {/* 操作按钮 */}
@@ -95,7 +171,7 @@ function AccezzPage() {
                         </button>
                     </div>
                     {/* 播放按钮 - 仅在视频时显示 */}
-                {backgroundMedia.type === 'video' && (
+                {homeInitData?.select1FileVideo?.media_type === 'video' && (
                     <div className={Style.playButtonContainer}>
                         <button
                             className={`${Style.playButton} ${isPlaying ? Style.pauseButton : ''}`}
@@ -144,13 +220,13 @@ function AccezzPage() {
             <div className={Style.pageLabel}>PT</div>
           </div>
           
-          <h1 className={Style.mainHeading}>
-            Gamify Access for the <span>future generation</span> of collectors across all pockets of the art world
-          </h1>
+          <h1 className={Style.mainHeading}
+           dangerouslySetInnerHTML={{ __html:  homeInitData?.select2Text?.text||'Gamify Access for the <span>future generation</span> of collectors across all pockets of the art world' }} 
+          />
+             
           
           <p className={Style.subHeading}>
-            Carving out a new space for people who want to engage with art through collecting. 
-            ACCEZZ is a community where emerging collectors find exceptional artists and artwork.
+            {homeInitData?.select2Text?.sub_text||'Carving out a new space for people who want to engage with art through collecting. ACCEZZ is a community where emerging collectors find exceptional artists and artwork.'}
           </p>
           
           <div className={Style.ctaButtons}>
@@ -165,12 +241,17 @@ function AccezzPage() {
         
         <div className={Style.heroRight}>
           <div className={Style.imageGrid}>
-            <div className={Style.imageCard}>
-              <div className={Style.placeholder}>ARTWORK SHOWCASE</div>
-            </div>
-            <div className={Style.imageCard}>
-              <div className={Style.placeholder}>COLLECTOR STORY</div>
-            </div>
+            {
+                homeInitData?.select2File.map((item,key)=>{
+                    return(
+                        <div className={Style.imageCard}>
+                            <div className={Style.placeholder}>
+                                <img src={Utils.returnFileUrl(item.abs_file_obj_display)} />
+                            </div>
+                        </div>
+                    )
+                })
+            }
           </div>
         </div>
       </div>

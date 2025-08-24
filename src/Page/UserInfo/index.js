@@ -75,8 +75,8 @@ const UserInfoPage = ()=>{
         
         // 控制台输出
         // eslint-disable-next-line no-console
-        console.log('profile_update', submitted);
-        message.success('已打印到控制台');
+        // console.log('profile_update', submitted);
+        
         Utils.patch({
             url:'/api_v1/user/-1/',
             data:submitted,
@@ -84,6 +84,7 @@ const UserInfoPage = ()=>{
             Success:()=>{
                 onGetUserInfo()
                 setProfile(prev=>({ ...prev, ...values }));
+                message.success('√');
             }
         })
         setEditOpen(false);
@@ -423,12 +424,16 @@ const UserInfoPage = ()=>{
                                     <div className={style.fieldValue}>{profile.date_of_birth || '—'}</div>
                                 </div>
                                 <div className={style.fieldRow}>
-                                    <div className={style.fieldLabel}>Address</div>
-                                    <div className={style.fieldValue}>{profile.address || '—'}</div>
+                                    <div className={style.fieldLabel}>Location</div>
+                                    <div className={style.fieldValue}>{profile.location || '—'}</div>
                                 </div>
                                 <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}>Phone</div>
                                     <div className={style.fieldValue}>{profile.phone || '—'}</div>
+                                </div>
+                                <div className={style.fieldRow}>
+                                    <div className={style.fieldLabel}>Gender</div>
+                                    <div className={style.fieldValue}>{profile.gender || '—'}</div>
                                 </div>
                             </div>
 
@@ -453,11 +458,14 @@ const UserInfoPage = ()=>{
                                     >
                                         <DatePicker style={{ width:'100%' }} />
                                     </Form.Item>
-                                    <Form.Item label="Address" name="address">
-                                        <Input placeholder="Address"/>
+                                    <Form.Item label="Location" name="location">
+                                        <Input placeholder="location"/>
                                     </Form.Item>
                                     <Form.Item label="Phone" name="phone">
                                         <Input placeholder="Phone"/>
+                                    </Form.Item>
+                                    <Form.Item label="Gender" name="gender">
+                                        <Input placeholder="Ghone"/>
                                     </Form.Item>
                                     <div className={style.modalActions}>
                                         <Button onClick={()=>setEditOpen(false)}>Cancel</Button>

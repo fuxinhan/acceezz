@@ -1,5 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "./index.module.css";
+import Utils from "../../Util/webCofig";
+import ActionType from "../../Store/actionType";
+const selectOneId = 13;   // HighlightsPage select2的分类ID
 
 const HighlightsPage = () => {
     const [firstRowIndex, setFirstRowIndex] = useState(0);
@@ -8,101 +11,44 @@ const HighlightsPage = () => {
     const [dragStartX, setDragStartX] = useState(0);
     const [dragStartScroll, setDragStartScroll] = useState(0);
     const [activeRow, setActiveRow] = useState(null);
+    const [selectOne,setSelectOnea] = useState([
+            {
+                id: 1,
+                remark: "Soho House Holloway",
+                abs_file_obj_display: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=300&fit=crop",
+                description: "伦敦北部屋顶露台与户外用餐"
+            },
+        ] 
+         
+    )
     
     const firstRowRef = useRef(null);
     const secondRowRef = useRef(null);
 
-    // Soho House 品牌数据 - 完全按照图片上的顺序
-    const properties = [
-        {
-            id: 1,
-            name: "Soho House Holloway",
-            image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=300&fit=crop",
-            description: "伦敦北部屋顶露台与户外用餐"
-        },
-        {
-            id: 2,
-            name: "Shoreditch House",
-            image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
-            description: "东伦敦工业风餐厅与酒吧"
-        },
-        {
-            id: 3,
-            name: "Soho House São Paulo",
-            image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=300&fit=crop",
-            description: "圣保罗地中海风格庭院"
-        },
-        {
-            id: 4,
-            name: "Soho Farmhouse Ibiza",
-            image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop",
-            description: "伊比沙岛地中海农庄风格"
-        },
-        {
-            id: 5,
-            name: "Soho House Portland",
-            image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
-            description: "波特兰温暖休息室"
-        },
-        {
-            id: 6,
-            name: "Little Beach House Barcelona",
-            image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=300&fit=crop",
-            description: "巴塞罗那海滨休息室"
-        },
-        {
-            id: 7,
-            name: "White City House",
-            image: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&h=300&fit=crop",
-            description: "伦敦白城屋顶泳池与休闲区"
-        },
-        {
-            id: 8,
-            name: "Soho House Istanbul",
-            image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&h=300&fit=crop",
-            description: "伊斯坦布尔复古豪华餐厅"
-        },
-        {
-            id: 9,
-            name: "Soho Beach House",
-            image: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&h=300&fit=crop",
-            description: "热带海滩度假村泳池"
-        },
-        {
-            id: 10,
-            name: "Soho House Austin",
-            image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
-            description: "奥斯汀时尚休息室与酒吧"
-        },
-        {
-            id: 11,
-            name: "Soho House Austin",
-            image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
-            description: "奥斯汀时尚休息室与酒吧"
-        },
-        {
-            id: 12,
-            name: "Soho House Austin",
-            image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
-            description: "奥斯汀时尚休息室与酒吧"
-        },
-        {
-            id: 13,
-            name: "Soho House Austin",
-            image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
-            description: "奥斯汀时尚休息室与酒吧"
-        },
-        {
-            id: 14,
-            name: "Soho House Austin",
-            image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
-            description: "奥斯汀时尚休息室与酒吧"
-        }
-    ];
+    const onGetSelectOneData = ()=>{
+        Utils.get({
+            url:'api_back/resources_file/',
+            params:{
+                purpose_obj:selectOneId,
+                page:1,
+                pagesize:100
+            },
+            actionType:ActionType().OnGetHighlightsPageSelectOneFile,
+            Success:(data)=>{
+                let contentDatab = data?.results||[]
+                setSelectOnea(contentDatab)
+            }
+        })
+    }
+
+    useEffect(()=>{
+        onGetSelectOneData()
+    },[])
+   
 
     // 创建无限循环数组
     const createInfiniteArray = () => {
-        return [...properties, ...properties, ...properties];
+        return [...selectOne, ...selectOne, ...selectOne];
     };
 
     const infiniteProperties = createInfiniteArray();
@@ -175,7 +121,7 @@ const HighlightsPage = () => {
                 });
             }
             
-            return newIndex >= properties.length ? 0 : newIndex;
+            return newIndex >= selectOne.length ? 0 : newIndex;
         });
     };
 
@@ -191,7 +137,7 @@ const HighlightsPage = () => {
                 });
             }
             
-            return newIndex < 0 ? properties.length - 1 : newIndex;
+            return newIndex < 0 ? selectOne.length - 1 : newIndex;
         });
     };
 
@@ -208,7 +154,7 @@ const HighlightsPage = () => {
                 });
             }
             
-            return newIndex >= properties.length ? 0 : newIndex;
+            return newIndex >= selectOne.length ? 0 : newIndex;
         });
     };
 
@@ -224,7 +170,7 @@ const HighlightsPage = () => {
                 });
             }
             
-            return newIndex < 0 ? properties.length - 1 : newIndex;
+            return newIndex < 0 ? selectOne.length - 1 : newIndex;
         });
     };
 
@@ -264,14 +210,14 @@ const HighlightsPage = () => {
                             <div key={`first-${property.id}-${index}`} className={`${styles.propertyCard} ${styles.propertyCardWidthOne}`}>
                                 <div className={styles.imageContainer}>
                                     <img 
-                                        src={property.image} 
-                                        alt={property.name}
+                                        src={Utils.returnFileUrl(property?.abs_file_obj_display)} 
+                                        alt={property.remark}
                                         className={styles.propertyImage}
                                         loading="lazy"
                                         draggable={false}
                                     />
                                     <div className={styles.propertyName}>
-                                        {property.name}
+                                        {property.remark}
                                     </div>
                                 </div>
                             </div>
@@ -317,14 +263,14 @@ const HighlightsPage = () => {
                             <div key={`second-${property.id}-${index}`} className={`${styles.propertyCard}  ${styles.imageContainerTran}`}>
                                 <div className={`${styles.imageContainer}`}>
                                     <img 
-                                        src={property.image} 
-                                        alt={property.name}
+                                        src={Utils.returnFileUrl(property?.abs_file_obj_display)} 
+                                        alt={property.remark}
                                         className={styles.propertyImage}
                                         loading="lazy"
                                         draggable={false}
                                     />
                                     <div className={styles.propertyName}>
-                                        {property.name}
+                                        {property.remark}
                                     </div>
                                 </div>
                             </div>
