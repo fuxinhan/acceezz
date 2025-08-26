@@ -1,5 +1,5 @@
 .highlightsContainer {
-  background: var(--cream-bg);
+  background: #fff;
   min-height: 80vh;
   padding: 20px 0;
   font-family: 'ACCEZZFONT';
@@ -13,15 +13,17 @@
 
 .title {
   font-size: 2.5rem;
-  color: var(--deep-navy);
+  color: #000;
   margin-bottom: 10px;
-  font-weight: 300;
+  font-weight: 700;
 }
 
 .subtitle {
   font-size: 1.1rem;
-  color: var(--accent-gold);
-  font-weight: 400;
+  color: #000;
+  font-weight: 600;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 .carouselContainer {
@@ -44,8 +46,10 @@
   gap: 20px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
   /* padding: 10px 0; */
   border-radius: 10px;
   user-select: none;
@@ -53,13 +57,16 @@
 }
 
 .carouselRow::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  display: none;
+  /* Chrome, Safari, Opera */
 }
+
 /* 错位半个图片宽度 + 间距的一半 */
 
 
 .propertyCard {
-  flex: 0 0 300px; /* 固定宽度，不缩放 */
+  flex: 0 0 300px;
+  /* 固定宽度，不缩放 */
   background: white;
   border-radius: 12px;
   overflow: hidden;
@@ -67,10 +74,13 @@
   transition: var(--transition);
   cursor: grab;
 }
-.propertyCardWidthOne{
-  flex: 0 0 300px; /* 固定宽度，不缩放 */
+
+.propertyCardWidthOne {
+  flex: 0 0 300px;
+  /* 固定宽度，不缩放 */
 
 }
+
 .propertyCard:hover {
   /* transform: translateY(95px); */
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
@@ -85,9 +95,11 @@
   height: 200px;
   overflow: hidden;
 }
-.imageContainerTran{
+
+.imageContainerTran {
   transform: translateX(-150px);
 }
+
 .propertyImage {
   width: 100%;
   height: 100%;
@@ -155,24 +167,24 @@
   .propertyCard {
     flex: 0 0 180px;
   }
-  
+
   .imageContainer {
     height: 180px;
   }
-  
+
   .secondRow {
     transform: translateX(calc(50% + 7.5px));
   }
-  
+
   .navigationButton {
     width: 45px;
     height: 45px;
   }
-  
+
   .prevButton {
     left: -22px;
   }
-  
+
   .nextButton {
     right: -22px;
   }
@@ -182,63 +194,63 @@
   .highlightsContainer {
     padding: 15px 0;
   }
-  
+
   .header {
     margin-bottom: 25px;
     padding: 0 15px;
   }
-  
+
   .title {
     font-size: 2rem;
   }
-  
+
   .subtitle {
     font-size: 1rem;
   }
-  
+
   .carouselContainer {
     padding: 0 15px;
   }
-  
+
   .rowContainer {
     margin-bottom: 20px;
   }
-  
+
   .carouselRow {
     gap: 12px;
   }
-  
+
   .propertyCard {
     flex: 0 0 160px;
   }
-  
+
   .secondRow {
     transform: translateX(calc(50% + 6px));
   }
-  
+
   .imageContainer {
     height: 160px;
   }
-  
+
   .propertyName {
     padding: 15px 10px 10px;
     font-size: 0.8rem;
   }
-  
+
   .navigationButton {
     width: 40px;
     height: 40px;
     top: 40%;
   }
-  
+
   .prevButton {
     left: -20px;
   }
-  
+
   .nextButton {
     right: -20px;
   }
-  
+
   .arrowIcon {
     width: 16px;
     height: 16px;
@@ -249,28 +261,29 @@
   .carouselRow {
     gap: 15px;
   }
-  
+
   .propertyCard {
     flex: 0 0 200px;
   }
-  
+
   .secondRow {
-    transform: none; /* 单列时不需要错位 */
+    transform: none;
+    /* 单列时不需要错位 */
   }
-  
+
   .imageContainer {
     height: 200px;
   }
-  
+
   .propertyName {
     padding: 20px 15px 15px;
     font-size: 0.9rem;
   }
-  
+
   .navigationButton {
     display: none;
   }
-  
+
   .title {
     font-size: 1.8rem;
   }

@@ -13,22 +13,8 @@ const HighlightsPage = () => {
     const [dragStartX, setDragStartX] = useState(0);
     const [dragStartScroll, setDragStartScroll] = useState(0);
     const [activeRow, setActiveRow] = useState(null);
-    const [selectOne, setSelectOnea] = useState([
-        {
-            id: 1,
-            remark: "Soho House Holloway",
-            abs_file_obj_display: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=300&fit=crop",
-            description: "伦敦北部屋顶露台与户外用餐"
-        },
-    ]
-
-    )
-    const [selectTwo, setSelectTwo] = useState([{
-        id: 1,
-        remark: "Soho House Holloway",
-        abs_file_obj_display: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=300&fit=crop",
-        description: "伦敦北部屋顶露台与户外用餐"
-    },])
+    const [selectOne, setSelectOnea] = useState([])
+    const [selectTwo, setSelectTwo] = useState([])
 
     const firstRowRef = useRef(null);
     const secondRowRef = useRef(null);
