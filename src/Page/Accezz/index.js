@@ -17,7 +17,7 @@ function AccezzPage() {
         },
         select1FileVideo: {
             media_type: 'image',
-            abs_file_obj_display: 'https://www.w3school.com.cn/example/html5/mov_bbb.mp4'
+            abs_file_obj_display: null,
         },
         select2Text: {
             media_type: 'text',
