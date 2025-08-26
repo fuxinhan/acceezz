@@ -25,98 +25,99 @@ const tiers = [
 	}
 ];
 
-const bannerId=[9,10]
+const bannerId = [9, 10]
 
-const MembershipPage =()=>{
+const MembershipPage = () => {
 	// 获取导航函数
 	const navigate = useNavigate();
-	const [pageDataInit,setPageDataInit] = useState({
-		banner1Text:{
-			text:'Membership',
-			sub_text:'Membership at Accezz unlocks a community of people passionate about art through collecting. It provides exclusive benefits and events to learn more about art collecting.'
+	const [pageDataInit, setPageDataInit] = useState({
+		banner1Text: {
+			text: 'Membership',
+			sub_text: 'Membership at Accezz unlocks a community of people passionate about art through collecting. It provides exclusive benefits and events to learn more about art collecting.'
 		},
-		banner1File:null,
-		banner2Text:[{
-			text:'Membership',
-			sub_text:'Membership at Accezz unlocks a community of people passionate about art through collecting. It provides exclusive benefits and events to learn more about art collecting.'
+		banner1File: null,
+		banner2Text: [{
+			text: 'Membership',
+			sub_text: 'Membership at Accezz unlocks a community of people passionate about art through collecting. It provides exclusive benefits and events to learn more about art collecting.'
 		}],
-		banner2File:null,
+		banner2File: null,
 	})
-	
-	const onGetPageData=()=>{
-		bannerId.map((item)=>{
-            Utils.get({
-                url:'api_back/resources_text/',
-                params:{
-                    purpose_obj:item,
-                    page:1,
-                    pagesize:100
-                },
-                actionType:'getMemInit'+item,
-                Success:(data)=>{
 
-                    let contentDatab = data?.results?.[0]||{}
-                    let initSelect1Text = null
-                    if(item===9) {
-                        initSelect1Text = pageDataInit.banner1Text
-                        let toData = {...initSelect1Text,...contentDatab}
-                        setPageDataInit(prev=>({
-                         ...prev,
-						 banner1Text:toData
-                        }))
-                    }
-                   
-                    if(item===10){
-                        setPageDataInit(prev=>({
-                        ...prev,
-                        banner2Text:data?.results
-                     }))
-                    }
-                }
-            })
-            Utils.get({
-                url:'api_back/resources_file/',
-                params:{
-                    purpose_obj:item,
-                    page:1,
-                    pagesize:100
-                },
-                actionType:'getMemInitF'+item,
-                Success:(data)=>{
-                    let contentDatab = data?.results
-                   
-                    if(item===10){
-                        setPageDataInit(prev=>({
-                        ...prev,
-                        banner2File:contentDatab
-                     }))
-                    }
-                    
-                }
-            })
-        })
+	const onGetPageData = () => {
+		bannerId.map((item) => {
+			Utils.get({
+				url: 'api_back/resources_text/',
+				params: {
+					purpose_obj: item,
+					page: 1,
+					pagesize: 100
+				},
+				actionType: 'getMemInit' + item,
+				Success: (data) => {
+
+					let contentDatab = data?.results?.[0] || {}
+					let initSelect1Text = null
+					if (item === 9) {
+						initSelect1Text = pageDataInit.banner1Text
+						let toData = { ...initSelect1Text, ...contentDatab }
+						setPageDataInit(prev => ({
+							...prev,
+							banner1Text: toData
+						}))
+					}
+
+					if (item === 10) {
+						setPageDataInit(prev => ({
+							...prev,
+							banner2Text: data?.results
+						}))
+					}
+				}
+			})
+			Utils.get({
+				url: 'api_back/resources_file/',
+				params: {
+					purpose_obj: item,
+					page: 1,
+					pagesize: 100
+				},
+				actionType: 'getMemInitF' + item,
+				Success: (data) => {
+					let contentDatab = data?.results
+
+					if (item === 10) {
+						setPageDataInit(prev => ({
+							...prev,
+							banner2File: contentDatab
+						}))
+					}
+
+				}
+			})
+		})
 	}
-	
-	useEffect(()=>{
+
+	useEffect(() => {
 		onGetPageData()
-	},[])
-	const onGetToPlay=(url)=>{
+	}, [])
+	const onGetToPlay = (url) => {
 		navigate(url);
 	}
-	return(
+	return (
 		<div className={style.MembershipPage}>
 			<section className={style.hero}>
 				<h1 className={style.pageTitle}>{pageDataInit?.banner1Text?.text}</h1>
-				<p className={style.intro}>
-					{pageDataInit?.banner1Text?.sub_text}
-				</p>
+				<p className={style.intro}
+					dangerouslySetInnerHTML={{ __html: pageDataInit?.banner1Text?.sub_text }}
+				/>
+
 				{
-					!Utils.getToken()&&<>
-					<button onClick={()=>onGetToPlay('/Register')} className={style.applyBtn} type="button">APPLY</button>
-				<p className={style.note}>The application will take about 10 minutes to complete.</p>
+					!Utils.getToken() && <>
+						<button onClick={() => onGetToPlay('/Register')} className={style.applyBtn} type="button">APPLY</button>
+						<p className={style.note}>The application will take about 10 minutes to complete.</p>
 					</>
 				}
-				
+
 			</section>
 
 			<section className={style.tiersSection}>
@@ -126,33 +127,33 @@ const MembershipPage =()=>{
 				</div>
 				<div className={style.tiersGrid}>
 					{
-					pageDataInit?.banner2File?.length!==0&&pageDataInit?.banner2File?.map((item,key)=>(
-						<div key={key} className={style.card}>
-							<div className={style.cardImageWrap}>
-								<img src={Utils.returnFileUrl(item?.abs_file_obj_display)} alt={item.purpose_obj_display} className={style.cardImage} loading="lazy" />
-							</div>
-							<div className={style.cardBody}>
-								<h3 className={style.cardTitle}>{pageDataInit?.banner2Text?.[key]?.text}</h3>
-								<ul className={style.perksList}>
-									{
-										pageDataInit?.banner2Text?.[key]?.sub_text.split(',').map((label,keyL)=>(
-											<li key={keyL}>{label}</li>
-										))
-									}
-									{/* {tier.perks.map((perk, idx) => ( */}
+						pageDataInit?.banner2File?.length !== 0 && pageDataInit?.banner2File?.map((item, key) => (
+							<div key={key} className={style.card}>
+								<div className={style.cardImageWrap}>
+									<img src={Utils.returnFileUrl(item?.abs_file_obj_display)} alt={item.purpose_obj_display} className={style.cardImage} loading="lazy" />
+								</div>
+								<div className={style.cardBody}>
+									<h3 className={style.cardTitle}>{pageDataInit?.banner2Text?.[key]?.text}</h3>
+									<ul className={style.perksList}>
+										{
+											pageDataInit?.banner2Text?.[key]?.sub_text.split(',').map((label, keyL) => (
+												<li key={keyL}>{label}</li>
+											))
+										}
+										{/* {tier.perks.map((perk, idx) => ( */}
 										{/* <li key={idx}>{perk}</li> */}
-									{/* ))} */}
-								</ul>
-								{
-									!Utils.getToken()&&<button onClick={()=>onGetToPlay('/Register')} className={style.cardApplyBtn} type="button">APPLY</button>
-								}
-								
+										{/* ))} */}
+									</ul>
+									{
+										!Utils.getToken() && <button onClick={() => onGetToPlay('/Register')} className={style.cardApplyBtn} type="button">APPLY</button>
+									}
+
+								</div>
 							</div>
-						</div>
-					))
-				}
+						))
+					}
 				</div>
-				
+
 				{/* <div className={style.tiersGrid}>
 					{tiers.map(tier => (
 						
