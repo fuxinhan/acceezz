@@ -8,6 +8,7 @@ const selectOneId2 = 8;   // HighlightsPage select2的分类ID
 const HighlightsPage = () => {
     const [firstRowIndex, setFirstRowIndex] = useState(0);
     const [secondRowIndex, setSecondRowIndex] = useState(0);
+    const [textInit,setTextInit] = useState(null)
     const [isDragging, setIsDragging] = useState(false);
     const [dragStartX, setDragStartX] = useState(0);
     const [dragStartScroll, setDragStartScroll] = useState(0);
@@ -33,6 +34,19 @@ const HighlightsPage = () => {
     const secondRowRef = useRef(null);
 
     const onGetSelectOneData = ()=>{
+        Utils.get({
+            url:'api_back/resources_text/',
+            params:{
+                purpose_obj:selectOneId,
+                page:1,
+                pagesize:100
+            },
+            actionType:ActionType().OnGetHighlightsPageSelectOneText,
+            Success:(data)=>{
+                let contentDatab = data?.results?.[0]||''
+                setTextInit(contentDatab)
+            }
+        })
         Utils.get({
             url:'api_back/resources_file/',
             params:{
@@ -204,8 +218,8 @@ const HighlightsPage = () => {
     return (
         <div className={styles.highlightsContainer}>
             <div className={styles.header}>
-                <h1 className={styles.title}>Accezz House</h1>
-                <p className={styles.subtitle}>Selected Global Luxury Membership Clubs</p>
+                <h1 className={styles.title}>{textInit?.text}</h1>
+                <p className={styles.subtitle}>{textInit?.sub_text}</p>
             </div>
 
             <div className={styles.carouselContainer}>

@@ -11,6 +11,7 @@ function ActionType() {
         OnGetHomePageSelect1File:'OnGetHomePageSelect1File',
         OnGetHomePageSelect2File:'OnGetHomePageSelect2File',
         OnGetHighlightsPageSelectOneFile:'OnGetHighlightsPageSelectOneFile',
+        OnGetHighlightsPageSelectOneText:'OnGetHighlightsPageSelectOneText',
         PatchUserInfo:'PatchUserInfo'
     }
 
