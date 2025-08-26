@@ -8,77 +8,77 @@ const selectOneId2 = 8;   // HighlightsPage select2的分类ID
 const HighlightsPage = () => {
     const [firstRowIndex, setFirstRowIndex] = useState(0);
     const [secondRowIndex, setSecondRowIndex] = useState(0);
-    const [textInit,setTextInit] = useState(null)
+    const [textInit, setTextInit] = useState(null)
     const [isDragging, setIsDragging] = useState(false);
     const [dragStartX, setDragStartX] = useState(0);
     const [dragStartScroll, setDragStartScroll] = useState(0);
     const [activeRow, setActiveRow] = useState(null);
-    const [selectOne,setSelectOnea] = useState([
-            {
-                id: 1,
-                remark: "Soho House Holloway",
-                abs_file_obj_display: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=300&fit=crop",
-                description: "伦敦北部屋顶露台与户外用餐"
-            },
-        ] 
-         
+    const [selectOne, setSelectOnea] = useState([
+        {
+            id: 1,
+            remark: "Soho House Holloway",
+            abs_file_obj_display: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=300&fit=crop",
+            description: "伦敦北部屋顶露台与户外用餐"
+        },
+    ]
+
     )
-    const [selectTwo,setSelectTwo] = useState([{
+    const [selectTwo, setSelectTwo] = useState([{
         id: 1,
         remark: "Soho House Holloway",
         abs_file_obj_display: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=300&fit=crop",
         description: "伦敦北部屋顶露台与户外用餐"
     },])
-    
+
     const firstRowRef = useRef(null);
     const secondRowRef = useRef(null);
 
-    const onGetSelectOneData = ()=>{
+    const onGetSelectOneData = () => {
         Utils.get({
-            url:'api_back/resources_text/',
-            params:{
-                purpose_obj:selectOneId,
-                page:1,
-                pagesize:100
+            url: 'api_back/resources_text/',
+            params: {
+                purpose_obj: selectOneId,
+                page: 1,
+                pagesize: 100
             },
-            actionType:ActionType().OnGetHighlightsPageSelectOneText,
-            Success:(data)=>{
-                let contentDatab = data?.results?.[0]||''
+            actionType: ActionType().OnGetHighlightsPageSelectOneText,
+            Success: (data) => {
+                let contentDatab = data?.results?.[0] || ''
                 setTextInit(contentDatab)
             }
         })
         Utils.get({
-            url:'api_back/resources_file/',
-            params:{
-                purpose_obj:selectOneId,
-                page:1,
-                pagesize:100
+            url: 'api_back/resources_file/',
+            params: {
+                purpose_obj: selectOneId,
+                page: 1,
+                pagesize: 100
             },
-            actionType:ActionType().OnGetHighlightsPageSelectOneFile,
-            Success:(data)=>{
-                let contentDatab = data?.results||[]
+            actionType: ActionType().OnGetHighlightsPageSelectOneFile,
+            Success: (data) => {
+                let contentDatab = data?.results || []
                 setSelectOnea(contentDatab)
             }
         })
         Utils.get({
-            url:'api_back/resources_file/',
-            params:{
-                purpose_obj:selectOneId2,
-                page:1,
-                pagesize:100
+            url: 'api_back/resources_file/',
+            params: {
+                purpose_obj: selectOneId2,
+                page: 1,
+                pagesize: 100
             },
-            actionType:ActionType().OnGetHighlightsPageSelectOneFile,
-            Success:(data)=>{
-                let contentDatab = data?.results||[]
+            actionType: ActionType().OnGetHighlightsPageSelectOneFile,
+            Success: (data) => {
+                let contentDatab = data?.results || []
                 setSelectTwo(contentDatab)
             }
         })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         onGetSelectOneData()
-    },[])
-   
+    }, [])
+
 
     // 创建无限循环数组
     const createInfiniteArray = () => {
@@ -87,8 +87,8 @@ const HighlightsPage = () => {
 
     const infiniteProperties = createInfiniteArray();
 
-     // 创建无限循环数组
-     const createInfiniteArray1 = () => {
+    // 创建无限循环数组
+    const createInfiniteArray1 = () => {
         return [...selectTwo, ...selectTwo, ...selectTwo];
     };
 
@@ -106,13 +106,13 @@ const HighlightsPage = () => {
     const handleMouseMove = (e) => {
         if (!isDragging || !activeRow) return;
         e.preventDefault();
-        
+
         const currentRowRef = activeRow === 'first' ? firstRowRef.current : secondRowRef.current;
         if (!currentRowRef) return;
-        
+
         // 计算鼠标移动的距离
         const deltaX = e.pageX - dragStartX;
-        
+
         // 实时更新滚动位置，实现图片跟随鼠标移动
         currentRowRef.scrollLeft = dragStartScroll - deltaX;
     };
@@ -133,13 +133,13 @@ const HighlightsPage = () => {
 
     const handleTouchMove = (e) => {
         if (!isDragging || !activeRow) return;
-        
+
         const currentRowRef = activeRow === 'first' ? firstRowRef.current : secondRowRef.current;
         if (!currentRowRef) return;
-        
+
         // 计算触摸移动的距离
         const deltaX = e.touches[0].pageX - dragStartX;
-        
+
         // 实时更新滚动位置，实现图片跟随触摸移动
         currentRowRef.scrollLeft = dragStartScroll - deltaX;
     };
@@ -154,14 +154,14 @@ const HighlightsPage = () => {
         setFirstRowIndex(prev => {
             const newIndex = prev + 1;
             const targetScroll = newIndex * (300 + 20); // 图片宽度 + 间距
-            
+
             if (firstRowRef.current) {
                 firstRowRef.current.scrollTo({
                     left: targetScroll,
                     behavior: 'smooth'
                 });
             }
-            
+
             return newIndex >= selectOne.length ? 0 : newIndex;
         });
     };
@@ -170,14 +170,14 @@ const HighlightsPage = () => {
         setFirstRowIndex(prev => {
             const newIndex = prev - 1;
             const targetScroll = newIndex * (300 + 20);
-            
+
             if (firstRowRef.current) {
                 firstRowRef.current.scrollTo({
                     left: targetScroll,
                     behavior: 'smooth'
                 });
             }
-            
+
             return newIndex < 0 ? selectOne.length - 1 : newIndex;
         });
     };
@@ -187,14 +187,14 @@ const HighlightsPage = () => {
         setSecondRowIndex(prev => {
             const newIndex = prev + 1;
             const targetScroll = newIndex * (300 + 20);
-            
+
             if (secondRowRef.current) {
                 secondRowRef.current.scrollTo({
                     left: targetScroll,
                     behavior: 'smooth'
                 });
             }
-            
+
             return newIndex >= selectOne.length ? 0 : newIndex;
         });
     };
@@ -203,14 +203,14 @@ const HighlightsPage = () => {
         setSecondRowIndex(prev => {
             const newIndex = prev - 1;
             const targetScroll = newIndex * (300 + 20);
-            
+
             if (secondRowRef.current) {
                 secondRowRef.current.scrollTo({
                     left: targetScroll,
                     behavior: 'smooth'
                 });
             }
-            
+
             return newIndex < 0 ? selectOne.length - 1 : newIndex;
         });
     };
@@ -219,13 +219,15 @@ const HighlightsPage = () => {
         <div className={styles.highlightsContainer}>
             <div className={styles.header}>
                 <h1 className={styles.title}>{textInit?.text}</h1>
-                <p className={styles.subtitle}>{textInit?.sub_text}</p>
+                <p className={styles.subtitle}
+                    dangerouslySetInnerHTML={{ __html: textInit?.sub_text }}
+                />
             </div>
 
             <div className={styles.carouselContainer}>
                 {/* 第一行轮播 */}
                 <div className={styles.rowContainer}>
-                    <button 
+                    <button
                         className={`${styles.navigationButton} ${styles.prevButton}`}
                         onClick={prevSlideFirst}
                         aria-label="第一行上一页"
@@ -235,7 +237,7 @@ const HighlightsPage = () => {
                         </svg>
                     </button>
 
-                    <div 
+                    <div
                         ref={firstRowRef}
                         className={styles.carouselRow}
                         onMouseDown={(e) => handleMouseDown(e, 'first')}
@@ -250,8 +252,8 @@ const HighlightsPage = () => {
                         {infiniteProperties.map((property, index) => (
                             <div key={`first-${property.id}-${index}`} className={`${styles.propertyCard} ${styles.propertyCardWidthOne}`}>
                                 <div className={styles.imageContainer}>
-                                    <img 
-                                        src={Utils.returnFileUrl(property?.abs_file_obj_display)} 
+                                    <img
+                                        src={Utils.returnFileUrl(property?.abs_file_obj_display)}
                                         alt={property.remark}
                                         className={styles.propertyImage}
                                         loading="lazy"
@@ -265,7 +267,7 @@ const HighlightsPage = () => {
                         ))}
                     </div>
 
-                    <button 
+                    <button
                         className={`${styles.navigationButton} ${styles.nextButton}`}
                         onClick={nextSlideFirst}
                         aria-label="第一行下一页"
@@ -278,7 +280,7 @@ const HighlightsPage = () => {
 
                 {/* 第二行轮播 - 错位半个图片宽度 */}
                 <div className={`${styles.rowContainer} ${styles.secondRowContainer}`}>
-                    <button 
+                    <button
                         className={`${styles.navigationButton} ${styles.prevButton}`}
                         onClick={prevSlideSecond}
                         aria-label="第二行上一页"
@@ -288,7 +290,7 @@ const HighlightsPage = () => {
                         </svg>
                     </button>
 
-                    <div 
+                    <div
                         ref={secondRowRef}
                         className={`${styles.carouselRow}`}
                         onMouseDown={(e) => handleMouseDown(e, 'second')}
@@ -303,8 +305,8 @@ const HighlightsPage = () => {
                         {infiniteProperties1.map((property, index) => (
                             <div key={`second-${property.id}-${index}`} className={`${styles.propertyCard}  ${styles.imageContainerTran}`}>
                                 <div className={`${styles.imageContainer}`}>
-                                    <img 
-                                        src={Utils.returnFileUrl(property?.abs_file_obj_display)} 
+                                    <img
+                                        src={Utils.returnFileUrl(property?.abs_file_obj_display)}
                                         alt={property.remark}
                                         className={styles.propertyImage}
                                         loading="lazy"
@@ -318,7 +320,7 @@ const HighlightsPage = () => {
                         ))}
                     </div>
 
-                    <button 
+                    <button
                         className={`${styles.navigationButton} ${styles.nextButton}`}
                         onClick={nextSlideSecond}
                         aria-label="第二行下一页"
