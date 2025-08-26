@@ -9,19 +9,19 @@ const pillars = [
 	{ key: 'sustainability', title: 'Sustainability', desc: '关注可持续发展，在设计与运营中尽量降低环境影响。' },
 	{ key: 'wellbeing', title: 'Wellbeing', desc: '关照身心平衡，提供健身、泳池与多元健康体验。' },
 ];
-const bannerId = [21,22,23,24]
+const bannerId = [14,15,16,17]
 const AboutPage =()=>{
 	const [pageDataInitText,setPageDataInitText]  = useState({
-		21:null,
-		22:null,
-		23:null,
-		24:null,
+		14:null,
+		15:null,
+		16:null,
+		17:null,
 	})
 	const [pageDataInitFile,setPageDataInitFile]  = useState({
-		21:null,
-		22:null,
-		23:null,
-		24:null,
+		14:null,
+		15:null,
+		16:null,
+		17:null,
 	})
 	const onGetInitData=()=>{
 		bannerId.map((item)=>{
@@ -61,14 +61,14 @@ const AboutPage =()=>{
 		<div className={style.AboutPage}>
 			{console.log(pageDataInitFile)}
 			<section className={style.hero}>
-				<h1 className={style.title}>{pageDataInitText?.[21]?.[0]?.text}</h1>
+				<h1 className={style.title}>{pageDataInitText?.[14]?.[0]?.text}</h1>
 				<p className={style.subtitle}
-					dangerouslySetInnerHTML={{ __html: pageDataInitText?.[21]?.[0]?.sub_text}}
+					dangerouslySetInnerHTML={{ __html: pageDataInitText?.[14]?.[0]?.sub_text}}
 				/>
 			</section>
 
 			<section className={style.pillars}>
-				{pageDataInitText?.[22]?.map(p => (
+				{pageDataInitText?.[15]?.map(p => (
 					<div key={p.key} className={style.pillarCard}>
 						<div className={style.pillarBadge} />
 						<h3 className={style.pillarTitle}>{p.text}</h3>
@@ -77,7 +77,7 @@ const AboutPage =()=>{
 				))}
 			</section>
 			{
-				pageDataInitFile?.[23]?.map((item,key)=>{
+				pageDataInitFile?.[16]?.map((item,key)=>{
 					const isOdd = key % 2 !== 0;
 					// 动态设置className：奇数用split，偶数用split+reverse
 					const sectionClass = isOdd 
@@ -91,11 +91,11 @@ const AboutPage =()=>{
 							<div className={style.splitContent}>
 								<h2>
 									{
-										pageDataInitText?.[23]?.[key]?.text
+										pageDataInitText?.[16]?.[key]?.text
 									}
 								</h2>
 								<p 
-								dangerouslySetInnerHTML={{ __html: pageDataInitText?.[23]?.[key]?.sub_text}}
+								dangerouslySetInnerHTML={{ __html: pageDataInitText?.[16]?.[key]?.sub_text}}
 								/>
 								
 							</div>
@@ -109,7 +109,7 @@ const AboutPage =()=>{
 
 			<section className={style.stats}>
 				{
-					pageDataInitText?.[24]?.map((item,key)=>{
+					pageDataInitText?.[17]?.map((item,key)=>{
 						return(
 							<div className={style.statItem}>
 					<strong>{item.text}</strong>

@@ -3,8 +3,8 @@ import Style from "./index.module.css"
 import Utils from "../../Util/webCofig";
 import ActionType from "../../Store/actionType";
 import { useNavigate } from 'react-router-dom';
-const homeSelect1ObgId = 9;   // 首页select1的分类ID
-const homeSelect2ObgId = 10;   // 首页select2的分类ID
+const homeSelect1ObgId = 2;   // 首页select1的分类ID
+const homeSelect2ObgId = 3;   // 首页select2的分类ID
 function AccezzPage() {
     
     const [isPlaying, setIsPlaying] = useState(false);

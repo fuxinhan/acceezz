@@ -2,7 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./index.module.css";
 import Utils from "../../Util/webCofig";
 import ActionType from "../../Store/actionType";
-const selectOneId = 13;   // HighlightsPage select2的分类ID
+const selectOneId = 7;   // HighlightsPage select2的分类ID
+const selectOneId2 = 8;   // HighlightsPage select2的分类ID
 
 const HighlightsPage = () => {
     const [firstRowIndex, setFirstRowIndex] = useState(0);
@@ -21,6 +22,12 @@ const HighlightsPage = () => {
         ] 
          
     )
+    const [selectTwo,setSelectTwo] = useState([{
+        id: 1,
+        remark: "Soho House Holloway",
+        abs_file_obj_display: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=400&h=300&fit=crop",
+        description: "伦敦北部屋顶露台与户外用餐"
+    },])
     
     const firstRowRef = useRef(null);
     const secondRowRef = useRef(null);
@@ -39,6 +46,19 @@ const HighlightsPage = () => {
                 setSelectOnea(contentDatab)
             }
         })
+        Utils.get({
+            url:'api_back/resources_file/',
+            params:{
+                purpose_obj:selectOneId2,
+                page:1,
+                pagesize:100
+            },
+            actionType:ActionType().OnGetHighlightsPageSelectOneFile,
+            Success:(data)=>{
+                let contentDatab = data?.results||[]
+                setSelectTwo(contentDatab)
+            }
+        })
     }
 
     useEffect(()=>{
@@ -52,6 +72,13 @@ const HighlightsPage = () => {
     };
 
     const infiniteProperties = createInfiniteArray();
+
+     // 创建无限循环数组
+     const createInfiniteArray1 = () => {
+        return [...selectTwo, ...selectTwo, ...selectTwo];
+    };
+
+    const infiniteProperties1 = createInfiniteArray1();
 
     // 鼠标拖拽事件处理
     const handleMouseDown = (e, rowType) => {
@@ -259,7 +286,7 @@ const HighlightsPage = () => {
                         onTouchEnd={handleTouchEnd}
                         style={{ cursor: isDragging && activeRow === 'second' ? 'grabbing' : 'grab' }}
                     >
-                        {infiniteProperties.map((property, index) => (
+                        {infiniteProperties1.map((property, index) => (
                             <div key={`second-${property.id}-${index}`} className={`${styles.propertyCard}  ${styles.imageContainerTran}`}>
                                 <div className={`${styles.imageContainer}`}>
                                     <img 

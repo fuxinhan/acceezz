@@ -49,7 +49,7 @@ const Grid = ({ items }) => (
         {items.map((it) => (
             <div key={it.label} className={style.tile}>
                 <div className={style.tileImage}>
-                    <a href={it.text.startsWith('http') ? it.text : `https://${it.text}`} target="_blank">
+                    <a href={it?.text?.startsWith('http') ? it.text : `https://${it.text}`} target="_blank">
                       <img src={ Utils.returnFileUrl(it.abs_file_obj_display)} alt={it.label} />  
                     </a>
                     
@@ -64,7 +64,7 @@ const BannerList = ({ items }) => (
     <div className={style.bannerList}>
         {items.map((it) => (
             <div key={it.label} className={style.bannerItem}>
-                <a href={it.text.startsWith('http') ? it.text : `https://${it.text}`} target="_blank">
+                <a href={it?.text?.startsWith('http') ? it.text : `https://${it.text}`} target="_blank">
                 <img src={Utils.returnFileUrl(it.abs_file_obj_display) } alt={it.label} />
                 </a>
                
@@ -73,26 +73,26 @@ const BannerList = ({ items }) => (
         ))}
     </div>
 );
-const bannerId=[18,19,20]
+const bannerId=[11,12,13]
 const ResourcesPage =()=>{
     const [pageDataInitText,setPageDataInitText] = useState({
-        18:{
+        11:{
             text:"I'm interested in",
             sub_text:'Please select your preferred art forms (you can select more than one item)'
         },
-        19:{
+        12:{
             text:"I'm interested in",
             sub_text:'Please select your preferred art forms (you can select more than one item)'
         },
-        20:{
+        13:{
             text:"I'm interested in",
             sub_text:'Please select your preferred art forms (you can select more than one item)'
         }
     })
     const [pageDataInitFile,setPageDataInitFile] = useState({
-        18:[],
-        19:[],
-        20:[]
+        11:[],
+        12:[],
+        13:[]
     })
     const onGetResData = ()=>{
         bannerId.map((item)=>{
@@ -148,16 +148,16 @@ const ResourcesPage =()=>{
                 />
                 <div className={style.sectionBody}>
                     <div className={style.subTitle}>
-                        {pageDataInitText?.[18]?.text}
+                        {pageDataInitText?.[11]?.text}
                     </div>
                     <div className={style.subDesc}>
-                    {pageDataInitText?.[18]?.sub_text}
+                    {pageDataInitText?.[11]?.sub_text}
                     </div>
-                    <Grid items={pageDataInitFile?.[18]} />
+                    <Grid items={pageDataInitFile?.[11]} />
 
-                    <div className={style.subTitle} style={{ marginTop: '24px' }}>{pageDataInitText?.[19]?.text}</div>
-                    <div className={style.subDesc}>{pageDataInitText?.[19]?.sub_text}</div>
-                    <Grid items={pageDataInitFile?.[19]} />
+                    <div className={style.subTitle} style={{ marginTop: '24px' }}>{pageDataInitText?.[12]?.text}</div>
+                    <div className={style.subDesc}>{pageDataInitText?.[12]?.sub_text}</div>
+                    <Grid items={pageDataInitFile?.[12]} />
                 </div>
             </div>
 
@@ -168,9 +168,9 @@ const ResourcesPage =()=>{
                     desc="Select your preferred theme for your account."
                 />
                 <div className={style.sectionBody}>
-                    <div className={style.subTitle}>{pageDataInitText?.[20]?.text}</div>
-                    <div className={style.subDesc}>{pageDataInitText?.[20]?.sub_text}</div>
-                    <BannerList items={pageDataInitFile?.[20]} />
+                    <div className={style.subTitle}>{pageDataInitText?.[13]?.text}</div>
+                    <div className={style.subDesc}>{pageDataInitText?.[13]?.sub_text}</div>
+                    <BannerList items={pageDataInitFile?.[13]} />
                 </div>
             </div>
         </div>

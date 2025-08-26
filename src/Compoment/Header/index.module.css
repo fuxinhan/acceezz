@@ -253,7 +253,7 @@
 
 .subscribeBtn:hover {
     background: var(--dark-bg) !important;
-    color: #141414 !important;
+    color: #fff !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(20, 20, 20, 0.3);
 }

@@ -2,7 +2,7 @@ import React, { useState,useEffect } from "react";
 import Style from "./index.module.css"
 import { Layout, Button, Drawer, Popover } from 'antd';
 import { MenuOutlined, RightOutlined } from '@ant-design/icons';
-import { Link,useLocation  } from "react-router-dom";
+import { Link,useLocation, useNavigate  } from "react-router-dom";
 // import IsLogin from "../../Util/isLogin";
 import Utils from "../../Util/webCofig";
 
@@ -69,6 +69,8 @@ useEffect(() => {
       setMobileMenuOpen(false);
   };
   const contIsLogin = Utils.getToken()
+  // 获取导航函数
+	const navigate = useNavigate();
     return(
       <Header className={Style.header}>
       <div className={Style.headerContainer}>
@@ -200,7 +202,10 @@ useEffect(() => {
               {/* Mobile Action Buttons */}
               {
                 !contIsLogin&&<div className={Style.mobileActionButtons}>
-                  <Button className={Style.subscribeBtn}>
+                  <Button className={Style.subscribeBtn} onClick={()=>{
+                    navigate('/Register') 
+                    setMobileMenuOpen(false) 
+                    }}>
                       SUBSCRIBE
                   </Button>
                   <Button className={Style.signInBtn} >

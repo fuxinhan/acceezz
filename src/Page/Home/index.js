@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Style from "./index.module.css"
 import { Button } from 'antd';
 import Utils from "../../Util/webCofig";
-const HomeBnnerID = [11,12,15];
+const HomeBnnerID = [4,5,6];
 // const HomeBnnerID2 = 12;
 // const HomeBnnerID3 = 15;
 function HomePage() {
