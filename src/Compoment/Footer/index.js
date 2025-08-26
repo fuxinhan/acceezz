@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Style from './index.module.css';
 import { Layout, Button, Select, Divider } from 'antd';
 import { AppstoreOutlined, DownOutlined } from '@ant-design/icons';
+import Utils from "../../Util/webCofig";
 
 const { Footer } = Layout;
 
@@ -75,9 +76,12 @@ function FooterCompoment() {
                         <p className={Style.subscriptionDescription}>
                             Sign up to hear about events, news and updates from ACCEZZ and our other businesses.
                         </p>
-                        <Button className={Style.subscribeButton}>
+                        {
+                            !Utils.getToken()&&<Button className={Style.subscribeButton}>
                             Subscribe
                         </Button>
+                        }
+                        
                     </div>
                 </div>
 
@@ -91,7 +95,7 @@ function FooterCompoment() {
                             <AppstoreOutlined className={Style.brandIcon} />
                             <span className={Style.brandName}>ACCEZZ</span>
                         </div>
-                        <div className={Style.languageSelector}>
+                        {/* <div className={Style.languageSelector}>
                             <Select
                                 value={language}
                                 onChange={setLanguage}
@@ -103,7 +107,7 @@ function FooterCompoment() {
                                     { value: '中文', label: '中文' }
                                 ]}
                             />
-                        </div>
+                        </div> */}
                     </div>
                     <div className={Style.copyright}>
                         2025

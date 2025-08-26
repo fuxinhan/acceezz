@@ -3,6 +3,7 @@
     min-height: 90vh;
     position: relative;
     overflow: hidden;
+    
 }
 
 /* 背景媒体容器 */
@@ -32,7 +33,7 @@
 }
 
 /* 背景遮罩 */
-.backgroundOverlay {
+/* .backgroundOverlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -40,12 +41,12 @@
     height: 100%;
     background: linear-gradient(
         135deg,
-        rgba(20, 20, 20, 0.7) 0%,
-        rgba(20, 20, 20, 0.5) 50%,
-        rgba(20, 20, 20, 0.8) 100%
+        rgba(245, 242, 242, 0.7) 0%,
+        rgba(255, 253, 253, 0.5) 50%,
+        rgba(255, 255, 255, 0.8) 100%
     );
     z-index: 2;
-}
+} */
 
 /* 播放按钮容器 */
 .playButtonContainer {
@@ -111,13 +112,14 @@
     align-items: center;
     justify-content: center;
     padding: 120px 24px 60px;
+    font-family: 'ACCEZZFONT';
 }
 
 .contentContainer {
     max-width: 1200px;
     width: 100%;
     text-align: center;
-    color: var(--accent-gold);
+    color: var(--light-text);
 }
 
 /* 主标题 */
@@ -173,9 +175,9 @@
 }
 
 .secondaryButton {
-    background: transparent;
-    color: var(--accent-gold);
-    border: 2px solid var(--accent-gold);
+    background: var(--botton-bg);
+    color: var(--deep-navy);
+    border: 2px solid var(--botton-bg);
     padding: 16px 32px;
     font-size: 1.1rem;
     font-weight: 600;
@@ -187,9 +189,10 @@
 }
 
 .secondaryButton:hover {
-    background: var(--accent-gold);
-    color: #141414;
+    background: #141414;
+    color: var(--light-text);
     transform: translateY(-3px);
+    border: 2px solid #141414;
     box-shadow: 0 8px 30px rgba(198, 169, 114, 0.3);
 }
 
@@ -245,6 +248,7 @@
     padding: 40px 60px 40px 20px;
     background: var(--dark-bg);
     color:var(--light-text);
+    font-family: 'ACCEZZFONT' !important;
   }
 
   .heroLeft, .heroRight {
@@ -255,7 +259,7 @@
   }
 
   .mainHeading {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 30px;

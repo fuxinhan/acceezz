@@ -23,7 +23,7 @@ const LoginPage = ()=>{
 	};
 
 	const handleRegister = () => {
-		console.log("Go to register");
+		// console.log("Go to register");
 		// TODO: 在此处跳转注册页路由
 	};
 	const getLoginData = useSelector(data => data.Login)

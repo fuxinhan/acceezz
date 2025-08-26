@@ -2,7 +2,7 @@
 
 /* 新增的移动端样式 */
 .header {
-    background: #141414 !important;
+    background: var(--cream-bg) !important;
     padding: 0 !important;
     height: 80px !important;
     line-height: 80px !important;
@@ -11,7 +11,8 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); */
+    font-family: 'ACCEZZFONT';
 }
 
 .headerContainer {
@@ -23,9 +24,13 @@
     padding: 0 24px;
     height: 100%;
 }
-
+.HeaderContainerTO{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
 .logo a {
-    color: var(--accent-gold);
+    color: var(--dark-bg);
     font-weight: 700;
     font-size: 28px;
     letter-spacing: 1px;
@@ -44,11 +49,11 @@
 }
 
 .navLink {
-    color: #e0e0e0;
+    color: #000;
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 22px;
+    font-weight: 600;
     letter-spacing: 1px;
     transition: all 0.3s ease;
     position: relative;
@@ -57,7 +62,7 @@
 }
 
 .navLink:hover {
-    color: var(--accent-gold);
+    color: var(--dark-bg);
 }
 
 .navLink::after {
@@ -67,7 +72,7 @@
     left: 0;
     width: 0;
     height: 2px;
-    background-color: var(--accent-gold);
+    background-color: var(--dark-bg);
     transition: width 0.3s ease;
 }
 
@@ -78,6 +83,7 @@
 .activeLink {
     color: var(--accent-gold) !important;
     font-weight: 600;
+    font-size: 22px;
 }
 
 .activeLink::after {
@@ -98,15 +104,15 @@
  }
 .loginCoure .loginUserName{
     cursor: pointer;
-    border: 2px solid var(--accent-gold);
+    border: 2px solid var(--dark-bg);
     padding: 8px 22px;
     border-radius: 50px;
     color: var(--light-text);
 }
 .loginCoure .loginUserName:hover{
-    background: var(--accent-gold) !important;
+    background: var(--dark-bg) !important;
     color: #141414 !important;
-    border-color: var(--accent-gold) !important;
+    border-color: var(--dark-bg) !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(198, 169, 114, 0.3);
 }
@@ -114,17 +120,17 @@
     border-radius: 50px !important;
     padding: 8px 24px !important;
     height: 40px !important;
-    border-color: var(--accent-gold) !important;
-    color: var(--accent-gold) !important;
+    border-color: var(--dark-bg) !important;
+    color: var(--dark-bg) !important;
     font-weight: 500 !important;
     letter-spacing: 0.5px !important;
     transition: all 0.3s ease !important;
 }
 
 .loginBtn:hover {
-    background: var(--accent-gold) !important;
-    color: #141414 !important;
-    border-color: var(--accent-gold) !important;
+    background: var(--dark-bg) !important;
+    color: var(--light-text)!important;
+    border-color: var(--dark-bg) !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(198, 169, 114, 0.3);
 }
@@ -134,7 +140,7 @@
 }
 
 .mobileMenuIcon {
-    color: var(--accent-gold) !important;
+    color: var(--dark-bg) !important;
     font-size: 20px !important;
     border: none !important;
     background: transparent !important;
@@ -179,7 +185,7 @@
 }
 
 .closeBtn:hover {
-    color: var(--accent-gold) !important;
+    color: var(--dark-bg) !important;
     background: transparent !important;
 }
 
@@ -207,7 +213,7 @@
 }
 
 .mobileNavItem:hover {
-    color: var(--accent-gold);
+    color: var(--dark-bg);
     background: rgba(198, 169, 114, 0.05);
 }
 
@@ -222,7 +228,7 @@
 }
 
 .mobileNavItem:hover .mobileNavArrow {
-    color: var(--accent-gold);
+    color: var(--dark-bg);
 }
 
 /* 移动端操作按钮 */
@@ -246,7 +252,7 @@
 }
 
 .subscribeBtn:hover {
-    background: var(--accent-gold) !important;
+    background: var(--dark-bg) !important;
     color: #141414 !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(20, 20, 20, 0.3);
@@ -295,10 +301,10 @@
 
 .languageSelector:hover .languageText,
 .languageSelector:hover .languageArrow {
-    color: var(--accent-gold);
+    color: var(--dark-bg);
 }
 .loginPopover{
-    background-color: var(--accent-gold);
+    background-color: var(--dark-bg);
 }
 
 .loginSeting button{
@@ -308,15 +314,15 @@
     border: none;
     background-color:var(--cream-bg) ;
     box-shadow: none;
-    color: var(--accent-gold) !important;
+    color: var(--dark-bg) !important;
     font-weight: 500 !important;
     letter-spacing: 0.5px !important;
     transition: all 0.3s ease !important;
 }
 .loginSeting button:hover {
-    background: var(--accent-gold) !important;
-    color: #141414 !important;
-    border-color: var(--accent-gold) !important;
+    background: var(--dark-bg) !important;
+    color: #fff !important;
+    border-color: var(--dark-bg) !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(198, 169, 114, 0.3);
 }
@@ -382,7 +388,7 @@
     }
     
     .logo {
-        font-size: 22px;
+        font-size: 24px;
     }
     
     /* .mobileDrawerContent {

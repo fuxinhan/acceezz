@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import style from './index.module.css';
+import Utils from "../../Util/webCofig";
+import { useNavigate } from "react-router-dom";
 
 const tiers = [
 	{
@@ -23,17 +25,98 @@ const tiers = [
 	}
 ];
 
+const bannerId=[16,17]
+
 const MembershipPage =()=>{
+	// 获取导航函数
+	const navigate = useNavigate();
+	const [pageDataInit,setPageDataInit] = useState({
+		banner1Text:{
+			text:'Membership',
+			sub_text:'Membership at Accezz unlocks a community of people passionate about art through collecting. It provides exclusive benefits and events to learn more about art collecting.'
+		},
+		banner1File:null,
+		banner2Text:[{
+			text:'Membership',
+			sub_text:'Membership at Accezz unlocks a community of people passionate about art through collecting. It provides exclusive benefits and events to learn more about art collecting.'
+		}],
+		banner2File:null,
+	})
+	
+	const onGetPageData=()=>{
+		bannerId.map((item)=>{
+            Utils.get({
+                url:'api_back/resources_text/',
+                params:{
+                    purpose_obj:item,
+                    page:1,
+                    pagesize:100
+                },
+                actionType:'getMemInit'+item,
+                Success:(data)=>{
+
+                    let contentDatab = data?.results?.[0]||{}
+                    let initSelect1Text = null
+                    if(item===16) {
+                        initSelect1Text = pageDataInit.banner1Text
+                        let toData = {...initSelect1Text,...contentDatab}
+                        setPageDataInit(prev=>({
+                         ...prev,
+						 banner1Text:toData
+                        }))
+                    }
+                   
+                    if(item===17){
+                        setPageDataInit(prev=>({
+                        ...prev,
+                        banner2Text:data?.results
+                     }))
+                    }
+                }
+            })
+            Utils.get({
+                url:'api_back/resources_file/',
+                params:{
+                    purpose_obj:item,
+                    page:1,
+                    pagesize:100
+                },
+                actionType:'getMemInitF'+item,
+                Success:(data)=>{
+                    let contentDatab = data?.results
+                   
+                    if(item===17){
+                        setPageDataInit(prev=>({
+                        ...prev,
+                        banner2File:contentDatab
+                     }))
+                    }
+                    
+                }
+            })
+        })
+	}
+	
+	useEffect(()=>{
+		onGetPageData()
+	},[])
+	const onGetToPlay=(url)=>{
+		navigate(url);
+	}
 	return(
 		<div className={style.MembershipPage}>
 			<section className={style.hero}>
-				<h1 className={style.pageTitle}>Membership</h1>
+				<h1 className={style.pageTitle}>{pageDataInit?.banner1Text?.text}</h1>
 				<p className={style.intro}>
-					Membership at Accezz unlocks a community of people passionate about art through collecting.
-					It provides exclusive benefits and events to learn more about art collecting.
+					{pageDataInit?.banner1Text?.sub_text}
 				</p>
-				<button className={style.applyBtn} type="button">APPLY</button>
+				{
+					!Utils.getToken()&&<>
+					<button onClick={()=>onGetToPlay('/Register')} className={style.applyBtn} type="button">APPLY</button>
 				<p className={style.note}>The application will take about 10 minutes to complete.</p>
+					</>
+				}
+				
 			</section>
 
 			<section className={style.tiersSection}>
@@ -42,23 +125,39 @@ const MembershipPage =()=>{
 					<div className={style.underline} />
 				</div>
 				<div className={style.tiersGrid}>
-					{tiers.map(tier => (
-						<div key={tier.key} className={style.card}>
+					{
+					pageDataInit?.banner2File?.length!==0&&pageDataInit?.banner2File?.map((item,key)=>(
+						<div key={key} className={style.card}>
 							<div className={style.cardImageWrap}>
-								<img src={tier.image} alt={tier.title} className={style.cardImage} loading="lazy" />
+								<img src={Utils.returnFileUrl(item?.abs_file_obj_display)} alt={item.purpose_obj_display} className={style.cardImage} loading="lazy" />
 							</div>
 							<div className={style.cardBody}>
-								<h3 className={style.cardTitle}>{tier.title}</h3>
+								<h3 className={style.cardTitle}>{pageDataInit?.banner2Text?.[key]?.text}</h3>
 								<ul className={style.perksList}>
-									{tier.perks.map((perk, idx) => (
-										<li key={idx}>{perk}</li>
-									))}
+									{
+										pageDataInit?.banner2Text?.[key]?.sub_text.split(',').map((label,keyL)=>(
+											<li key={keyL}>{label}</li>
+										))
+									}
+									{/* {tier.perks.map((perk, idx) => ( */}
+										{/* <li key={idx}>{perk}</li> */}
+									{/* ))} */}
 								</ul>
-								<button className={style.cardApplyBtn} type="button">APPLY</button>
+								{
+									!Utils.getToken()&&<button onClick={()=>onGetToPlay('/Register')} className={style.cardApplyBtn} type="button">APPLY</button>
+								}
+								
 							</div>
 						</div>
-					))}
+					))
+				}
 				</div>
+				
+				{/* <div className={style.tiersGrid}>
+					{tiers.map(tier => (
+						
+					))}
+				</div> */}
 			</section>
 
 			{/* <footer className={style.footer}>

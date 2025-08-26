@@ -2,9 +2,11 @@ import React, { useState, useRef, useEffect } from "react";
 import Style from "./index.module.css"
 import Utils from "../../Util/webCofig";
 import ActionType from "../../Store/actionType";
+import { useNavigate } from 'react-router-dom';
 const homeSelect1ObgId = 9;   // 首页select1的分类ID
 const homeSelect2ObgId = 10;   // 首页select2的分类ID
 function AccezzPage() {
+    
     const [isPlaying, setIsPlaying] = useState(false);
     const [homeInitData,setHomeInitData]=useState({
         select1Text:{
@@ -63,7 +65,6 @@ function AccezzPage() {
                 let contentDatab = data?.results?.[0]||{}
                 let initSelect1Text = homeInitData.select1FileVideo
                 let toData = {...initSelect1Text,...contentDatab}
-                console.log(toData)
                 setHomeInitData(prev=>({
                     ...prev,
                     select1FileVideo:toData
@@ -110,7 +111,6 @@ const onGetHomeSelect2Content =()=>{
 }
 
     const handlePlayPause = () => {
-        console.log(videoRef)
         if (videoRef.current) {
             if (isPlaying) {
                 videoRef.current.pause();
@@ -124,7 +124,7 @@ const onGetHomeSelect2Content =()=>{
     const handleVideoEnded = () => {
         setIsPlaying(false);
     };
-
+    const nevigate = useNavigate()
     return (
         <div>
 <div className={Style.AccezzPage}>
@@ -163,11 +163,11 @@ const onGetHomeSelect2Content =()=>{
                     
                     {/* 操作按钮 */}
                     <div className={Style.actionButtons}>
-                        <button className={Style.primaryButton}>
+                        {/* <button className={Style.primaryButton}>
                             开始探索
-                        </button>
-                        <button className={Style.secondaryButton}>
-                            了解更多
+                        </button> */}
+                        <button className={Style.secondaryButton} onClick={()=>nevigate('/Register')}>
+                        Gain Accezz
                         </button>
                     </div>
                     {/* 播放按钮 - 仅在视频时显示 */}

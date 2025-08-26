@@ -72,11 +72,9 @@ const RegisterPage = () => {
             data:formData,
             actionType: ActionType().PostRegister,
             Success:(data)=>{
-                console.log(data)
                 alert('The information has been submitted. Please go to the homepage or other pages')
             }
         })
-        console.log("注册表单提交数据:", formData);
     };
     const getResourcesData = useSelector(data=>data.PostRegister)
     return (

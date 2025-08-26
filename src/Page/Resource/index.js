@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import style from './index.module.css';
+import Utils from "../../Util/webCofig";
 
 const artForms = [
     { label: 'Exhibitions', img: 'https://images.unsplash.com/photo-1529101091764-c3526daf38fe?w=600&h=400&fit=crop' },
@@ -48,9 +49,12 @@ const Grid = ({ items }) => (
         {items.map((it) => (
             <div key={it.label} className={style.tile}>
                 <div className={style.tileImage}>
-                    <img src={it.img} alt={it.label} />
+                    <a href={it.text.startsWith('http') ? it.text : `https://${it.text}`} target="_blank">
+                      <img src={ Utils.returnFileUrl(it.abs_file_obj_display)} alt={it.label} />  
+                    </a>
+                    
                 </div>
-                <div className={style.tileLabel}>{it.label}</div>
+                <div className={style.tileLabel}>{it.remark}</div>
             </div>
         ))}
     </div>
@@ -60,14 +64,80 @@ const BannerList = ({ items }) => (
     <div className={style.bannerList}>
         {items.map((it) => (
             <div key={it.label} className={style.bannerItem}>
-                <img src={it.img} alt={it.label} />
-                <div className={style.bannerLabel}>{it.label}</div>
+                <a href={it.text.startsWith('http') ? it.text : `https://${it.text}`} target="_blank">
+                <img src={Utils.returnFileUrl(it.abs_file_obj_display) } alt={it.label} />
+                </a>
+               
+                <div className={style.bannerLabel}>{it.remark}</div>
             </div>
         ))}
     </div>
 );
-
+const bannerId=[18,19,20]
 const ResourcesPage =()=>{
+    const [pageDataInitText,setPageDataInitText] = useState({
+        18:{
+            text:"I'm interested in",
+            sub_text:'Please select your preferred art forms (you can select more than one item)'
+        },
+        19:{
+            text:"I'm interested in",
+            sub_text:'Please select your preferred art forms (you can select more than one item)'
+        },
+        20:{
+            text:"I'm interested in",
+            sub_text:'Please select your preferred art forms (you can select more than one item)'
+        }
+    })
+    const [pageDataInitFile,setPageDataInitFile] = useState({
+        18:[],
+        19:[],
+        20:[]
+    })
+    const onGetResData = ()=>{
+        bannerId.map((item)=>{
+            Utils.get({
+                url:'api_back/resources_text/',
+                params:{
+                    purpose_obj:item,
+                    page:1,
+                    pagesize:100
+                },
+                actionType:'getResInit'+item,
+                Success:(data)=>{
+                    let contentDatab = data?.results?.[0]||{}
+                    let initSelect1Text =  pageDataInitText[item]
+                        let toData = {...initSelect1Text,...contentDatab}
+                        setPageDataInitText(prev=>({
+                         ...prev,
+						 [item]:toData
+                        }))
+                }
+            })
+            Utils.get({
+                url:'api_back/resources_file/',
+                params:{
+                    purpose_obj:item,
+                    page:1,
+                    pagesize:100
+                },
+                actionType:'getResInitF'+item,
+                Success:(data)=>{
+                    let contentDatab = data?.results
+                   
+                        setPageDataInitFile(prev=>({
+                        ...prev,
+                        [item]:contentDatab
+                     }))
+                    
+                }
+            })
+        })
+    }
+
+    useEffect(()=>{
+        onGetResData()
+    },[])
     return(
         <div className={style.ResourcesPage}>
             {/* My Interests */}
@@ -77,13 +147,17 @@ const ResourcesPage =()=>{
                     desc="Share with us your preferred art forms and interests."
                 />
                 <div className={style.sectionBody}>
-                    <div className={style.subTitle}>I'm interested in</div>
-                    <div className={style.subDesc}>Please select your preferred art forms (you can select more than one item)</div>
-                    <Grid items={artForms} />
+                    <div className={style.subTitle}>
+                        {pageDataInitText?.[18]?.text}
+                    </div>
+                    <div className={style.subDesc}>
+                    {pageDataInitText?.[18]?.sub_text}
+                    </div>
+                    <Grid items={pageDataInitFile?.[18]} />
 
-                    <div className={style.subTitle} style={{ marginTop: '24px' }}>I'm interested in</div>
-                    <div className={style.subDesc}>Please select your preferred interests (you can select more than one item)</div>
-                    <Grid items={interests} />
+                    <div className={style.subTitle} style={{ marginTop: '24px' }}>{pageDataInitText?.[19]?.text}</div>
+                    <div className={style.subDesc}>{pageDataInitText?.[19]?.sub_text}</div>
+                    <Grid items={pageDataInitFile?.[19]} />
                 </div>
             </div>
 
@@ -94,9 +168,9 @@ const ResourcesPage =()=>{
                     desc="Select your preferred theme for your account."
                 />
                 <div className={style.sectionBody}>
-                    <div className={style.subTitle}>I like</div>
-                    <div className={style.subDesc}>Please select your preferred theme to decorate your page (you can select one only)</div>
-                    <BannerList items={themes} />
+                    <div className={style.subTitle}>{pageDataInitText?.[20]?.text}</div>
+                    <div className={style.subDesc}>{pageDataInitText?.[20]?.sub_text}</div>
+                    <BannerList items={pageDataInitFile?.[20]} />
                 </div>
             </div>
         </div>

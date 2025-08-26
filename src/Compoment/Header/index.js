@@ -72,9 +72,10 @@ useEffect(() => {
     return(
       <Header className={Style.header}>
       <div className={Style.headerContainer}>
-          {/* Logo */}
-          <div className={Style.logo}
-          onClick={()=>setMenuItemsState('/')}
+        <div className={Style.HeaderContainerTO}>
+{/* Logo */}
+<div className={Style.logo}
+            onClick={()=>setMenuItemsState('/')}
           >
             <Link to={'/'}>
               ACCEZZ
@@ -95,6 +96,8 @@ useEffect(() => {
               ))}
           </nav>
 
+        </div>
+          
           
 
           {/* Login Button */}

@@ -177,8 +177,8 @@ const HighlightsPage = () => {
     return (
         <div className={styles.highlightsContainer}>
             <div className={styles.header}>
-                <h1 className={styles.title}>Soho House</h1>
-                <p className={styles.subtitle}>全球奢华会员制俱乐部精选</p>
+                <h1 className={styles.title}>Accezz House</h1>
+                <p className={styles.subtitle}>Selected Global Luxury Membership Clubs</p>
             </div>
 
             <div className={styles.carouselContainer}>

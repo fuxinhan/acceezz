@@ -1,0 +1,15 @@
+/* 定义自定义字体 */
+@font-face {
+    font-family: 'ACCEZZFONT'; /* 字体名称，可自定义 */
+    src: url('./Segment-Regular.eot'); /* IE9 Compat Modes */
+    src: url('./Segment-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('./Segment-Regular.woff2') format('woff2'), /* Modern Browsers */
+         url('./Segment-Regular.woff') format('woff'), /* Modern Browsers */
+         url('./Segment-Regular.ttf')  format('truetype'); /* Safari, Android, iOS */
+    
+    /* 可选属性 */
+    font-weight: normal; /* 字体粗细 */
+    font-style: normal;  /* 字体样式 */
+    font-display: swap;  /* 字体加载策略 */
+  }
+  

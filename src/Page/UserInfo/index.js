@@ -93,14 +93,14 @@ const UserInfoPage = ()=>{
 
     const handlePwdSubmit = (values)=>{
         // eslint-disable-next-line no-console
-        console.log('change_password', values);
+        // console.log('change_password', values);
         message.success('已打印到控制台');
         setPwdOpen(false);
     };
 
     const handleProposeSubmit = (values)=>{
         // eslint-disable-next-line no-console
-        console.log('propose_member', values);
+        // console.log('propose_member', values);
         message.success('已打印到控制台');
     };
 
