@@ -4,40 +4,40 @@ import Style from "./index.module.css"
 import HeaderCompoment from "../Compoment/Header";
 import HomePage from "../Page/Home";
 import FooterCompoment from "../Compoment/Footer";
-import {  Layout } from "antd";
+import { Layout } from "antd";
 import { Content } from 'antd/es/layout/layout';
 import IsLogin from '../Util/isLogin';
 import Utils from '../Util/webCofig';
 
-const HighlightsPage = lazy(()=>import('../Page/Highlights'))
-const NotPage = lazy(()=>import('../Compoment/NotPage'))
-const MembershipPage = lazy(()=>import('../Page/Membership'))
-const AboutPage = lazy(()=>import('../Page/About'))
-const LoginPage = lazy(()=>import('../Page/Login'))
-const RegisterPage = lazy(()=>import('../Page/Register'))
-const AccezzPage = lazy(()=>import('../Page/Accezz'))
-const ResourcesPage = lazy(()=>import('../Page/Resource'))
-const UserInfoPage = lazy(()=>import('../Page/UserInfo'))
+const HighlightsPage = lazy(() => import('../Page/Highlights'))
+const NotPage = lazy(() => import('../Compoment/NotPage'))
+const MembershipPage = lazy(() => import('../Page/Membership'))
+const AboutPage = lazy(() => import('../Page/About'))
+const LoginPage = lazy(() => import('../Page/Login'))
+const RegisterPage = lazy(() => import('../Page/Register'))
+const AccezzPage = lazy(() => import('../Page/Accezz'))
+const ResourcesPage = lazy(() => import('../Page/Resource'))
+const UserInfoPage = lazy(() => import('../Page/UserInfo'))
 const contIsLogin = Utils.getToken()
-function AppRouter (){
-    return(
+function AppRouter() {
+    return (
         <Layout className={Style.AppRouter}>
-            <HeaderCompoment/>
+            <HeaderCompoment />
             <Content className={Style.RouterCentent}>
                 <Routes>
-                    <Route exact  path='/' element={contIsLogin?<HomePage/>:<AccezzPage />} />
-                    <Route path='/Accezz' element={ IsLogin(AccezzPage) } />
+                    <Route exact path='/' element={contIsLogin ? <HomePage /> : <AccezzPage />} />
+                    <Route path='/Accezz' element={IsLogin(AccezzPage)} />
                     <Route path='/Highlights' element={<HighlightsPage />} />
-                    <Route path='/Membership' element={<MembershipPage />}/>
+                    <Route path='/Membership' element={<MembershipPage />} />
                     <Route path='/About' element={<AboutPage />} />
                     <Route path='/Login' element={<LoginPage />} />
                     <Route path='/Register' element={<RegisterPage />} />
-                    <Route path='/Resources' element={<ResourcesPage />} />
+                    <Route path='/Resources' element={IsLogin(ResourcesPage)} />
                     <Route path='/UserInfo' element={IsLogin(UserInfoPage)} />
                     <Route path='*' element={<NotPage />} />
                 </Routes>
             </Content>
-            
+
             <FooterCompoment />
         </Layout>
     )

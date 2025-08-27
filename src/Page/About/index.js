@@ -9,61 +9,60 @@ const pillars = [
 	{ key: 'sustainability', title: 'Sustainability', desc: '关注可持续发展，在设计与运营中尽量降低环境影响。' },
 	{ key: 'wellbeing', title: 'Wellbeing', desc: '关照身心平衡，提供健身、泳池与多元健康体验。' },
 ];
-const bannerId = [14,15,16,17]
-const AboutPage =()=>{
-	const [pageDataInitText,setPageDataInitText]  = useState({
-		14:null,
-		15:null,
-		16:null,
-		17:null,
+const bannerId = [14, 15, 16, 17]
+const AboutPage = () => {
+	const [pageDataInitText, setPageDataInitText] = useState({
+		14: null,
+		15: null,
+		16: null,
+		17: null,
 	})
-	const [pageDataInitFile,setPageDataInitFile]  = useState({
-		14:null,
-		15:null,
-		16:null,
-		17:null,
+	const [pageDataInitFile, setPageDataInitFile] = useState({
+		14: null,
+		15: null,
+		16: null,
+		17: null,
 	})
-	const onGetInitData=()=>{
-		bannerId.map((item)=>{
-            Utils.get({
-                url:'api_back/resources_text/',
-                params:{
-                    purpose_obj:item,
-                    page:1,
-                    pagesize:100
-                },
-                actionType:'getAboutInit'+item,
-                Success:(data)=>{
-                    let contentDatab = data?.results 
-                    setPageDataInitText(pre=>({...pre,[item]:contentDatab}))
-                }
-            })
-            Utils.get({
-                url:'api_back/resources_file/',
-                params:{
-                    purpose_obj:item,
-                    page:1,
-                    pagesize:100
-                },
-                actionType:'getAboutInitF'+item,
-                Success:(data)=>{
-                    let contentDatab = data?.results
-                        setPageDataInitFile(pre=>({...pre,[item]:contentDatab}))
-                }
-            })
-        })
+	const onGetInitData = () => {
+		bannerId.map((item) => {
+			Utils.get({
+				url: 'api_back/resources_text/',
+				params: {
+					purpose_obj: item,
+					page: 1,
+					pagesize: 100
+				},
+				actionType: 'getAboutInit' + item,
+				Success: (data) => {
+					let contentDatab = data?.results
+					setPageDataInitText(pre => ({ ...pre, [item]: contentDatab }))
+				}
+			})
+			Utils.get({
+				url: 'api_back/resources_file/',
+				params: {
+					purpose_obj: item,
+					page: 1,
+					pagesize: 100
+				},
+				actionType: 'getAboutInitF' + item,
+				Success: (data) => {
+					let contentDatab = data?.results
+					setPageDataInitFile(pre => ({ ...pre, [item]: contentDatab }))
+				}
+			})
+		})
 	}
 
-	useEffect(()=>{
+	useEffect(() => {
 		onGetInitData()
-	},[])
-	return(
+	}, [])
+	return (
 		<div className={style.AboutPage}>
-			{console.log(pageDataInitFile)}
 			<section className={style.hero}>
 				<h1 className={style.title}>{pageDataInitText?.[14]?.[0]?.text}</h1>
 				<p className={style.subtitle}
-					dangerouslySetInnerHTML={{ __html: pageDataInitText?.[14]?.[0]?.sub_text}}
+					dangerouslySetInnerHTML={{ __html: pageDataInitText?.[14]?.[0]?.sub_text }}
 				/>
 			</section>
 
@@ -77,13 +76,13 @@ const AboutPage =()=>{
 				))}
 			</section>
 			{
-				pageDataInitFile?.[16]?.map((item,key)=>{
+				pageDataInitFile?.[16]?.map((item, key) => {
 					const isOdd = key % 2 !== 0;
 					// 动态设置className：奇数用split，偶数用split+reverse
-					const sectionClass = isOdd 
-					  ? `${style.split} ${style.reverse}`
-					  :style.split ;
-					return(
+					const sectionClass = isOdd
+						? `${style.split} ${style.reverse}`
+						: style.split;
+					return (
 						<section className={sectionClass}>
 							<div className={style.splitMedia}>
 								<img src={Utils.returnFileUrl(item.abs_file_obj_display)} alt="House interior" loading="lazy" />
@@ -94,40 +93,40 @@ const AboutPage =()=>{
 										pageDataInitText?.[16]?.[key]?.text
 									}
 								</h2>
-								<p 
-								dangerouslySetInnerHTML={{ __html: pageDataInitText?.[16]?.[key]?.sub_text}}
+								<p
+									dangerouslySetInnerHTML={{ __html: pageDataInitText?.[16]?.[key]?.sub_text }}
 								/>
-								
+
 							</div>
 						</section>
 					)
 				})
 			}
-			
 
-			
+
+
 
 			<section className={style.stats}>
 				{
-					pageDataInitText?.[17]?.map((item,key)=>{
-						return(
+					pageDataInitText?.[17]?.map((item, key) => {
+						return (
 							<div className={style.statItem}>
-					<strong>{item.text}</strong>
-					<span>{item.sub_text}</span>
-				</div>
+								<strong>{item.text}</strong>
+								<span>{item.sub_text}</span>
+							</div>
 						)
 					})
 				}
-				
-				
+
+
 			</section>
 			{
-				!Utils.getToken()&&<section className={style.cta}>
-				<h3>Join us and discover the house closest to you</h3>
-				<button type="button" className={style.ctaBtn}>Explore</button>
-			</section>
+				!Utils.getToken() && <section className={style.cta}>
+					<h3>Join us and discover the house closest to you</h3>
+					<button type="button" className={style.ctaBtn}>Explore</button>
+				</section>
 			}
-			
+
 		</div>
 	)
 }
