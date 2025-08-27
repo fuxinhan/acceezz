@@ -50,9 +50,9 @@ const Grid = ({ items }) => (
             <div key={it.label} className={style.tile}>
                 <div className={style.tileImage}>
                     <a href={it?.text?.startsWith('http') ? it.text : `https://${it.text}`} target="_blank">
-                      <img src={ Utils.returnFileUrl(it.abs_file_obj_display)} alt={it.label} />  
+                        <img src={Utils.returnFileUrl(it.abs_file_obj_display)} alt={it.label} />
                     </a>
-                    
+
                 </div>
                 <div className={style.tileLabel}>{it.remark}</div>
             </div>
@@ -64,86 +64,92 @@ const BannerList = ({ items }) => (
     <div className={style.bannerList}>
         {items.map((it) => (
             <div key={it.label} className={style.bannerItem}>
-                <a href={it?.text?.startsWith('http') ? it.text : `https://${it.text}`} target="_blank">
-                <img src={Utils.returnFileUrl(it.abs_file_obj_display) } alt={it.label} />
-                </a>
-               
+                {
+                    it?.text && <a href={it?.text?.startsWith('http') ? it.text : `https://${it.text}`} target="_blank">
+                        <img src={Utils.returnFileUrl(it.abs_file_obj_display)} alt={it.label} />
+                    </a>
+                }
+                {
+                    !it?.text && <img src={Utils.returnFileUrl(it.abs_file_obj_display)} alt={it.label} />
+                }
+
+
                 <div className={style.bannerLabel}>{it.remark}</div>
             </div>
         ))}
     </div>
 );
-const bannerId=[11,12,13]
-const ResourcesPage =()=>{
-    const [pageDataInitText,setPageDataInitText] = useState({
-        11:{
-            text:"I'm interested in",
-            sub_text:'Please select your preferred art forms (you can select more than one item)'
+const bannerId = [11, 12, 13]
+const ResourcesPage = () => {
+    const [pageDataInitText, setPageDataInitText] = useState({
+        11: {
+            text: "I'm interested in",
+            sub_text: 'Please select your preferred art forms (you can select more than one item)'
         },
-        12:{
-            text:"I'm interested in",
-            sub_text:'Please select your preferred art forms (you can select more than one item)'
+        12: {
+            text: "I'm interested in",
+            sub_text: 'Please select your preferred art forms (you can select more than one item)'
         },
-        13:{
-            text:"I'm interested in",
-            sub_text:'Please select your preferred art forms (you can select more than one item)'
+        13: {
+            text: "I'm interested in",
+            sub_text: 'Please select your preferred art forms (you can select more than one item)'
         }
     })
-    const [pageDataInitFile,setPageDataInitFile] = useState({
-        11:[],
-        12:[],
-        13:[]
+    const [pageDataInitFile, setPageDataInitFile] = useState({
+        11: [],
+        12: [],
+        13: []
     })
-    const onGetResData = ()=>{
-        bannerId.map((item)=>{
+    const onGetResData = () => {
+        bannerId.map((item) => {
             Utils.get({
-                url:'api_back/resources_text/',
-                params:{
-                    purpose_obj:item,
-                    page:1,
-                    pagesize:100
+                url: 'api_back/resources_text/',
+                params: {
+                    purpose_obj: item,
+                    page: 1,
+                    pagesize: 100
                 },
-                actionType:'getResInit'+item,
-                Success:(data)=>{
-                    let contentDatab = data?.results?.[0]||{}
-                    let initSelect1Text =  pageDataInitText[item]
-                        let toData = {...initSelect1Text,...contentDatab}
-                        setPageDataInitText(prev=>({
-                         ...prev,
-						 [item]:toData
-                        }))
+                actionType: 'getResInit' + item,
+                Success: (data) => {
+                    let contentDatab = data?.results?.[0] || {}
+                    let initSelect1Text = pageDataInitText[item]
+                    let toData = { ...initSelect1Text, ...contentDatab }
+                    setPageDataInitText(prev => ({
+                        ...prev,
+                        [item]: toData
+                    }))
                 }
             })
             Utils.get({
-                url:'api_back/resources_file/',
-                params:{
-                    purpose_obj:item,
-                    page:1,
-                    pagesize:100
+                url: 'api_back/resources_file/',
+                params: {
+                    purpose_obj: item,
+                    page: 1,
+                    pagesize: 100
                 },
-                actionType:'getResInitF'+item,
-                Success:(data)=>{
+                actionType: 'getResInitF' + item,
+                Success: (data) => {
                     let contentDatab = data?.results
-                   
-                        setPageDataInitFile(prev=>({
+
+                    setPageDataInitFile(prev => ({
                         ...prev,
-                        [item]:contentDatab
-                     }))
-                    
+                        [item]: contentDatab
+                    }))
+
                 }
             })
         })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         onGetResData()
-    },[])
-    return(
+    }, [])
+    return (
         <div className={style.ResourcesPage}>
             {/* My Interests */}
             <div className={style.twoColSection}>
                 <SectionIntro
-                    title="My Interests"
+                    title="Podcasts And News"
                     desc="Share with us your preferred art forms and interests."
                 />
                 <div className={style.sectionBody}>
@@ -151,7 +157,7 @@ const ResourcesPage =()=>{
                         {pageDataInitText?.[11]?.text}
                     </div>
                     <div className={style.subDesc}>
-                    {pageDataInitText?.[11]?.sub_text}
+                        {pageDataInitText?.[11]?.sub_text}
                     </div>
                     <Grid items={pageDataInitFile?.[11]} />
 
@@ -164,7 +170,7 @@ const ResourcesPage =()=>{
             {/* My Theme */}
             <div className={style.twoColSection}>
                 <SectionIntro
-                    title="My Theme"
+                    title="Exhibits"
                     desc="Select your preferred theme for your account."
                 />
                 <div className={style.sectionBody}>
