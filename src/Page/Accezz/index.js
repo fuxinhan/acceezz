@@ -215,10 +215,10 @@ function AccezzPage() {
             </div>
             <div className={Style.heroContent}>
                 <div className={Style.heroLeft}>
-                    <div className={Style.currentPage}>
+                    {/* <div className={Style.currentPage}>
                         <div className={Style.pageIndicator}>Current page / Landing page</div>
                         <div className={Style.pageLabel}>PT</div>
-                    </div>
+                    </div> */}
 
                     <h1 className={Style.mainHeading}
                         dangerouslySetInnerHTML={{ __html: homeInitData?.select2Text?.text || 'Gamify Access for the <span>future generation</span> of collectors across all pockets of the art world' }}
@@ -229,14 +229,14 @@ function AccezzPage() {
                         {homeInitData?.select2Text?.sub_text || 'Carving out a new space for people who want to engage with art through collecting. ACCEZZ is a community where emerging collectors find exceptional artists and artwork.'}
                     </p>
 
-                    <div className={Style.ctaButtons}>
+                    {/* <div className={Style.ctaButtons}>
                         <button className={Style.primaryBtn}>
                             JOIN COMMUNITY <i className={Style.faArrowRight}></i>
                         </button>
                         <button className={Style.secondaryBtn}>
                             EXPLORE WORKS
                         </button>
-                    </div>
+                    </div> */}
                 </div>
 
                 <div className={Style.heroRight}>
