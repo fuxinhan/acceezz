@@ -47,13 +47,19 @@ function FooterCompoment() {
         }
     ];
 
+    const footerLink = [
+        { text: "Bedrooms gift cards", href: "#" },
+        { text: "Bedrooms gift cards", href: "#" },
+        { text: "Bedrooms gift cards", href: "#" },
+    ]
+
     return (
         <Footer className={Style.footer}>
             <div className={Style.footerContainer}>
                 {/* 上部分：导航列和订阅区域 */}
-                <div className={Style.footerUpper}>
-                    {/* 导航列 */}
-                    <div className={Style.footerColumns}>
+                {/* <div className={Style.footerUpper}> */}
+                {/* 导航列 */}
+                {/* <div className={Style.footerColumns}>
                         {footerColumns.map((column, index) => (
                             <div key={index} className={Style.footerColumn}>
                                 <h4 className={Style.columnTitle}>{column.title}</h4>
@@ -68,32 +74,51 @@ function FooterCompoment() {
                                 </ul>
                             </div>
                         ))}
-                    </div>
+                    </div> */}
 
-                    {/* 订阅区域 */}
-                    <div className={Style.subscriptionSection}>
+                {/* 订阅区域 */}
+                {/* <div className={Style.subscriptionSection}>
                         <h3 className={Style.subscriptionTitle}>Subscribe</h3>
                         <p className={Style.subscriptionDescription}>
                             Sign up to hear about events, news and updates from ACCEZZ and our other businesses.
                         </p>
                         {
-                            !Utils.getToken()&&<Button className={Style.subscribeButton}>
-                            Subscribe
-                        </Button>
+                            !Utils.getToken() && <Button className={Style.subscribeButton}>
+                                Subscribe
+                            </Button>
                         }
-                        
-                    </div>
-                </div>
+
+                    </div> */}
+                {/* </div> */}
 
                 {/* 分隔线 */}
-                <Divider className={Style.footerDivider} />
+                {/* <Divider className={Style.footerDivider} /> */}
 
                 {/* 下部分：品牌信息和版权 */}
                 <div className={Style.footerLower}>
                     <div className={Style.footerLowerLeft}>
                         <div className={Style.brandInfo}>
-                            <AppstoreOutlined className={Style.brandIcon} />
-                            <span className={Style.brandName}>ACCEZZ</span>
+                            <img src={Utils.logoPng()} className={Style.LogoPng} />
+                            {/* <AppstoreOutlined className={Style.brandIcon} />
+                            <span className={Style.brandName}>ACCEZZ</span> */}
+                        </div>
+                        <div className={Style.FooterLinkList}>
+                            <ul className={Style.columnLinks}>
+                                <li>
+                                    <a className={Style.footerLink} v>Instagram</a>
+                                </li>
+                                <li>
+                                    <a className={Style.footerLink}>TikTok</a>
+                                </li>
+
+                            </ul>
+                            <ul className={Style.columnLinks}>
+                                <li><a className={Style.footerLink}>Terms and policies</a></li>
+                                <li>
+                                    <a className={Style.footerLink}>Contact</a>
+                                </li>
+
+                            </ul>
                         </div>
                         {/* <div className={Style.languageSelector}>
                             <Select
@@ -110,7 +135,7 @@ function FooterCompoment() {
                         </div> */}
                     </div>
                     <div className={Style.copyright}>
-                        2025
+                        2025 The Accezz. All rights reserved.
                     </div>
                 </div>
             </div>

@@ -3,19 +3,24 @@ import store from './../Store/index'
 import { message } from "antd";
 import { CheckCircleOutlined } from '@ant-design/icons'
 import '@ant-design/v5-patch-for-react-19';
-class Util{
+import LogoPng from './../static/AccezzLogo.png'
+class Util {
+    //logo
+    logoPng() {
+        return LogoPng
+    }
     // 退出登陆
-    LogOut(){
+    LogOut() {
         localStorage.clear();
         window.location.reload(true);
     }
-     // 获取token
-     getToken() {
+    // 获取token
+    getToken() {
         return localStorage.getItem("userToken");
     }
     // 获取当前rul
     currentUrl() {
-        if(!this.isLocal() ) return 'https://console.theaccezz.com/'
+        if (!this.isLocal()) return 'https://console.theaccezz.com/'
         let http = window.location.protocol;
         let host = window.location.host;
         let ip = `${http}//${host}/`;
@@ -24,8 +29,8 @@ class Util{
         ip = ip.replace('172.17.0.2', '127.0.0.1');
         return ip;
     }
-     // 是否为本地
-     isLocal() {
+    // 是否为本地
+    isLocal() {
         let port = window.location.port;
         let hostHome = window.location.hostname;
         if (
@@ -39,7 +44,7 @@ class Util{
             return false;
         }
     }
-   
+
     // 请求URL
     requestUrl(path) {
         let paths = this.currentUrl() + path
@@ -98,16 +103,16 @@ class Util{
                 // ) {
                 //     message.error('此用户为后台管理人员，请前往后台登录')
                 // } else {
-                    let userToken = RequestData.jwt_token;
-                    let userInfo = JSON.stringify(RequestData);
-                    localStorage.setItem("userToken", userToken);
-                    localStorage.setItem("userInfo", userInfo);
-                    let path = window.location.pathname
+                let userToken = RequestData.jwt_token;
+                let userInfo = JSON.stringify(RequestData);
+                localStorage.setItem("userToken", userToken);
+                localStorage.setItem("userInfo", userInfo);
+                let path = window.location.pathname
 
-                    if (path === '/Login' ) {
-                        path = '/'
-                    }
-                    window.location.href = path;
+                if (path === '/Login') {
+                    path = '/'
+                }
+                window.location.href = path;
                 // }
             }
             if (data.Success) data.Success(RequestData)
@@ -132,11 +137,11 @@ class Util{
     // API返回的错误信息处理
     requestMessage(data, Message) {
         let status = data.status
-        if(status===400) return message.error('400')
+        if (status === 400) return message.error('400')
         if (status === 200 || status === 201 || status === 204) {
-            if (Message) message.success(<CheckCircleOutlined />) 
+            if (Message) message.success(<CheckCircleOutlined />)
         } else if (status === 401) {
-            message.error(data&&data.response&&data.response.data||'Username or password error, please try again!')
+            message.error(data && data.response && data.response.data || 'Username or password error, please try again!')
         } else if (!status && data.code && data.code === 'ERR_BAD_REQUEST') {
             let errorText = (
                 (
@@ -185,8 +190,8 @@ class Util{
         } else if (newUrl === "data:") {
             return url;
         } else {
-            if(this.isLocal()) return this.currentUrl()+url;
-            if(!this.isLocal()) return 'https://console.theaccezz.com/'+url
+            if (this.isLocal()) return this.currentUrl() + url;
+            if (!this.isLocal()) return 'https://console.theaccezz.com/' + url
         }
         // if(this.isLocal()) return this.currentUrl()+url;
         // if(!this.isLocal()) return 'https://console.theaccezz.com/'+url
@@ -199,7 +204,7 @@ class Util{
         //     return this.wordUrl() + url;
         // }
     }
-    
+
 }
 
 let Utils = new Util()
