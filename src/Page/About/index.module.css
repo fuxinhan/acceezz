@@ -2,6 +2,7 @@
 .AboutPage {
 	background: var(--cream-bg, #f8f6f2);
 	color: var(--deep-navy, #1a1a2e);
+	padding-bottom: 20px;
 }
 
 .hero {
@@ -38,7 +39,7 @@
 	background: #fff;
 	border-radius: 12px;
 	padding: 16px;
-	box-shadow: 0 6px 20px rgba(0,0,0,.06);
+	box-shadow: 0 6px 20px rgba(0, 0, 0, .06);
 }
 
 .pillarBadge {
@@ -49,8 +50,17 @@
 	margin-bottom: 10px;
 }
 
-.pillarTitle { margin: 0 0 6px; font-size: 16px; font-weight: 700; }
-.pillarDesc { margin: 0; color: #666; line-height: 1.7; }
+.pillarTitle {
+	margin: 0 0 6px;
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.pillarDesc {
+	margin: 0;
+	color: #666;
+	line-height: 1.7;
+}
 
 .split {
 	max-width: 1180px;
@@ -62,9 +72,17 @@
 	align-items: center;
 }
 
-.reverse { grid-template-columns: 1fr 1.1fr; }
-.reverse .splitMedia { order: 2; }
-.reverse .splitContent { order: 1; }
+.reverse {
+	grid-template-columns: 1fr 1.1fr;
+}
+
+.reverse .splitMedia {
+	order: 2;
+}
+
+.reverse .splitContent {
+	order: 1;
+}
 
 .splitMedia img {
 	width: 100%;
@@ -72,11 +90,19 @@
 	max-height: 460px;
 	object-fit: cover;
 	border-radius: 14px;
-	box-shadow: 0 10px 30px rgba(0,0,0,.10);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, .10);
 }
 
-.splitContent h2 { margin: 0 0 10px; font-size: 26px; }
-.splitContent p { margin: 0 0 10px; color: #555; line-height: 1.9; }
+.splitContent h2 {
+	margin: 0 0 10px;
+	font-size: 26px;
+}
+
+.splitContent p {
+	margin: 0 0 10px;
+	color: #555;
+	line-height: 1.9;
+}
 
 .stats {
 	max-width: 900px;
@@ -88,9 +114,23 @@
 	text-align: center;
 }
 
-.statItem { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 6px 20px rgba(0,0,0,.06); }
-.statItem strong { display: block; font-size: 24px; margin-bottom: 4px; color: var(--deep-navy, #1a1a2e); }
-.statItem span { color: #666; }
+.statItem {
+	background: #fff;
+	border-radius: 12px;
+	padding: 16px;
+	box-shadow: 0 6px 20px rgba(0, 0, 0, .06);
+}
+
+.statItem strong {
+	display: block;
+	font-size: 24px;
+	margin-bottom: 4px;
+	color: var(--deep-navy, #1a1a2e);
+}
+
+.statItem span {
+	color: #666;
+}
 
 .cta {
 	max-width: 1080px;
@@ -110,18 +150,40 @@
 	transition: var(--transition, all .3s ease);
 }
 
-.ctaBtn:hover { background: var(--accent-gold, #c6a972); color: var(--light-text, #fff); }
+.ctaBtn:hover {
+	background: var(--accent-gold, #c6a972);
+	color: var(--light-text, #fff);
+}
 
 /* 响应式 */
 @media (max-width: 1024px) {
-	.pillars { grid-template-columns: repeat(2, 1fr); }
-	.split { grid-template-columns: 1fr; }
-	.reverse .splitMedia { order: 1; }
-	.reverse .splitContent { order: 2; }
+	.pillars {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.split {
+		grid-template-columns: 1fr;
+	}
+
+	.reverse .splitMedia {
+		order: 1;
+	}
+
+	.reverse .splitContent {
+		order: 2;
+	}
 }
 
 @media (max-width: 640px) {
-	.title { font-size: 30px; }
-	.subtitle { font-size: 14px; }
-	.stats { grid-template-columns: 1fr; }
+	.title {
+		font-size: 30px;
+	}
+
+	.subtitle {
+		font-size: 14px;
+	}
+
+	.stats {
+		grid-template-columns: 1fr;
+	}
 }
