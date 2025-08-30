@@ -61,6 +61,26 @@
   background: #fff;
 }
 
+.caroutseHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.caroutseHeader h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 500;
+  font-weight: 700;
+}
+
+.caroutseHeader div {
+  height: 1px;
+  flex: 1 1;
+  background: #ddd;
+}
+
 .slideImage {
   flex: 0 0 50%;
   height: 600px;
@@ -174,6 +194,83 @@
   height: 20px;
   color: #000;
 }
+
+/* 合作商和赞助商展示组件 - 优化样式 */
+.collaboratorsBosy {
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
+  background-color: var(--botton-bg);
+}
+.collaboratorsBosy img{
+  max-width: 150px;
+}
+.collaboratorsSection,
+.sponsorsSection {
+  max-width: 1200px;
+  margin: 40px auto 30px;
+  padding: 30px 20px;
+}
+
+.collaboratorsHeader,
+.sponsorsHeader {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.collaboratorsTitle,
+.sponsorsTitle {
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #333;
+  margin: 0;
+  font-family: 'ACCEZZFONT', sans-serif;
+  letter-spacing: 0.5px;
+  text-align: left;
+  font-weight: 700;
+}
+
+.logosGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.logoRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.logoItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  transition: all 0.3s ease;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.logoItem:hover {
+  transform: translateY(-2px);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.logoImage {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  /* filter: grayscale(100%) brightness(0.8); */
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.logoImage:hover {
+  filter: grayscale(0%) brightness(1);
+  opacity: 1;
+}
+
 /* 移动端适配 */
 @media (max-width: 1024px) {
   .propertyCard {
@@ -228,100 +325,138 @@
     flex-direction: column;
     min-height: auto;
   }
-  
+
   .slideImage {
     flex: 0 0 100%;
     height: 250px;
   }
-  
+
   .slideText {
     padding: 40px 30px;
     text-align: center;
   }
-  
+
   .slideTitle {
     font-size: 1.5rem;
     margin-bottom: 15px;
   }
-  
+
   .slideDescription {
     font-size: 0.9rem;
   }
-  
+
   .carouselNav {
     width: 40px;
     height: 40px;
   }
-  
+
   .prevNav {
     left: 15px;
   }
-  
+
   .nextNav {
     right: 15px;
   }
-  
-  .carouselDots {
-    margin-top: 20px;
-    padding: 15px 0;
-    left: 40%;
+
+  .collaboratorsSection,
+  .sponsorsSection {
+    margin: 60px auto 40px;
+  }
+
+  .logoRow {
+    gap: 35px;
+  }
+
+  .logoImage {
+    max-width: 70px;
+  }
+
+  .collaboratorsTitle,
+  .sponsorsTitle {
+    font-size: 1.6rem;
   }
 }
+
 
 @media (max-width: 480px) {
   .slideImage {
     height: 200px;
   }
-  
+
   .slideText {
     padding: 30px 20px;
   }
-  
+
   .slideTitle {
     font-size: 1.5rem;
   }
-  
+
   .slideDescription {
     font-size: 0.85rem;
   }
-  
+
   .carouselNav {
     width: 36px;
     height: 36px;
   }
-  
+
   .prevNav {
     left: 10px;
   }
-  
+
   .nextNav {
     right: 10px;
-  }.slideImage {
+  }
+
+  .slideImage {
     height: 200px;
   }
-  
+
   .slideText {
     padding: 30px 20px;
   }
-  
+
   .slideTitle {
     font-size: 1.8rem;
   }
-  
+
   .slideDescription {
     font-size: 0.95rem;
   }
-  
+
   .carouselNav {
     width: 36px;
     height: 36px;
   }
-  
+
   .prevNav {
     left: 10px;
   }
-  
+
   .nextNav {
     right: 10px;
+  }
+
+  .collaboratorsSection,
+  .sponsorsSection {
+    margin: 40px auto 30px;
+    padding: 0 15px;
+  }
+
+  .collaboratorsTitle,
+  .sponsorsTitle {
+    font-size: 1.4rem;
+  }
+
+  .logoRow {
+    gap: 25px;
+  }
+
+  .logoImage {
+    max-width: 50px;
+  }
+
+  .logoItem {
+    padding: 8px;
   }
 }
