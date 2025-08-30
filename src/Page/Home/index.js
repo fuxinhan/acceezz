@@ -128,8 +128,11 @@ function HomePage() {
                     <h1 className={Style.welcomeName}>{userName}</h1>
                     <p className={Style.welcomeSub}>{homeInitData?.select1Text?.sub_text}</p>
                     <div className={Style.heroActions}>
-                        <Button className={Style.bookBtn}>Make a booking</Button>
-                        <Button className={Style.inviteBtn}>Invite a guest</Button>
+                        <a target='_blank' href={homeInitData?.select1File?.[0]?.text||'/'}>
+                          <Button className={Style.bookBtn}>Refer a friend</Button>  
+                        </a>
+                        
+                        {/* <Button className={Style.inviteBtn}>Invite a guest</Button> */}
                     </div>
                 </div>
             </section>
