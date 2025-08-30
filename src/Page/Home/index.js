@@ -160,7 +160,7 @@ function HomePage() {
                     {/* <button className={Style.linkGhost}>See all</button> */}
                 </div>
 
-                {
+                {/* {
                     homeInitData && homeInitData.select3File && <div className={Style.upcomingList}>
                         {
                             homeInitData?.select3File?.length !== 0 && homeInitData?.select3File?.map((item, key) => {
@@ -183,7 +183,33 @@ function HomePage() {
                             })
                         }
                     </div>
-                }
+                } */}
+
+{
+				homeInitData?.select3File?.map((item, key) => {
+					const isOdd = key % 2 !== 0;
+					// 动态设置className：奇数用split，偶数用split+reverse
+					const sectionClass = isOdd
+						? `${Style.split} ${Style.reverse}`
+						: Style.split;
+					return (
+						<section className={sectionClass}>
+							<div className={Style.splitMedia}>
+								<img src={Utils.returnFileUrl(item.abs_file_obj_display)} alt="House interior" loading="lazy" />
+							</div>
+							<div className={Style.splitContent}>
+								<h2>
+                                {homeInitData?.select3Text?.[key]?.text || '--'}
+								</h2>
+								<p
+									dangerouslySetInnerHTML={{ __html: homeInitData?.select3Text?.[key]?.sub_text || '----------' }}
+								/>
+
+							</div>
+						</section>
+					)
+				})
+			}
 
 
             </section>
