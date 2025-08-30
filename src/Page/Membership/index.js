@@ -25,7 +25,7 @@ const tiers = [
 	}
 ];
 
-const bannerId = [9, 10]
+const bannerId = [8, 9]
 
 const MembershipPage = () => {
 	// 获取导航函数
@@ -57,7 +57,7 @@ const MembershipPage = () => {
 
 					let contentDatab = data?.results?.[0] || {}
 					let initSelect1Text = null
-					if (item === 9) {
+					if (item === 8) {
 						initSelect1Text = pageDataInit.banner1Text
 						let toData = { ...initSelect1Text, ...contentDatab }
 						setPageDataInit(prev => ({
@@ -66,7 +66,7 @@ const MembershipPage = () => {
 						}))
 					}
 
-					if (item === 10) {
+					if (item === 9) {
 						setPageDataInit(prev => ({
 							...prev,
 							banner2Text: data?.results
@@ -85,7 +85,7 @@ const MembershipPage = () => {
 				Success: (data) => {
 					let contentDatab = data?.results
 
-					if (item === 10) {
+					if (item === 9) {
 						setPageDataInit(prev => ({
 							...prev,
 							banner2File: contentDatab

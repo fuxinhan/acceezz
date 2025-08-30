@@ -79,9 +79,13 @@ const BannerList = ({ items }) => (
         ))}
     </div>
 );
-const bannerId = [11, 12, 13]
+const bannerId = [10, 11, 12]
 const ResourcesPage = () => {
     const [pageDataInitText, setPageDataInitText] = useState({
+        10: {
+            text: "I'm interested in",
+            sub_text: 'Please select your preferred art forms (you can select more than one item)'
+        },
         11: {
             text: "I'm interested in",
             sub_text: 'Please select your preferred art forms (you can select more than one item)'
@@ -89,16 +93,12 @@ const ResourcesPage = () => {
         12: {
             text: "I'm interested in",
             sub_text: 'Please select your preferred art forms (you can select more than one item)'
-        },
-        13: {
-            text: "I'm interested in",
-            sub_text: 'Please select your preferred art forms (you can select more than one item)'
         }
     })
     const [pageDataInitFile, setPageDataInitFile] = useState({
+        10: [],
         11: [],
-        12: [],
-        13: []
+        12: []
     })
     const onGetResData = () => {
         bannerId.map((item) => {
@@ -154,16 +154,16 @@ const ResourcesPage = () => {
                 />
                 <div className={style.sectionBody}>
                     <div className={style.subTitle}>
-                        {pageDataInitText?.[11]?.text}
+                        {pageDataInitText?.[10]?.text}
                     </div>
                     <div className={style.subDesc}>
-                        {pageDataInitText?.[11]?.sub_text}
+                        {pageDataInitText?.[10]?.sub_text}
                     </div>
-                    <Grid items={pageDataInitFile?.[11]} />
+                    <Grid items={pageDataInitFile?.[10]} />
 
-                    <div className={style.subTitle} style={{ marginTop: '24px' }}>{pageDataInitText?.[12]?.text}</div>
-                    <div className={style.subDesc}>{pageDataInitText?.[12]?.sub_text}</div>
-                    <Grid items={pageDataInitFile?.[12]} />
+                    <div className={style.subTitle} style={{ marginTop: '24px' }}>{pageDataInitText?.[11]?.text}</div>
+                    <div className={style.subDesc}>{pageDataInitText?.[11]?.sub_text}</div>
+                    <Grid items={pageDataInitFile?.[11]} />
                 </div>
             </div>
 
@@ -174,9 +174,9 @@ const ResourcesPage = () => {
                     desc="Select your preferred theme for your account."
                 />
                 <div className={style.sectionBody}>
-                    <div className={style.subTitle}>{pageDataInitText?.[13]?.text}</div>
-                    <div className={style.subDesc}>{pageDataInitText?.[13]?.sub_text}</div>
-                    <BannerList items={pageDataInitFile?.[13]} />
+                    <div className={style.subTitle}>{pageDataInitText?.[12]?.text}</div>
+                    <div className={style.subDesc}>{pageDataInitText?.[12]?.sub_text}</div>
+                    <BannerList items={pageDataInitFile?.[12]} />
                 </div>
             </div>
         </div>

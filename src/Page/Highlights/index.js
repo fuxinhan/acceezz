@@ -2,8 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "./index.module.css";
 import Utils from "../../Util/webCofig";
 import ActionType from "../../Store/actionType";
-const selectOneId = 7;   // HighlightsPage select2的分类ID
-const selectOneId2 = 8;   // HighlightsPage select2的分类ID
+const selectOneId = 6;   // HighlightsPage select2的分类ID
+const selectOneId2 = 7;   // HighlightsPage select2的分类ID
 
 const HighlightsPage = () => {
     const [firstRowIndex, setFirstRowIndex] = useState(0);

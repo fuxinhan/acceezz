@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Style from "./index.module.css"
 import { Button } from 'antd';
 import Utils from "../../Util/webCofig";
-const HomeBnnerID = [4, 5, 6];
+const HomeBnnerID = [3, 4, 5];
 // const HomeBnnerID2 = 5;
 // const HomeBnnerID3 = 6;
 function HomePage() {
@@ -46,7 +46,7 @@ function HomePage() {
 
                     let contentDatab = data?.results?.[0] || {}
                     let initSelect1Text = null
-                    if (item === 4) {
+                    if (item === 3) {
                         initSelect1Text = homeInitData.select1Text
                         let toData = { ...initSelect1Text, ...contentDatab }
                         setHomeInitData(prev => ({
@@ -54,7 +54,7 @@ function HomePage() {
                             select1Text: toData
                         }))
                     }
-                    if (item === 5) {
+                    if (item === 4) {
                         initSelect1Text = homeInitData.select2Text
                         let toData = { ...initSelect1Text, ...contentDatab }
                         setHomeInitData(prev => ({
@@ -62,7 +62,7 @@ function HomePage() {
                             select2Text: toData
                         }))
                     }
-                    if (item === 6) {
+                    if (item === 5) {
                         setHomeInitData(prev => ({
                             ...prev,
                             select3Text: data?.results
@@ -80,19 +80,19 @@ function HomePage() {
                 actionType: 'getLogHomeInitF' + item,
                 Success: (data) => {
                     let contentDatab = data?.results
-                    if (item === 4) {
+                    if (item === 3) {
                         setHomeInitData(prev => ({
                             ...prev,
                             select1File: contentDatab
                         }))
                     }
-                    if (item === 5) {
+                    if (item === 4) {
                         setHomeInitData(prev => ({
                             ...prev,
                             select2File: contentDatab
                         }))
                     }
-                    if (item === 6) {
+                    if (item === 5) {
                         setHomeInitData(prev => ({
                             ...prev,
                             select3File: contentDatab

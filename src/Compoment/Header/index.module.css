@@ -116,12 +116,13 @@
     border: 2px solid var(--dark-bg);
     padding: 8px 22px;
     border-radius: 50px;
-    color: var(--light-text);
+    color: #000;
+    font-weight: 600;
 }
 
 .loginCoure .loginUserName:hover {
     background: var(--dark-bg) !important;
-    color: #141414 !important;
+    color: #fff !important;
     border-color: var(--dark-bg) !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(198, 169, 114, 0.3);
