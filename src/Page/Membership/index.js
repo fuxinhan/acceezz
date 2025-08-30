@@ -136,7 +136,7 @@ const MembershipPage = () => {
 									<h3 className={style.cardTitle}>{pageDataInit?.banner2Text?.[key]?.text}</h3>
 									<ul className={style.perksList}>
 										{
-											pageDataInit?.banner2Text?.[key]?.sub_text.split(',').map((label, keyL) => (
+											pageDataInit?.banner2Text?.[key]?.sub_text?.split(',').map((label, keyL) => (
 												<li key={keyL}>{label}</li>
 											))
 										}
