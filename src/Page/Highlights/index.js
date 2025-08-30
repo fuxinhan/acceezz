@@ -7,17 +7,15 @@ const selectOneId2 = 7;   // HighlightsPage select2的分类ID
 
 const HighlightsPage = () => {
     const [firstRowIndex, setFirstRowIndex] = useState(0);
-    const [secondRowIndex, setSecondRowIndex] = useState(0);
     const [textInit, setTextInit] = useState(null)
-    const [isDragging, setIsDragging] = useState(false);
-    const [dragStartX, setDragStartX] = useState(0);
-    const [dragStartScroll, setDragStartScroll] = useState(0);
-    const [activeRow, setActiveRow] = useState(null);
     const [selectOne, setSelectOnea] = useState([])
     const [selectTwo, setSelectTwo] = useState([])
 
+    // 新增：轮播自动切换相关状态
+    const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+    const autoPlayRef = useRef(null);
+
     const firstRowRef = useRef(null);
-    const secondRowRef = useRef(null);
 
     const onGetSelectOneData = () => {
         Utils.get({
@@ -63,143 +61,19 @@ const HighlightsPage = () => {
 
     useEffect(() => {
         onGetSelectOneData()
-    }, [])
+        if (isAutoPlaying && selectOne.length > 0) {
+            autoPlayRef.current = setInterval(() => {
+                setFirstRowIndex(prev => (prev + 1) % selectOne.length);
+            }, 3000);
+        }
 
-
-    // 创建无限循环数组
-    const createInfiniteArray = () => {
-        return [...selectOne, ...selectOne, ...selectOne];
-    };
-
-    const infiniteProperties = createInfiniteArray();
-
-    // 创建无限循环数组
-    const createInfiniteArray1 = () => {
-        return [...selectTwo, ...selectTwo, ...selectTwo];
-    };
-
-    const infiniteProperties1 = createInfiniteArray1();
-
-    // 鼠标拖拽事件处理
-    const handleMouseDown = (e, rowType) => {
-        setIsDragging(true);
-        setActiveRow(rowType);
-        const currentRowRef = rowType === 'first' ? firstRowRef.current : secondRowRef.current;
-        setDragStartX(e.pageX);
-        setDragStartScroll(currentRowRef?.scrollLeft || 0);
-    };
-
-    const handleMouseMove = (e) => {
-        if (!isDragging || !activeRow) return;
-        e.preventDefault();
-
-        const currentRowRef = activeRow === 'first' ? firstRowRef.current : secondRowRef.current;
-        if (!currentRowRef) return;
-
-        // 计算鼠标移动的距离
-        const deltaX = e.pageX - dragStartX;
-
-        // 实时更新滚动位置，实现图片跟随鼠标移动
-        currentRowRef.scrollLeft = dragStartScroll - deltaX;
-    };
-
-    const handleMouseUp = () => {
-        setIsDragging(false);
-        setActiveRow(null);
-    };
-
-    // 触摸事件处理（移动端）
-    const handleTouchStart = (e, rowType) => {
-        setIsDragging(true);
-        setActiveRow(rowType);
-        const currentRowRef = rowType === 'first' ? firstRowRef.current : secondRowRef.current;
-        setDragStartX(e.touches[0].pageX);
-        setDragStartScroll(currentRowRef?.scrollLeft || 0);
-    };
-
-    const handleTouchMove = (e) => {
-        if (!isDragging || !activeRow) return;
-
-        const currentRowRef = activeRow === 'first' ? firstRowRef.current : secondRowRef.current;
-        if (!currentRowRef) return;
-
-        // 计算触摸移动的距离
-        const deltaX = e.touches[0].pageX - dragStartX;
-
-        // 实时更新滚动位置，实现图片跟随触摸移动
-        currentRowRef.scrollLeft = dragStartScroll - deltaX;
-    };
-
-    const handleTouchEnd = () => {
-        setIsDragging(false);
-        setActiveRow(null);
-    };
-
-    // 第一行切换按钮 - 单个图片切换
-    const nextSlideFirst = () => {
-        setFirstRowIndex(prev => {
-            const newIndex = prev + 1;
-            const targetScroll = newIndex * (300 + 20); // 图片宽度 + 间距
-
-            if (firstRowRef.current) {
-                firstRowRef.current.scrollTo({
-                    left: targetScroll,
-                    behavior: 'smooth'
-                });
+        return () => {
+            if (autoPlayRef.current) {
+                clearInterval(autoPlayRef.current);
             }
+        };
+    }, [isAutoPlaying, selectOne.length])
 
-            return newIndex >= selectOne.length ? 0 : newIndex;
-        });
-    };
-
-    const prevSlideFirst = () => {
-        setFirstRowIndex(prev => {
-            const newIndex = prev - 1;
-            const targetScroll = newIndex * (300 + 20);
-
-            if (firstRowRef.current) {
-                firstRowRef.current.scrollTo({
-                    left: targetScroll,
-                    behavior: 'smooth'
-                });
-            }
-
-            return newIndex < 0 ? selectOne.length - 1 : newIndex;
-        });
-    };
-
-    // 第二行切换按钮 - 单个图片切换
-    const nextSlideSecond = () => {
-        setSecondRowIndex(prev => {
-            const newIndex = prev + 1;
-            const targetScroll = newIndex * (300 + 20);
-
-            if (secondRowRef.current) {
-                secondRowRef.current.scrollTo({
-                    left: targetScroll,
-                    behavior: 'smooth'
-                });
-            }
-
-            return newIndex >= selectOne.length ? 0 : newIndex;
-        });
-    };
-
-    const prevSlideSecond = () => {
-        setSecondRowIndex(prev => {
-            const newIndex = prev - 1;
-            const targetScroll = newIndex * (300 + 20);
-
-            if (secondRowRef.current) {
-                secondRowRef.current.scrollTo({
-                    left: targetScroll,
-                    behavior: 'smooth'
-                });
-            }
-
-            return newIndex < 0 ? selectOne.length - 1 : newIndex;
-        });
-    };
 
     return (
         <div className={styles.highlightsContainer}>
@@ -211,8 +85,75 @@ const HighlightsPage = () => {
             </div>
 
             <div className={styles.carouselContainer}>
+
+                <div className={styles.carouselContainer}>
+                    {/* 轮播组件 */}
+                    <div className={styles.carouselWrapper}>
+                        {console.log(selectTwo)}
+                        <div className={styles.carouselTrack}>
+                            {selectTwo.map((item, index) => (
+                                <div
+                                    key={index}
+                                    className={`${styles.carouselSlide} ${index === firstRowIndex ? styles.activeSlide : ''}`}
+                                    style={{ transform: `translateX(-${firstRowIndex * 100}%)` }}
+                                >
+                                    <div className={styles.slideContent}>
+                                        <div className={styles.slideImage}>
+                                            <img
+                                                src={Utils.returnFileUrl(item?.abs_file_obj_display)}
+                                                alt={item.remark || 'Slide image'}
+                                            />
+                                        </div>
+                                        <div className={styles.slideText}>
+                                            <h3 className={styles.slideTitle}>
+                                                {item.remark || '标题'}
+                                            </h3>
+                                            <p className={styles.slideDescription}>
+                                                {item.description || '文本文案描述等等等。'}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* 导航圆圈 */}
+                        <div className={styles.carouselDots}>
+                            {selectTwo.map((_, index) => (
+                                <button
+                                    key={index}
+                                    className={`${styles.dot} ${index === firstRowIndex ? styles.activeDot : ''}`}
+                                    onClick={() => setFirstRowIndex(index)}
+                                    aria-label={`Go to slide ${index + 1}`}
+                                />
+                            ))}
+                        </div>
+
+                        {/* 左右导航按钮 */}
+                        <button
+                            className={`${styles.carouselNav} ${styles.prevNav}`}
+                            onClick={() => setFirstRowIndex(firstRowIndex-1)}
+                            disabled={firstRowIndex===0}
+                            aria-label="Previous slide"
+                        >
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M15 18l-6-6 6-6" />
+                            </svg>
+                        </button>
+                        <button
+                            className={`${styles.carouselNav} ${styles.nextNav}`}
+                            onClick={() => setFirstRowIndex(firstRowIndex+1)}
+                            aria-label="Next slide"
+                            disabled={(selectTwo.length-1)===firstRowIndex}
+                        >
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M9 18l6-6-6-6" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
                 {/* 第一行轮播 */}
-                <div className={styles.rowContainer}>
+                {/* <div className={styles.rowContainer}>
                     <button
                         className={`${styles.navigationButton} ${styles.prevButton}`}
                         onClick={prevSlideFirst}
@@ -262,10 +203,10 @@ const HighlightsPage = () => {
                             <path d="M9 18l6-6-6-6" />
                         </svg>
                     </button>
-                </div>
+                </div> */}
 
                 {/* 第二行轮播 - 错位半个图片宽度 */}
-                <div className={`${styles.rowContainer} ${styles.secondRowContainer}`}>
+                {/* <div className={`${styles.rowContainer} ${styles.secondRowContainer}`}>
                     <button
                         className={`${styles.navigationButton} ${styles.prevButton}`}
                         onClick={prevSlideSecond}
@@ -315,7 +256,7 @@ const HighlightsPage = () => {
                             <path d="M9 18l6-6-6-6" />
                         </svg>
                     </button>
-                </div>
+                </div> */}
             </div>
         </div>
     );

@@ -32,136 +32,145 @@
   padding: 0 20px;
 }
 
-.rowContainer {
+/* 轮播组件样式 */
+.carouselWrapper {
   position: relative;
-  margin-bottom: 30px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
-.secondRowContainer {
-  margin-bottom: 0;
-}
-
-.carouselRow {
+.carouselTrack {
   display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scrollbar-width: none;
-  /* Firefox */
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  /* padding: 10px 0; */
-  border-radius: 10px;
-  user-select: none;
-  touch-action: pan-x;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
 }
 
-.carouselRow::-webkit-scrollbar {
-  display: none;
-  /* Chrome, Safari, Opera */
+.carouselSlide {
+  flex: 0 0 100%;
+  width: 100%;
 }
 
-/* 错位半个图片宽度 + 间距的一半 */
-
-
-.propertyCard {
-  flex: 0 0 300px;
-  /* 固定宽度，不缩放 */
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  transition: var(--transition);
-  cursor: grab;
+.slideContent {
+  display: flex;
+  align-items: center;
+  min-height: 400px;
+  background: #fff;
 }
 
-.propertyCardWidthOne {
-  flex: 0 0 300px;
-  /* 固定宽度，不缩放 */
-
-}
-
-.propertyCard:hover {
-  /* transform: translateY(95px); */
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-}
-
-.propertyCard:active {
-  cursor: grabbing;
-}
-
-.imageContainer {
-  position: relative;
-  height: 200px;
+.slideImage {
+  flex: 0 0 50%;
+  height: 400px;
   overflow: hidden;
 }
 
-.imageContainerTran {
-  transform: translateX(-150px);
-}
-
-.propertyImage {
+.slideImage img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: var(--transition);
-  pointer-events: none;
+  transition: transform 0.3s ease;
 }
 
-.propertyCard:hover .propertyImage {
+.slideImage:hover img {
   transform: scale(1.05);
 }
 
-.propertyName {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-  color: white;
-  padding: 20px 15px 15px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  text-align: right;
+.slideText {
+  flex: 1;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.navigationButton {
+.slideTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.slideDescription {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* 导航圆圈 */
+.carouselDots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  position: absolute;
+  bottom: 30px;
+  left: 48%;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.dot:hover {
+  border-color: #999;
+  background: #f0f0f0;
+}
+
+.activeDot {
+  border-color: #000;
+  background: #000;
+}
+
+/* 左右导航按钮 */
+.carouselNav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
+  width: 48px;
+  height: 48px;
   border: none;
-  width: 50px;
-  height: 50px;
   border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  transition: var(--transition);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   z-index: 10;
 }
 
-.navigationButton:hover {
-  background: white;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+.carouselNav:hover {
+  background: rgba(255, 255, 255, 1);
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
 }
 
-.prevButton {
-  left: -100px;
+.prevNav {
+  left: 20px;
 }
 
-.nextButton {
-  right: -100px;
+.nextNav {
+  right: 20px;
 }
 
-.arrowIcon {
+.carouselNav svg {
   width: 20px;
   height: 20px;
-  color: var(--deep-navy);
+  color: #000;
 }
-
 /* 移动端适配 */
 @media (max-width: 1024px) {
   .propertyCard {
@@ -212,79 +221,103 @@
     padding: 0 15px;
   }
 
-  .rowContainer {
-    margin-bottom: 20px;
+  .slideContent {
+    flex-direction: column;
+    min-height: auto;
   }
-
-  .carouselRow {
-    gap: 12px;
+  
+  .slideImage {
+    flex: 0 0 100%;
+    height: 250px;
   }
-
-  .propertyCard {
-    flex: 0 0 160px;
+  
+  .slideText {
+    padding: 40px 30px;
+    text-align: center;
   }
-
-  .secondRow {
-    transform: translateX(calc(50% + 6px));
+  
+  .slideTitle {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
   }
-
-  .imageContainer {
-    height: 160px;
+  
+  .slideDescription {
+    font-size: 0.9rem;
   }
-
-  .propertyName {
-    padding: 15px 10px 10px;
-    font-size: 0.8rem;
-  }
-
-  .navigationButton {
+  
+  .carouselNav {
     width: 40px;
     height: 40px;
-    top: 40%;
   }
-
-  .prevButton {
-    left: -20px;
+  
+  .prevNav {
+    left: 15px;
   }
-
-  .nextButton {
-    right: -20px;
+  
+  .nextNav {
+    right: 15px;
   }
-
-  .arrowIcon {
-    width: 16px;
-    height: 16px;
+  
+  .carouselDots {
+    margin-top: 20px;
+    padding: 15px 0;
   }
 }
 
 @media (max-width: 480px) {
-  .carouselRow {
-    gap: 15px;
-  }
-
-  .propertyCard {
-    flex: 0 0 200px;
-  }
-
-  .secondRow {
-    transform: none;
-    /* 单列时不需要错位 */
-  }
-
-  .imageContainer {
+  .slideImage {
     height: 200px;
   }
-
-  .propertyName {
-    padding: 20px 15px 15px;
-    font-size: 0.9rem;
+  
+  .slideText {
+    padding: 30px 20px;
   }
-
-  .navigationButton {
-    display: none;
+  
+  .slideTitle {
+    font-size: 1.5rem;
   }
-
-  .title {
+  
+  .slideDescription {
+    font-size: 0.85rem;
+  }
+  
+  .carouselNav {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .prevNav {
+    left: 10px;
+  }
+  
+  .nextNav {
+    right: 10px;
+  }.slideImage {
+    height: 200px;
+  }
+  
+  .slideText {
+    padding: 30px 20px;
+  }
+  
+  .slideTitle {
     font-size: 1.8rem;
+  }
+  
+  .slideDescription {
+    font-size: 0.95rem;
+  }
+  
+  .carouselNav {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .prevNav {
+    left: 10px;
+  }
+  
+  .nextNav {
+    right: 10px;
   }
 }
