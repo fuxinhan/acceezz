@@ -14,7 +14,17 @@ const HighlightsPage = () => {
     // 新增：轮播自动切换相关状态
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
     const autoPlayRef = useRef(null);
+ // 新增：鼠标悬停暂停自动播放
+ const handleMouseEnter = () => {
+    setIsAutoPlaying(false);
+    if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current);
+    }
+};
 
+const handleMouseLeave = () => {
+    setIsAutoPlaying(true);
+};
 
     const onGetSelectOneData = () => {
         Utils.get({
@@ -88,7 +98,10 @@ const HighlightsPage = () => {
                 <div className={styles.carouselContainer}>
                     {/* 轮播组件 */}
                     <div className={styles.carouselWrapper}>
-                        <div className={styles.carouselTrack}>
+                        <div className={styles.carouselTrack}
+                        onMouseEnter={handleMouseEnter}
+                        onMouseLeave={handleMouseLeave}
+                        >
                             {selectTwo.map((item, index) => (
                                 <div
                                     key={index}
@@ -106,9 +119,10 @@ const HighlightsPage = () => {
                                             <h3 className={styles.slideTitle}>
                                                 {selectTwoText?.[index]?.text || '--'}
                                             </h3>
-                                            <p className={styles.slideDescription}>
-                                            {selectTwoText?.[index]?.sub_text || '--------'}
-                                            </p>
+                                            <p className={styles.slideDescription}
+                                            dangerouslySetInnerHTML={{ __html: selectTwoText?.[index]?.sub_text || '--------' }}
+                                            />
+                                           
                                         </div>
                                     </div>
                                 </div>
