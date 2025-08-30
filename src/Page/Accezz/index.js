@@ -3,6 +3,8 @@ import Style from "./index.module.css"
 import Utils from "../../Util/webCofig";
 import ActionType from "../../Store/actionType";
 import { useNavigate } from 'react-router-dom';
+import logos from './../../static/logos.png'
+import ting from './../../static/ting.png'
 const homeSelect1ObgId = 1;   // 首页select1的分类ID
 const homeSelect2ObgId = 2;   // 首页select2的分类ID
 function AccezzPage() {
@@ -220,14 +222,49 @@ function AccezzPage() {
                         <div className={Style.pageLabel}>PT</div>
                     </div> */}
 
-                    <h1 className={Style.mainHeading}
+
+                    <div className={Style.dictionaryEntry}>
+                        <img src={logos} className={Style.LogosImage}/>
+                        <div className={Style.heroLeftSub}>
+                            <img src={ting} style={{ width: '40px' }} />
+                            <span>
+                                /ˈaksɛs/ ac·​cess
+                            </span>
+                        </div>
+                        <div className={Style.dictionarySection}>
+                            <h3 className={Style.dictionaryHeading}>Noun</h3>
+                            <div className={Style.dictionaryDefinition}>
+                                <span className={Style.definitionNumber}>1.</span>
+                                <span className={Style.definitionText}>
+                                    A community of the future generation of art collectors
+                                </span>
+                            </div>
+                            <div className={Style.dictionaryExample}>
+                                <em>"You've gained Accezz."</em>
+                            </div>
+                        </div>
+
+                        <div className={Style.dictionarySection}>
+                            <h3 className={Style.dictionaryHeading}>Verb</h3>
+                            <div className={Style.dictionaryDefinition}>
+                                <span className={Style.definitionNumber}>1.</span>
+                                <span className={Style.definitionText}>
+                                    To make contact with or gain access to; be able to reach, approach, with right, or permission
+                                </span>
+                            </div>
+                            <div className={Style.dictionaryExample}>
+                                <em>"Members can accezz the next event by logging in."</em>
+                            </div>
+                        </div>
+                    </div>
+                    {/* <h1 className={Style.mainHeading}
                         dangerouslySetInnerHTML={{ __html: homeInitData?.select2Text?.text || 'Gamify Access for the <span>future generation</span> of collectors across all pockets of the art world' }}
                     />
 
 
                     <p className={Style.subHeading}>
                         {homeInitData?.select2Text?.sub_text || 'Carving out a new space for people who want to engage with art through collecting. ACCEZZ is a community where emerging collectors find exceptional artists and artwork.'}
-                    </p>
+                    </p> */}
 
                     {/* <div className={Style.ctaButtons}>
                         <button className={Style.primaryBtn}>

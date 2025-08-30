@@ -259,6 +259,19 @@
   justify-content: center;
 }
 
+.heroLeftSub {
+  margin: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroLeftSub span {
+  font-size: 24px;
+  font-weight: 700;
+  margin-left: 20px;
+}
+
 .mainHeading {
   font-size: 3rem;
   font-weight: 700;
@@ -358,6 +371,88 @@
   height: 100%;
   color: rgba(255, 255, 255, 0.3);
   font-size: 14px;
+}
+
+/* 字典条目样式 */
+.dictionaryEntry {
+  margin: 40px 30px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(198, 169, 114, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.dictionaryEntry:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  border-color: rgba(198, 169, 114, 0.4);
+}
+
+.dictionarySection {
+  margin-bottom: 28px;
+}
+
+.dictionarySection:last-child {
+  margin-bottom: 0;
+}
+
+.dictionaryHeading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid rgba(198, 169, 114, 0.3);
+  padding-bottom: 8px;
+  display: inline-block;
+}
+
+.dictionaryDefinition {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.definitionNumber {
+  font-weight: 600;
+  color: var(--accent-gold);
+  margin-right: 12px;
+  min-width: 20px;
+  font-size: 0.95rem;
+}
+
+.definitionText {
+  color: #444;
+  font-size: 1.2rem;
+  flex: 1;
+  font-weight: 600;
+}
+
+.dictionaryExample {
+  margin-left: 32px;
+  font-style: italic;
+  color: #666;
+  font-size: 0.9rem;
+  border-left: 3px solid rgba(198, 169, 114, 0.3);
+  padding-left: 16px;
+  margin-top: 8px;
+}
+
+.dictionaryExample em {
+  font-style: italic;
+  color: #000;
+  font-weight: 600;
+  
+}
+.LogosImage{
+  display: flex;
+  width: 50%;
+  margin: 0 auto;
 }
 
 /* 动画 */
@@ -486,6 +581,21 @@
   .ctaButtons {
     flex-direction: column;
     gap: 10px;
+  }
+  .LogosImage{
+    width: 80%;
+  }
+  .heroLeftSub img{
+    width: 25px !important;
+  }
+  .heroLeftSub span{
+    font-size: 15px;
+  }
+  .definitionText{
+    font-size: 0.8rem;
+  }
+  .dictionaryExample em{
+    font-size: 0.8rem;
   }
 }
 
