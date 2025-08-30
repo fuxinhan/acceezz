@@ -8,14 +8,13 @@ const selectOneId2 = 7;   // HighlightsPage select2的分类ID
 const HighlightsPage = () => {
     const [firstRowIndex, setFirstRowIndex] = useState(0);
     const [textInit, setTextInit] = useState(null)
-    const [selectOne, setSelectOnea] = useState([])
+    const [selectTwoText, setSelectTwoText] = useState([])
     const [selectTwo, setSelectTwo] = useState([])
 
     // 新增：轮播自动切换相关状态
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
     const autoPlayRef = useRef(null);
 
-    const firstRowRef = useRef(null);
 
     const onGetSelectOneData = () => {
         Utils.get({
@@ -32,16 +31,16 @@ const HighlightsPage = () => {
             }
         })
         Utils.get({
-            url: 'api_back/resources_file/',
+            url: 'api_back/resources_text/',
             params: {
-                purpose_obj: selectOneId,
+                purpose_obj: selectOneId2,
                 page: 1,
                 pagesize: 100
             },
-            actionType: ActionType().OnGetHighlightsPageSelectOneFile,
+            actionType: ActionType().getHighlights,
             Success: (data) => {
                 let contentDatab = data?.results || []
-                setSelectOnea(contentDatab)
+                setSelectTwoText(contentDatab)
             }
         })
         Utils.get({
@@ -61,9 +60,9 @@ const HighlightsPage = () => {
 
     useEffect(() => {
         onGetSelectOneData()
-        if (isAutoPlaying && selectOne.length > 0) {
+        if (isAutoPlaying && selectTwo.length > 0) {
             autoPlayRef.current = setInterval(() => {
-                setFirstRowIndex(prev => (prev + 1) % selectOne.length);
+                setFirstRowIndex(prev => (prev + 1) % selectTwo.length);
             }, 3000);
         }
 
@@ -72,7 +71,7 @@ const HighlightsPage = () => {
                 clearInterval(autoPlayRef.current);
             }
         };
-    }, [isAutoPlaying, selectOne.length])
+    }, [isAutoPlaying, selectTwo.length])
 
 
     return (
@@ -89,7 +88,6 @@ const HighlightsPage = () => {
                 <div className={styles.carouselContainer}>
                     {/* 轮播组件 */}
                     <div className={styles.carouselWrapper}>
-                        {console.log(selectTwo)}
                         <div className={styles.carouselTrack}>
                             {selectTwo.map((item, index) => (
                                 <div
@@ -106,10 +104,10 @@ const HighlightsPage = () => {
                                         </div>
                                         <div className={styles.slideText}>
                                             <h3 className={styles.slideTitle}>
-                                                {item.remark || '标题'}
+                                                {selectTwoText?.[index]?.text || '--'}
                                             </h3>
                                             <p className={styles.slideDescription}>
-                                                {item.description || '文本文案描述等等等。'}
+                                            {selectTwoText?.[index]?.sub_text || '--------'}
                                             </p>
                                         </div>
                                     </div>
