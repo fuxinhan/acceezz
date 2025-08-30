@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/acceezz/static/css/main.48fe20fb.css",
-    "main.js": "/acceezz/static/js/main.18092180.js",
+    "main.css": "/acceezz/static/css/main.aaeca61a.css",
+    "main.js": "/acceezz/static/js/main.4ec9a283.js",
     "static/css/869.815b10ba.chunk.css": "/acceezz/static/css/869.815b10ba.chunk.css",
     "static/js/869.37c3932c.chunk.js": "/acceezz/static/js/869.37c3932c.chunk.js",
     "static/css/589.6a94dc0a.chunk.css": "/acceezz/static/css/589.6a94dc0a.chunk.css",
@@ -26,8 +26,8 @@
     "static/media/Segment-Regular.woff": "/acceezz/static/media/Segment-Regular.37439010a45ebf3a59a4.woff",
     "static/media/Segment-Regular.woff2": "/acceezz/static/media/Segment-Regular.785fe0214b04608c0581.woff2",
     "index.html": "/acceezz/index.html",
-    "main.48fe20fb.css.map": "/acceezz/static/css/main.48fe20fb.css.map",
-    "main.18092180.js.map": "/acceezz/static/js/main.18092180.js.map",
+    "main.aaeca61a.css.map": "/acceezz/static/css/main.aaeca61a.css.map",
+    "main.4ec9a283.js.map": "/acceezz/static/js/main.4ec9a283.js.map",
     "869.815b10ba.chunk.css.map": "/acceezz/static/css/869.815b10ba.chunk.css.map",
     "869.37c3932c.chunk.js.map": "/acceezz/static/js/869.37c3932c.chunk.js.map",
     "589.6a94dc0a.chunk.css.map": "/acceezz/static/css/589.6a94dc0a.chunk.css.map",
@@ -47,7 +47,7 @@
     "492.e3ae4805.chunk.js.map": "/acceezz/static/js/492.e3ae4805.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.48fe20fb.css",
-    "static/js/main.18092180.js"
+    "static/css/main.aaeca61a.css",
+    "static/js/main.4ec9a283.js"
   ]
 }
