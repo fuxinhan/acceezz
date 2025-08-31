@@ -1,7 +1,7 @@
 .highlightsContainer {
   background: #fff;
   min-height: 80vh;
-  padding: 20px 0;
+  padding: 20px 0 0;
   font-family: 'ACCEZZFONT';
 }
 
@@ -200,13 +200,15 @@
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
   background-color: var(--botton-bg);
 }
-.collaboratorsBosy img{
+
+.collaboratorsBosy img {
   max-width: 150px;
 }
+
 .collaboratorsSection,
 .sponsorsSection {
   max-width: 1200px;
-  margin: 40px auto 30px;
+  margin: 40px auto 0px;
   padding: 30px 20px;
 }
 
@@ -301,7 +303,7 @@
 
 @media (max-width: 768px) {
   .highlightsContainer {
-    padding: 15px 0;
+    padding: 15px 0 0;
   }
 
   .header {
@@ -360,7 +362,7 @@
 
   .collaboratorsSection,
   .sponsorsSection {
-    margin: 60px auto 40px;
+    margin: 60px auto 0px;
   }
 
   .logoRow {
@@ -439,7 +441,7 @@
 
   .collaboratorsSection,
   .sponsorsSection {
-    margin: 40px auto 30px;
+    margin: 40px auto 0px;
     padding: 0 15px;
   }
 

@@ -49,10 +49,15 @@ const Grid = ({ items }) => (
         {items.map((it) => (
             <div key={it.label} className={style.tile}>
                 <div className={style.tileImage}>
-                    <a href={it?.text?.startsWith('http') ? it.text : `https://${it.text}`} target="_blank">
-                        <img src={Utils.returnFileUrl(it.abs_file_obj_display)} alt={it.label} />
-                    </a>
+                    {
+                        it?.text && <a href={it?.text?.startsWith('http') ? it.text : `https://${it.text}`} target="_blank">
+                            <img src={Utils.returnFileUrl(it.abs_file_obj_display)} alt={it.label} />
+                        </a>
 
+                    }
+                    {
+                        !it?.text && <img src={Utils.returnFileUrl(it.abs_file_obj_display)} alt={it.label} />
+                    }
                 </div>
                 <div className={style.tileLabel}>{it.remark}</div>
             </div>
@@ -60,25 +65,26 @@ const Grid = ({ items }) => (
     </div>
 );
 
-const BannerList = ({ items }) => (
-    <div className={style.bannerList}>
-        {items.map((it) => (
-            <div key={it.label} className={style.bannerItem}>
-                {
-                    it?.text && <a href={it?.text?.startsWith('http') ? it.text : `https://${it.text}`} target="_blank">
-                        <img src={Utils.returnFileUrl(it.abs_file_obj_display)} alt={it.label} />
-                    </a>
-                }
-                {
-                    !it?.text && <img src={Utils.returnFileUrl(it.abs_file_obj_display)} alt={it.label} />
-                }
+// const BannerList = ({ items }) => (
+//     <div className={style.bannerList}>
+//         {items.map((it) => (
+//             <div key={it.label} className={style.bannerItem}>
+//                 {
+//                     it?.text && <a href={it?.text?.startsWith('http') ? it.text : `https://${it.text}`} target="_blank">
+//                         <img src={Utils.returnFileUrl(it.abs_file_obj_display)} alt={it.label} />
+//                     </a>
+//                 }
+//                 {
+//                     !it?.text && <img src={Utils.returnFileUrl(it.abs_file_obj_display)} alt={it.label} />
+//                 }
 
 
-                <div className={style.bannerLabel}>{it.remark}</div>
-            </div>
-        ))}
-    </div>
-);
+//                 <div className={style.bannerLabel}>{it.remark}</div>
+//             </div>
+//         ))}
+//     </div>
+// );
+
 const bannerId = [10, 11, 12]
 const ResourcesPage = () => {
     const [pageDataInitText, setPageDataInitText] = useState({
@@ -90,16 +96,44 @@ const ResourcesPage = () => {
             text: "I'm interested in",
             sub_text: 'Please select your preferred art forms (you can select more than one item)'
         },
-        12: {
-            text: "I'm interested in",
-            sub_text: 'Please select your preferred art forms (you can select more than one item)'
-        }
+        12: []
     })
     const [pageDataInitFile, setPageDataInitFile] = useState({
         10: [],
         11: [],
         12: []
     })
+    const BannerList = ({ items }) => (
+
+        items.map((item, key) => (
+            <div key={key} className={style.card}>
+                <div className={style.cardImageWrap}>
+                    {
+                        item?.text && <a href={item?.text?.startsWith('http') ? item.text : `https://${item.text}`} target="_blank">
+                            <img src={Utils.returnFileUrl(item?.abs_file_obj_display)} alt={item.purpose_obj_display} className={style.cardImage} loading="lazy" />
+                        </a>
+                    }
+                    {
+                        !item?.text && <img src={Utils.returnFileUrl(item?.abs_file_obj_display)} alt={item.purpose_obj_display} className={style.cardImage} loading="lazy" />
+                    }
+
+                </div>
+                <div className={style.cardBody}>
+                    <h3 className={style.cardTitle}>{pageDataInitText?.[12]?.[key]?.text}</h3>
+                    <ul className={style.perksList}>
+                        {
+                            pageDataInitText?.[12]?.[key]?.sub_text?.split(',').map((label, keyL) => (
+                                <li key={keyL}>{label}</li>
+                            ))
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        ))
+
+
+    );
     const onGetResData = () => {
         bannerId.map((item) => {
             Utils.get({
@@ -112,6 +146,7 @@ const ResourcesPage = () => {
                 actionType: 'getResInit' + item,
                 Success: (data) => {
                     let contentDatab = data?.results?.[0] || {}
+                    if (item === 12) contentDatab = data?.results
                     let initSelect1Text = pageDataInitText[item]
                     let toData = { ...initSelect1Text, ...contentDatab }
                     setPageDataInitText(prev => ({
@@ -146,6 +181,7 @@ const ResourcesPage = () => {
     }, [])
     return (
         <div className={style.ResourcesPage}>
+            {console.log(pageDataInitText)}
             {/* My Interests */}
             <div className={style.twoColSection}>
                 <SectionIntro
@@ -174,9 +210,12 @@ const ResourcesPage = () => {
                     desc="Select your preferred theme for your account."
                 />
                 <div className={style.sectionBody}>
-                    <div className={style.subTitle}>{pageDataInitText?.[12]?.text}</div>
-                    <div className={style.subDesc}>{pageDataInitText?.[12]?.sub_text}</div>
-                    <BannerList items={pageDataInitFile?.[12]} />
+                    <div className={style.subTitle}>Must see exhibits this Fall</div>
+                    <div className={style.subDesc}></div>
+                    <div className={style.tiersGrid}>
+                        <BannerList items={pageDataInitFile?.[12]} />
+                    </div>
+
                 </div>
             </div>
         </div>
