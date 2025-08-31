@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Style from "./index.module.css"
-import { Button } from 'antd';
+import { Button, Col, Row } from 'antd';
 import Utils from "../../Util/webCofig";
+import image1 from './../../static/Resourcces-4-1.png'
+import image2 from './../../static/Resourcces-4-2.png'
+import image3 from './../../static/Resourcces-4-3.png'
 const HomeBnnerID = [3, 4, 5];
 // const HomeBnnerID2 = 5;
 // const HomeBnnerID3 = 6;
@@ -128,10 +131,10 @@ function HomePage() {
                     <h1 className={Style.welcomeName}>{userName}</h1>
                     <p className={Style.welcomeSub}>{homeInitData?.select1Text?.sub_text}</p>
                     <div className={Style.heroActions}>
-                        <a target='_blank' href={homeInitData?.select1File?.[0]?.text||'/'}>
-                          <Button className={Style.bookBtn}>Refer a friend</Button>  
+                        <a target='_blank' href={homeInitData?.select1File?.[0]?.text || '/'}>
+                            <Button className={Style.bookBtn}>Refer a friend</Button>
                         </a>
-                        
+
                         {/* <Button className={Style.inviteBtn}>Invite a guest</Button> */}
                     </div>
                 </div>
@@ -185,33 +188,92 @@ function HomePage() {
                     </div>
                 } */}
 
-{
-				homeInitData?.select3File?.map((item, key) => {
-					const isOdd = key % 2 !== 0;
-					// 动态设置className：奇数用split，偶数用split+reverse
-					const sectionClass = isOdd
-						? `${Style.split} ${Style.reverse}`
-						: Style.split;
-					return (
-						<section className={sectionClass}>
-							<div className={Style.splitMedia}>
-								<img src={Utils.returnFileUrl(item.abs_file_obj_display)} alt="House interior" loading="lazy" />
-							</div>
-							<div className={Style.splitContent}>
-								<h2>
-                                {homeInitData?.select3Text?.[key]?.text || '--'}
-								</h2>
-								<p
-									dangerouslySetInnerHTML={{ __html: homeInitData?.select3Text?.[key]?.sub_text || '----------' }}
-								/>
+                {
+                    homeInitData?.select3File?.map((item, key) => {
+                        const isOdd = key % 2 !== 0;
+                        // 动态设置className：奇数用split，偶数用split+reverse
+                        const sectionClass = isOdd
+                            ? `${Style.split} ${Style.reverse}`
+                            : Style.split;
+                        return (
+                            <section className={sectionClass}>
+                                <div className={Style.splitMedia}>
+                                    <img src={Utils.returnFileUrl(item.abs_file_obj_display)} alt="House interior" loading="lazy" />
+                                </div>
+                                <div className={Style.splitContent}>
+                                    <h2>
+                                        {homeInitData?.select3Text?.[key]?.text || '--'}
+                                    </h2>
+                                    <p
+                                        dangerouslySetInnerHTML={{ __html: homeInitData?.select3Text?.[key]?.sub_text || '----------' }}
+                                    />
 
-							</div>
-						</section>
-					)
-				})
-			}
+                                </div>
+                            </section>
+                        )
+                    })
+                }
 
 
+            </section>
+            <section className={Style.GallerySection}>
+                <div className={Style.GallerySectionCard}>
+                    <h1>Other Gallery and Auction Previews</h1>
+                    <Row gutter={[16, 16]}>
+                        <Col xs={24} sm={24} md={12} lg={8} xl={8} >
+                            <div>
+                                <div className={Style.GallerySectionHeader}>
+                                    <img className={Style.GallerySectionImg} src={image1} />
+                                </div>
+                                <div className={Style.GallerySectionBody}>
+                                    <div className={Style.GallerySectionTitle}>ACA Gallery</div>
+                                    <div>
+                                        <span>Exhibit: </span>The Strange Beauty of Impermanence
+                                    </div>
+                                    <div>
+                                        <span>Location: </span>173 Tenth Avenue, New York
+                                        Opening Reception: Friday September 5, 7-9pm
+                                    </div>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={8} xl={8} >
+                            <div>
+                                <div className={Style.GallerySectionHeader}>
+                                    <img className={Style.GallerySectionImg} src={image2} />
+                                </div>
+                                <div className={Style.GallerySectionBody}>
+                                    <div className={Style.GallerySectionTitle}>Phillips Auction House</div>
+                                    <div>
+                                        <span>Exhibit:  </span> MODERN & CONTEMPORARY ART EVENING SALE
+                                    </div>
+                                    <div>
+                                        <span>Location: </span>G/F, WKCDA Tower, West Kowloon Cultural District, No. 8 Austin Road West, Kowloon, Hong Kong
+                                        Preview: September 26, 2025
+                                    </div>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={8} xl={8} >
+                            <div>
+                                <div className={Style.GallerySectionHeader}>
+                                    <img className={Style.GallerySectionImg} src={image3} />
+                                </div>
+                                <div className={Style.GallerySectionBody}>
+                                    <div className={Style.GallerySectionTitle}>Flowers Gallery</div>
+                                    <div>
+                                        <span>Exhibit: </span>Bianca Raffaella: She Cannot Fade
+                                    </div>
+                                    <div>
+                                        <span>Location: </span>Cork St, London
+                                        Opening Reception: September 5, 2025
+                                    </div>
+                                </div>
+                            </div>
+                        </Col>
+
+                    </Row>
+                </div>
             </section>
         </div>
     )

@@ -270,6 +270,51 @@
 	line-height: 1.9;
 }
 
+.GallerySection {
+	padding: 20px;
+}
+
+.GallerySectionCard {
+	position: relative;
+	background: #fff;
+	border-radius: 14px;
+	border: 1px solid var(--sand);
+	box-shadow: 0 6px 20px rgba(0, 0, 0, .06);
+	padding: 1.2rem 1.2rem 1rem;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.GallerySectionHeader {
+	height: 300px;
+	/* 固定图片容器高度 */
+	overflow: hidden;
+}
+
+.GallerySectionImg {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	/* 保持图片比例并覆盖容器 */
+	transition: transform 0.3s ease;
+}
+
+.GallerySectionImg :hover {
+	transform: scale(1.05);
+}
+
+.GallerySectionBody span {
+	font-weight: 600;
+	line-height: 2rem;
+	font-size: 1.1rem;
+}
+
+.GallerySectionTitle {
+	font-weight: 600;
+	font-size: 1.5rem;
+	line-height: 3rem;
+}
+
 /* Desktop adjustments */
 @media (min-width: 900px) {
 	.hero {
@@ -298,13 +343,14 @@
 
 /* Small screens */
 @media (max-width: 480px) {
-  .reverse .splitMedia {
+	.reverse .splitMedia {
 		order: 1;
 	}
 
 	.reverse .splitContent {
 		order: 2;
 	}
+
 	.split {
 		grid-template-columns: 1fr;
 	}

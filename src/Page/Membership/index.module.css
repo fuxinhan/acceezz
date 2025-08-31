@@ -77,6 +77,11 @@
 	font-size: 1.5rem;
 }
 
+.tiersThings span {
+	font-weight: 600;
+	font-size: 1.1rem;
+}
+
 .tiersTitle {
 	margin: 0;
 	font-size: 22px;
