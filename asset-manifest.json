@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/acceezz/static/css/main.aaeca61a.css",
-    "main.js": "/acceezz/static/js/main.50aeda1b.js",
-    "static/css/869.17b6f84d.chunk.css": "/acceezz/static/css/869.17b6f84d.chunk.css",
+    "main.js": "/acceezz/static/js/main.1e439a6a.js",
+    "static/css/869.1a1801a1.chunk.css": "/acceezz/static/css/869.1a1801a1.chunk.css",
     "static/js/869.cfbc96c2.chunk.js": "/acceezz/static/js/869.cfbc96c2.chunk.js",
     "static/css/589.6a94dc0a.chunk.css": "/acceezz/static/css/589.6a94dc0a.chunk.css",
     "static/js/589.700c563a.chunk.js": "/acceezz/static/js/589.700c563a.chunk.js",
@@ -14,8 +14,8 @@
     "static/js/405.015e0679.chunk.js": "/acceezz/static/js/405.015e0679.chunk.js",
     "static/css/281.e2fda7e9.chunk.css": "/acceezz/static/css/281.e2fda7e9.chunk.css",
     "static/js/281.3e083d3d.chunk.js": "/acceezz/static/js/281.3e083d3d.chunk.js",
-    "static/css/626.cfb5819f.chunk.css": "/acceezz/static/css/626.cfb5819f.chunk.css",
-    "static/js/626.1a9ce1f3.chunk.js": "/acceezz/static/js/626.1a9ce1f3.chunk.js",
+    "static/css/626.75256412.chunk.css": "/acceezz/static/css/626.75256412.chunk.css",
+    "static/js/626.4c913cce.chunk.js": "/acceezz/static/js/626.4c913cce.chunk.js",
     "static/css/411.5e597f2d.chunk.css": "/acceezz/static/css/411.5e597f2d.chunk.css",
     "static/js/411.f5061cd0.chunk.js": "/acceezz/static/js/411.f5061cd0.chunk.js",
     "static/js/492.e3ae4805.chunk.js": "/acceezz/static/js/492.e3ae4805.chunk.js",
@@ -27,8 +27,8 @@
     "static/media/Segment-Regular.woff2": "/acceezz/static/media/Segment-Regular.785fe0214b04608c0581.woff2",
     "index.html": "/acceezz/index.html",
     "main.aaeca61a.css.map": "/acceezz/static/css/main.aaeca61a.css.map",
-    "main.50aeda1b.js.map": "/acceezz/static/js/main.50aeda1b.js.map",
-    "869.17b6f84d.chunk.css.map": "/acceezz/static/css/869.17b6f84d.chunk.css.map",
+    "main.1e439a6a.js.map": "/acceezz/static/js/main.1e439a6a.js.map",
+    "869.1a1801a1.chunk.css.map": "/acceezz/static/css/869.1a1801a1.chunk.css.map",
     "869.cfbc96c2.chunk.js.map": "/acceezz/static/js/869.cfbc96c2.chunk.js.map",
     "589.6a94dc0a.chunk.css.map": "/acceezz/static/css/589.6a94dc0a.chunk.css.map",
     "589.700c563a.chunk.js.map": "/acceezz/static/js/589.700c563a.chunk.js.map",
@@ -40,14 +40,14 @@
     "405.015e0679.chunk.js.map": "/acceezz/static/js/405.015e0679.chunk.js.map",
     "281.e2fda7e9.chunk.css.map": "/acceezz/static/css/281.e2fda7e9.chunk.css.map",
     "281.3e083d3d.chunk.js.map": "/acceezz/static/js/281.3e083d3d.chunk.js.map",
-    "626.cfb5819f.chunk.css.map": "/acceezz/static/css/626.cfb5819f.chunk.css.map",
-    "626.1a9ce1f3.chunk.js.map": "/acceezz/static/js/626.1a9ce1f3.chunk.js.map",
+    "626.75256412.chunk.css.map": "/acceezz/static/css/626.75256412.chunk.css.map",
+    "626.4c913cce.chunk.js.map": "/acceezz/static/js/626.4c913cce.chunk.js.map",
     "411.5e597f2d.chunk.css.map": "/acceezz/static/css/411.5e597f2d.chunk.css.map",
     "411.f5061cd0.chunk.js.map": "/acceezz/static/js/411.f5061cd0.chunk.js.map",
     "492.e3ae4805.chunk.js.map": "/acceezz/static/js/492.e3ae4805.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.aaeca61a.css",
-    "static/js/main.50aeda1b.js"
+    "static/js/main.1e439a6a.js"
   ]
 }
