@@ -6,6 +6,7 @@
     align-items: flex-start;
     justify-content: center;
     padding: 40px 16px;
+
 }
 
 .card {
@@ -25,6 +26,7 @@
     font-weight: 700;
     font-family: serif;
     text-align: center;
+    font-family: 'ACCEZZFONT', sans-serif;
 }
 
 .heading {
@@ -33,6 +35,7 @@
     font-size: 28px;
     color: var(--deep-navy, #1a1a2e);
     text-align: center;
+    font-family: 'ACCEZZFONT', sans-serif;
 }
 
 .form {

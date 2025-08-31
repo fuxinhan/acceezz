@@ -170,8 +170,8 @@ const RegisterPage = () => {
     return (
         <div className={style.RegisterPage}>
             <div className={style.card}>
-                <div className={style.logo}>REGISTER</div>
-                <h1 className={style.heading}>ACCEZZ Member Registration</h1>
+                <div className={style.logo}>Create your account</div>
+                <h1 className={style.heading}>Enter your details to create an account.</h1>
 
                 <form className={style.form} onSubmit={handleSubmit}>
                     {/* 基本信息 */}
