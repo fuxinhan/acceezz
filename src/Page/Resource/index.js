@@ -2,6 +2,11 @@ import React, { useEffect, useState } from "react";
 
 import style from './index.module.css';
 import Utils from "../../Util/webCofig";
+import image51 from './../../static/Resourcces-5-1.png'
+import image52 from './../../static/Resourcces-5-2.png'
+import image53 from './../../static/Resourcces-5-3.png'
+import image54 from './../../static/Resourcces-5-4.png'
+import { Popover } from "antd";
 
 const artForms = [
     { label: 'Exhibitions', img: 'https://images.unsplash.com/photo-1529101091764-c3526daf38fe?w=600&h=400&fit=crop' },
@@ -179,6 +184,15 @@ const ResourcesPage = () => {
     useEffect(() => {
         onGetResData()
     }, [])
+    // 目标邮箱地址
+    const targetEmail = 'advisory@theaccezz.com';
+
+    // 可以预填邮件主题和内容
+    const subject = '-';
+    const body = '-';
+
+    // 构建完整的mailto链接
+    const mailtoLink = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     return (
         <div className={style.ResourcesPage}>
             {console.log(pageDataInitText)}
@@ -216,6 +230,103 @@ const ResourcesPage = () => {
                         <BannerList items={pageDataInitFile?.[12]} />
                     </div>
 
+                </div>
+            </div>
+            <div className={style.twoColSection}>
+                <SectionIntro
+                    title="Partnerships"
+                    desc="Shipping companies and installers"
+                />
+                <div className={style.sectionBody}>
+                    <div className={style.subTitle}>Learn more?</div>
+                    <div className={style.subDesc}>Please move the mouse over the image</div>
+                    <div className={style.tiersGrid}>
+                        <div className={style.card}>
+                            <div className={style.cardImageWrap}>
+                                <Popover
+                                    title={null}
+                                    arrow={false}
+                                    content={() => (
+                                        <div className={style.cradPopover}>
+                                            <h2>
+                                                Frieze Connect membership discount
+                                            </h2>
+                                            <p style={{ fontStyle: 'italic' }}>
+                                                20% off for Accezz members with code ‘YPO20’ and expedited application approval
+                                            </p>
+                                            <p>
+                                                FRIEZECONNECT offers access to the global art scene. Members enjoy premier entry to Frieze fairs in London, New York, LA, and Seoul, as well as EXPO CHICAGO & The Armory Show. It also includes a complimentary subscription to frieze magazine & digital archive.
+
+                                            </p>
+                                        </div>
+                                    )}
+                                >
+                                    <img src={image51} className={style.cardImage} loading="lazy" />
+                                </Popover>
+
+                            </div>
+                        </div>
+
+                        <div className={style.card}>
+                            <div className={style.cardImageWrap}>
+                                <Popover
+                                    title={null}
+                                    arrow={false}
+                                    content={() => (
+                                        <div className={style.cradPopover}>
+                                            <h2>
+                                                Arco Fine Art Framing
+                                            </h2>
+                                            <p style={{ fontStyle: 'italic' }}>
+                                                Expedited service
+                                            </p>
+                                            <p>
+                                                Recommended by Art Basel Hong Kong, myriad commercial galleries and many of the best-known artists in the city, this inconspicuous shop on Queen's Road East is run by the elderly Yeung Bing-sum — or Mr Yeung, as he is known — and offers top-notch framing services at reasonable prices.
+                                            </p>
+                                        </div>
+                                    )}
+                                >
+                                    <img src={image52} className={style.cardImage} loading="lazy" />
+
+                                </Popover>
+
+                            </div>
+                        </div>
+
+                        <div className={style.card}>
+                            <div className={style.cardImageWrap}>
+                                <img src={image53} className={style.cardImage} loading="lazy" />
+                            </div>
+                        </div>
+
+                        <div className={style.card}>
+                            <div className={style.cardImageWrap}>
+                                <img src={image54} className={style.cardImage} loading="lazy" />
+                            </div>
+                        </div>
+                        <div className={style.card}>
+                            <div className={style.cardButtonLink}>
+                                <h2>In house art advisory</h2>
+                                <a href="https://calendly.com/theaccezz/30min" target='_blank'>
+                                    <button>
+                                        Book now
+                                    </button>
+                                </a>
+
+                            </div>
+                        </div>
+                        <div className={style.card}>
+                            <div className={style.cardButtonLink}>
+                                <h2>Find trusted art advisors </h2>
+                                <a href={mailtoLink} target="_self" >
+                                    <button>
+                                        Inquire
+                                    </button>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

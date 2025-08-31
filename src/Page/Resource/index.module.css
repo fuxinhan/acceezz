@@ -165,6 +165,34 @@
   line-height: 1.6;
 }
 
+.cradPopover {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.cardButtonLink {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.cardButtonLink button {
+  border: 2px solid #fff;
+  border-radius: 32px;
+  font-weight: 700;
+  height: auto;
+  padding: .9rem 1.4rem;
+  color: var(--deep-navy);
+  cursor: pointer;
+  width: 100%;
+}
+
+.cardButtonLink button:hover {
+  border-color: var(--sand) !important;
+  color: var(--deep-navy) !important;
+  background-color: #fff;
+}
 
 /* Responsive */
 @media (max-width: 1024px) {
