@@ -105,6 +105,8 @@ function HomePage() {
                 }
             })
         })
+
+        return;
     }
     useEffect(() => {
         try {
@@ -131,7 +133,7 @@ function HomePage() {
                     <h1 className={Style.welcomeName}>{userName}</h1>
                     <p className={Style.welcomeSub}>{homeInitData?.select1Text?.sub_text}</p>
                     <div className={Style.heroActions}>
-                        <a target='_blank' href={homeInitData?.select1File?.[0]?.text || '/'}>
+                        <a target='_blank' href={homeInitData?.select1File?.[0]?.text || '/'} rel="noreferrer">
                             <Button className={Style.bookBtn}>Refer a friend</Button>
                         </a>
 
