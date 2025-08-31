@@ -1,26 +1,21 @@
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./index.module.css";
 import Utils from "../../Util/webCofig";
-import ActionType from "../../Store/actionType";
-const selectOneId = 6;   // HighlightsPage select2的分类ID
-const selectOneId2 = 7;   // HighlightsPage select2的分类ID
-const selectIds = [6,7,17,18]
+
+const selectIds = [6, 7, 17, 18]
 const HighlightsPage = () => {
     const [firstRowIndex, setFirstRowIndex] = useState(0);
-    const [textInit, setTextInit] = useState(null)
-    const [selectTwoText, setSelectTwoText] = useState([])
-    const [selectTwo, setSelectTwo] = useState([])
-    const [pageText,setPageText] = useState({
-        6:[],
-        7:[],
-        17:[],
-        18:[],
+    const [pageText, setPageText] = useState({
+        6: [],
+        7: [],
+        17: [],
+        18: [],
     })
-    const [pageFile,setPageFile] = useState({
-        6:[],
-        7:[],
-        17:[],
-        18:[],
+    const [pageFile, setPageFile] = useState({
+        6: [],
+        7: [],
+        17: [],
+        18: [],
     })
 
 
@@ -40,7 +35,7 @@ const HighlightsPage = () => {
     };
 
     const onGetSelectOneData = () => {
-        selectIds.map((item)=>{
+        selectIds.map((item) => {
             Utils.get({
                 url: 'api_back/resources_text/',
                 params: {
@@ -48,13 +43,13 @@ const HighlightsPage = () => {
                     page: 1,
                     pagesize: 100
                 },
-                actionType: 'getPageText'+item,
+                actionType: 'getPageText' + item,
                 Success: (data) => {
-                    setPageText(pre=>({
+                    setPageText(pre => ({
                         ...pre,
-                        [item]:data?.results
+                        [item]: data?.results
                     }))
-                   
+
                 }
             })
             Utils.get({
@@ -64,62 +59,24 @@ const HighlightsPage = () => {
                     page: 1,
                     pagesize: 100
                 },
-                actionType: 'getPageFile'+item,
+                actionType: 'getPageFile' + item,
                 Success: (data) => {
                     let contentDatab = data?.results
-                    setPageFile(pre=>({
+                    setPageFile(pre => ({
                         ...pre,
-                        [item]:contentDatab
+                        [item]: contentDatab
                     }))
                 }
             })
         })
-        // Utils.get({
-        //     url: 'api_back/resources_text/',
-        //     params: {
-        //         purpose_obj: selectOneId,
-        //         page: 1,
-        //         pagesize: 100
-        //     },
-        //     actionType: ActionType().OnGetHighlightsPageSelectOneText,
-        //     Success: (data) => {
-        //         let contentDatab = data?.results?.[0] || ''
-        //         setTextInit(contentDatab)
-        //     }
-        // })
-        // Utils.get({
-        //     url: 'api_back/resources_text/',
-        //     params: {
-        //         purpose_obj: selectOneId2,
-        //         page: 1,
-        //         pagesize: 100
-        //     },
-        //     actionType: ActionType().getHighlights,
-        //     Success: (data) => {
-        //         let contentDatab = data?.results || []
-        //         setSelectTwoText(contentDatab)
-        //     }
-        // })
-        // Utils.get({
-        //     url: 'api_back/resources_file/',
-        //     params: {
-        //         purpose_obj: selectOneId2,
-        //         page: 1,
-        //         pagesize: 100
-        //     },
-        //     actionType: ActionType().OnGetHighlightsPageSelectOneFile,
-        //     Success: (data) => {
-        //         let contentDatab = data?.results || []
-        //         setSelectTwo(contentDatab)
-        //     }
-        // })
+
     }
 
     useEffect(() => {
         onGetSelectOneData()
-        if (isAutoPlaying && selectTwo.length > 0) {
+        if (isAutoPlaying && pageFile?.[7]?.length > 0) {
             autoPlayRef.current = setInterval(() => {
-                setFirstRowIndex(prev => (prev + 1) % selectTwo.length);
+                setFirstRowIndex(prev => (prev + 1) % pageFile?.[7]?.length);
             }, 3000);
         }
 
@@ -128,7 +85,7 @@ const HighlightsPage = () => {
                 clearInterval(autoPlayRef.current);
             }
         };
-    }, [isAutoPlaying, selectTwo.length])
+    }, [isAutoPlaying, pageFile?.[7]?.length])
 
 
     return (
@@ -138,7 +95,7 @@ const HighlightsPage = () => {
                     {
                         pageText?.[6]?.[0]?.text
                     }
-                    </h1>
+                </h1>
                 <p className={styles.subtitle}
                     dangerouslySetInnerHTML={{ __html: pageText?.[6]?.[0]?.sub_text }}
                 />
@@ -188,7 +145,7 @@ const HighlightsPage = () => {
 
                     {/* 导航圆圈 */}
                     <div className={styles.carouselDots}>
-                        {selectTwo.map((_, index) => (
+                        {pageFile?.[7]?.map((_, index) => (
                             <button
                                 key={index}
                                 className={`${styles.dot} ${index === firstRowIndex ? styles.activeDot : ''}`}
@@ -213,7 +170,7 @@ const HighlightsPage = () => {
                         className={`${styles.carouselNav} ${styles.nextNav}`}
                         onClick={() => setFirstRowIndex(firstRowIndex + 1)}
                         aria-label="Next slide"
-                        disabled={(selectTwo.length - 1) === firstRowIndex}
+                        disabled={(pageFile?.[7]?.length - 1) === firstRowIndex}
                     >
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <path d="M9 18l6-6-6-6" />
@@ -236,17 +193,17 @@ const HighlightsPage = () => {
                         {/* 第一行 */}
                         <div className={styles.logoRow}>
                             {
-                                pageFile?.[17]?.map((item,key)=>(
+                                pageFile?.[17]?.map((item, key) => (
                                     <div className={styles.logoItem} key={key}>
-                                <img
-                                    src={Utils.returnFileUrl(item.abs_file_obj_display)}
-                                    alt="PHILLIPS"
-                                    className={styles.logoImage}
-                                />
-                            </div>
+                                        <img
+                                            src={Utils.returnFileUrl(item.abs_file_obj_display)}
+                                            alt="PHILLIPS"
+                                            className={styles.logoImage}
+                                        />
+                                    </div>
                                 ))
                             }
-                           
+
                         </div>
                     </div>
                 </div>
@@ -261,20 +218,20 @@ const HighlightsPage = () => {
 
                     <div className={styles.logosGrid}>
                         <div className={styles.logoRow}>
-                        <div className={styles.logoRow}>
-                            {
-                                pageFile?.[18]?.map((item,key)=>(
-                                    <div className={styles.logoItem} key={key}>
-                                <img
-                                    src={Utils.returnFileUrl(item.abs_file_obj_display)}
-                                    alt="PHILLIPS"
-                                    className={styles.logoImage}
-                                />
+                            <div className={styles.logoRow}>
+                                {
+                                    pageFile?.[18]?.map((item, key) => (
+                                        <div className={styles.logoItem} key={key}>
+                                            <img
+                                                src={Utils.returnFileUrl(item.abs_file_obj_display)}
+                                                alt="PHILLIPS"
+                                                className={styles.logoImage}
+                                            />
+                                        </div>
+                                    ))
+                                }
+
                             </div>
-                                ))
-                            }
-                           
-                        </div>
                         </div>
                     </div>
                 </div>
