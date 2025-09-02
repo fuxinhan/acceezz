@@ -200,19 +200,19 @@ const ResourcesPage = () => {
             <div className={style.twoColSection}>
                 <SectionIntro
                     title="Podcasts And News"
-                    desc="Share with us your preferred art forms and interests."
+                    desc=""
                 />
                 <div className={style.sectionBody}>
                     <div className={style.subTitle}>
                         {pageDataInitText?.[10]?.text}
                     </div>
-                    <div className={style.subDesc}>
+                    {/* <div className={style.subDesc}>
                         {pageDataInitText?.[10]?.sub_text}
-                    </div>
+                    </div> */}
                     <Grid items={pageDataInitFile?.[10]} />
 
                     <div className={style.subTitle} style={{ marginTop: '24px' }}>{pageDataInitText?.[11]?.text}</div>
-                    <div className={style.subDesc}>{pageDataInitText?.[11]?.sub_text}</div>
+                    {/* <div className={style.subDesc}>{pageDataInitText?.[11]?.sub_text}</div> */}
                     <Grid items={pageDataInitFile?.[11]} />
                 </div>
             </div>

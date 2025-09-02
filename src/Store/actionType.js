@@ -12,9 +12,10 @@ function ActionType() {
         OnGetHomePageSelect2File: 'OnGetHomePageSelect2File',
         OnGetHighlightsPageSelectOneFile: 'OnGetHighlightsPageSelectOneFile',
         OnGetHighlightsPageSelectOneText: 'OnGetHighlightsPageSelectOneText',
-        getHighlights:'getHighlights',
+        getHighlights: 'getHighlights',
         postPassword: 'postPassword',
         PatchUserInfo: 'PatchUserInfo',
+        PostFiles: 'PostFiles',
     }
 
 }

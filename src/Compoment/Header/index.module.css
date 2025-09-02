@@ -88,7 +88,7 @@
 }
 
 .activeLink {
-    color: var(--accent-gold) !important;
+    /* color: var(--accent-gold) !important; */
     font-weight: 600;
     font-size: 22px;
 }
@@ -133,10 +133,12 @@
     padding: 8px 24px !important;
     height: 40px !important;
     border-color: var(--dark-bg) !important;
-    color: var(--dark-bg) !important;
-    font-weight: 500 !important;
+    color: #000 !important;
+    /* font-weight: 500 !important; */
     letter-spacing: 0.5px !important;
     transition: all 0.3s ease !important;
+    font-family: 'ACCEZZFONT';
+    font-weight: 700;
 }
 
 .loginBtn:hover {

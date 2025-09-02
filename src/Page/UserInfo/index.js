@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
 import style from './index.module.css';
 import { Avatar, Button, Form, Input, DatePicker, Modal, message, Slider, Radio } from 'antd';
+import { CheckCircleTwoTone } from '@ant-design/icons';
 import Utils from "../../Util/webCofig";
 import ActionType from "../../Store/actionType";
 import dayjs from "dayjs";
@@ -27,11 +28,18 @@ function toInitialProfile() {
     return {
         username: info.username || 'Member',
         name: info.name || 'Accezz',
-        avatar: info.cover || null,
-        location: info.location || '—',
+        cover_display: info.cover_display || null,
+        location: info.location || null,
         date_of_birth: info.date_of_birth || null,
-        address: info.address || '',
-        phone: info.phone || ''
+        address: info.address || null,
+        phone: info.phone || null,
+        preferred_name: info.preferred_name || null,
+        communication_preference: info.communication_preference || null,
+        favorite_status: info.favorite_status || false,
+        hobbies: info.hobbies || null,
+        favorite_artist: info.favorite_artist || null,
+        coffee_order: info.coffee_order || null,
+        dietary_restrictions: info.dietary_restrictions || null
     };
 }
 
@@ -109,11 +117,11 @@ const UserInfoPage = () => {
         setPwdOpen(false);
     };
 
-    const handleProposeSubmit = (values) => {
-        // eslint-disable-next-line no-console
-        // console.log('propose_member', values);
-        message.success('This feature is not yet complete');
-    };
+    // const handleProposeSubmit = (values) => {
+    //     // eslint-disable-next-line no-console
+    //     // console.log('propose_member', values);
+    //     message.success('This feature is not yet complete');
+    // };
 
     const signOut = () => {
         localStorage.clear();
@@ -344,34 +352,44 @@ const UserInfoPage = () => {
         const blob = new Blob([bytes], { type: 'image/jpeg' });
 
         const formData = new FormData();
-        formData.append("cover", blob, "avatar.jpg"); // 使用二进制 blob  
+        formData.append("file", blob, "avatar.jpg"); // 使用二进制 blob  
         Utils.post({
-            url: "programmer/set_password/",
+            url: "api_v1/file_upload/",
             data: formData,
-            actionType: ActionType().PostUserCover,
+            actionType: ActionType().PostFiles,
             Success: (data) => {
-                let stored = readUserFromStorage();
-                let userSub = {
-                    ...stored.user_info,
-                    cover: data.src
-                }
-                stored['user_info'] = userSub
-                localStorage.setItem("userInfo", JSON.stringify(stored));
-                // 更新页面状态，立即显示新头像
-                setProfile(prev => ({ ...prev, avatar: data.src }));
+                const fileId = data?.cloud_id
+                Utils.patch({
+                    url: '/api_v1/user/-1/',
+                    data: { cover: fileId },
+                    actionType: ActionType().PatchUserInfo,
+                    Success: () => {
+                        onGetUserInfo()
+                        // let stored = readUserFromStorage();
+                        // let userSub = {
+                        //     ...stored.user_info,
+                        // }
+                        // stored['user_info'] = userSub
+                        // localStorage.setItem("userInfo", JSON.stringify(stored));
+                        // // 更新页面状态，立即显示新头像
+                        // setProfile(prev => ({ ...prev, }));
 
-                // 触发自定义事件，通知 Header 组件更新头像
-                window.dispatchEvent(new CustomEvent('userAvatarUpdated', {
-                    detail: { avatar: data.src }
-                }));
+                        // 触发自定义事件，通知 Header 组件更新头像
+                        // window.dispatchEvent(new CustomEvent('userAvatarUpdated', {
+                        //     detail: { avatar: data.src }
+                        // }));
+                        // message.success(<CheckCircleTwoTone twoToneColor="#52c41a" />);
+                    }
+                })
+
             },
             Error: (data) => {
                 console.log(data)
             }
         })
         // eslint-disable-next-line no-console
-        console.log('submit_avatar', { avatarDataUrl: dataUrl });
-        message.success('已打印到控制台');
+        // console.log('submit_avatar', { avatarDataUrl: dataUrl });
+
         setAvatarOpen(false);
     };
     //左侧菜单栏
@@ -415,40 +433,65 @@ const UserInfoPage = () => {
                         <section className={style.section}>
                             <header className={style.headerBar}>
                                 <h2 className={style.title}>Profile</h2>
-                                <p className={style.sub}>Here you can edit your phone number and email address. This information is not visible to others. If you need to amend your personal details please get in touch. <a className={style.link} href="#">Contact us</a></p>
+                                <p className={style.sub}>Here, you can edit your phone number and information address. Others cannot see this information.
+                                    If your repeated repair fails, please <a className={style.link} href="mailto:advisory@theaccezz.com">Contact us</a></p>
                             </header>
 
                             <div className={style.profileTop}>
                                 <div className={style.leftIntro}>
                                     <div className={style.avatarClickable} onClick={onOpenAvatar} title="点击更换头像">
-                                        <Avatar size={80} src={Utils.returnFileUrl(profile.avatar)} >{profile.username?.[0]}</Avatar>
+                                        <Avatar size={80} src={Utils.returnFileUrl(profile.cover_display)} >{profile.username?.[0]}</Avatar>
                                     </div>
                                     <div className={style.nameBlock}>
                                         <div className={style.name}>{profile.username}</div>
-                                        <div className={style.location}>Location: {profile.location || '—'}</div>
+                                        <div className={style.location}>Location: {profile.location || '-'}</div>
                                     </div>
                                 </div>
                             </div>
                             <div className={style.fieldList}>
                                 <div className={style.fieldRow}>
-                                    <div className={style.fieldLabel}>Name</div>
-                                    <div className={style.fieldValue}>{profile.name}</div>
+                                    <div className={style.fieldLabel}>Preferred name</div>
+                                    <div className={style.fieldValue}>{profile.preferred_name}</div>
                                 </div>
                                 <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}>Birthday</div>
-                                    <div className={style.fieldValue}>{profile.date_of_birth || '—'}</div>
+                                    <div className={style.fieldValue}>{profile.date_of_birth || '-'}</div>
                                 </div>
                                 <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}>Location</div>
-                                    <div className={style.fieldValue}>{profile.location || '—'}</div>
+                                    <div className={style.fieldValue}>{profile.location || '-'}</div>
                                 </div>
                                 <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}>Phone</div>
-                                    <div className={style.fieldValue}>{profile.phone || '—'}</div>
+                                    <div className={style.fieldValue}>{profile.phone || '-'}</div>
                                 </div>
                                 <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}>Gender</div>
-                                    <div className={style.fieldValue}>{profile.gender || '—'}</div>
+                                    <div className={style.fieldValue}>{profile.gender || '-'}</div>
+                                </div>
+                                <div className={style.fieldRow}>
+                                    <div className={style.fieldLabel}>Communication preference</div>
+                                    <div className={style.fieldValue}>{profile.communication_preference || '-'}</div>
+                                </div>
+                                <div className={style.fieldRow}>
+                                    <div className={style.fieldLabel}>Collecting status </div>
+                                    <div className={style.fieldValue}>{profile?.favorite_status && <CheckCircleTwoTone twoToneColor="#52c41a" />}</div>
+                                </div>
+                                <div className={style.fieldRow}>
+                                    <div className={style.fieldLabel}>Interests</div>
+                                    <div className={style.fieldValue}>{profile.hobbies || '-'}</div>
+                                </div>
+                                <div className={style.fieldRow}>
+                                    <div className={style.fieldLabel}>Favourite artists</div>
+                                    <div className={style.fieldValue}>{profile.favorite_artist || '-'}</div>
+                                </div>
+                                <div className={style.fieldRow}>
+                                    <div className={style.fieldLabel}>Coffee order</div>
+                                    <div className={style.fieldValue}>{profile.coffee_order || '-'}</div>
+                                </div>
+                                <div className={style.fieldRow}>
+                                    <div className={style.fieldLabel}> Dietary restrictions</div>
+                                    <div className={style.fieldValue}>{profile.dietary_restrictions || '-'}</div>
                                 </div>
                             </div>
 
@@ -462,8 +505,8 @@ const UserInfoPage = () => {
                                 destroyOnClose
                             >
                                 <Form layout="vertical" initialValues={profile} onFinish={handleEditSubmit}>
-                                    <Form.Item label="Name" name="name" rules={[{ required: true, message: 'Please enter your name' }]}>
-                                        <Input placeholder="name" />
+                                    <Form.Item label="Preferred name" name="preferred_name" rules={[{ required: true, message: 'Please enter your Preferred name' }]}>
+                                        <Input placeholder="preferred_name" />
                                     </Form.Item>
                                     <Form.Item
                                         label="Date of birth"
@@ -485,6 +528,27 @@ const UserInfoPage = () => {
                                             <Radio value="Male"> Male </Radio>
                                             <Radio value="Other"> Other </Radio>
                                         </Radio.Group>
+                                    </Form.Item>
+                                    <Form.Item label="Communication preference" name="communication_preference">
+                                        <Input placeholder="communication_preference" />
+                                    </Form.Item>
+                                    <Form.Item label="Collecting status" name="favorite_status">
+                                        <Radio.Group>
+                                            <Radio value={true}> YES </Radio>
+                                            <Radio value={false} >NO </Radio>
+                                        </Radio.Group>
+                                    </Form.Item>
+                                    <Form.Item label="Interests" name="hobbies">
+                                        <Input placeholder="hobbies" />
+                                    </Form.Item>
+                                    <Form.Item label="Favourite artists" name="favorite_artist">
+                                        <Input placeholder="favorite_artist" />
+                                    </Form.Item>
+                                    <Form.Item label="Coffee order" name="coffee_order">
+                                        <Input placeholder="coffee_order" />
+                                    </Form.Item>
+                                    <Form.Item label="Dietary restrictions" name="dietary_restrictions">
+                                        <Input placeholder="dietary_restrictions" />
                                     </Form.Item>
                                     <div className={style.modalActions}>
                                         <Button onClick={() => setEditOpen(false)}>Cancel</Button>
@@ -674,7 +738,7 @@ const UserInfoPage = () => {
                                 </div>
                             </div>
 
-                            <div className={style.card}>
+                            {/* <div className={style.card}>
                                 <div className={style.blockTitle}>Propose a new member</div>
                                 <Form layout="inline" onFinish={handleProposeSubmit} className={style.inlineForm}>
                                     <Form.Item name="name" rules={[{ required: true, message: '请输入姓名' }]}>
@@ -687,7 +751,7 @@ const UserInfoPage = () => {
                                         <Button type="primary" htmlType="submit">Submit</Button>
                                     </Form.Item>
                                 </Form>
-                            </div>
+                            </div> */}
                         </section>
                     )}
 

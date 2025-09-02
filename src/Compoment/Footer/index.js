@@ -105,17 +105,24 @@ function FooterCompoment() {
                         <div className={Style.FooterLinkList}>
                             <ul className={Style.columnLinks}>
                                 <li>
-                                    <a className={Style.footerLink} v>Instagram</a>
+                                    <a className={Style.footerLink} href="https://www.instagram.com/theaccezz/"  >Instagram</a>
                                 </li>
                                 <li>
-                                    <a className={Style.footerLink}>TikTok</a>
+                                    <a className={Style.footerLink} href="https://www.tiktok.com/@theaccezz">TikTok</a>
                                 </li>
 
                             </ul>
                             <ul className={Style.columnLinks}>
-                                <li><a className={Style.footerLink}>Terms and policies</a></li>
+                                <li><a className={Style.footerLink} href="https://www.theaccezz.com/TermsAndConditions">Terms and Conditions</a></li>
                                 <li>
-                                    <a className={Style.footerLink}>Contact</a>
+                                    <a className={Style.footerLink} href="https://www.theaccezz.com/PrivacyDataProtectionPolicy" >Privacy & Data Protection Policy</a>
+                                </li>
+
+                            </ul>
+                            <ul className={Style.columnLinks}>
+                                <li><a className={Style.footerLink} href="https://www.theaccezz.com/CommunityGuidelines">Community guidelines</a></li>
+                                <li>
+                                    <a className={Style.footerLink} href="mailto:contact@theaccezz.com" >Contact</a>
                                 </li>
 
                             </ul>

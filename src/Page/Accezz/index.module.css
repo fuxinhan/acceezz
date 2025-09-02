@@ -377,19 +377,19 @@
 .dictionaryEntry {
   margin: 40px 30px;
   background: rgba(255, 255, 255, 0.95);
-  border-radius: 16px;
+  /* border-radius: 16px; */
   padding: 32px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(198, 169, 114, 0.2);
+  /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); */
+  /* border: 1px solid rgba(198, 169, 114, 0.2); */
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
 }
 
-.dictionaryEntry:hover {
+/* .dictionaryEntry:hover {
   transform: translateY(-4px);
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
   border-color: rgba(198, 169, 114, 0.4);
-}
+} */
 
 .dictionarySection {
   margin-bottom: 28px;
@@ -447,9 +447,10 @@
   font-style: italic;
   color: #000;
   font-weight: 600;
-  
+
 }
-.LogosImage{
+
+.LogosImage {
   display: flex;
   width: 50%;
   margin: 0 auto;
@@ -582,19 +583,24 @@
     flex-direction: column;
     gap: 10px;
   }
-  .LogosImage{
+
+  .LogosImage {
     width: 80%;
   }
-  .heroLeftSub img{
+
+  .heroLeftSub img {
     width: 25px !important;
   }
-  .heroLeftSub span{
+
+  .heroLeftSub span {
     font-size: 15px;
   }
-  .definitionText{
+
+  .definitionText {
     font-size: 0.8rem;
   }
-  .dictionaryExample em{
+
+  .dictionaryExample em {
     font-size: 0.8rem;
   }
 }

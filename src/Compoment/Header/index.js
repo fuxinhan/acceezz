@@ -15,17 +15,16 @@ function HeaderCompoment() {
     const [menuItemsState, setMenuItemsState] = useState('/')
     const [userName, setUserName] = useState("");
     const [userInfo, setUserInfo] = useState("");
-    const menuItems = [
-        // { key: 'Accezz', label: 'ACCEZZ',  hasArrow: true },
+    const menuItems = Utils.getToken() ? [
+        // { key: 'Highlights', label: 'HIGHLIGHTS', hasArrow: true },
+        // { key: 'Membership', label: 'MEMBERSHIP', hasArrow: true },
+        { key: 'Resources', label: 'RESOURCES', hasArrow: true },
+        // { key: 'About', label: 'ABOUT', hasArrow: true },
+    ] : [
         { key: 'Highlights', label: 'HIGHLIGHTS', hasArrow: true },
         { key: 'Membership', label: 'MEMBERSHIP', hasArrow: true },
-        { key: 'Resources', label: 'RESOURCES', hasArrow: true },
+        // { key: 'Resources', label: 'RESOURCES', hasArrow: true },
         { key: 'About', label: 'ABOUT', hasArrow: true },
-        // { key: 'bedrooms', label: 'BEDROOMS',  hasArrow: true },
-        // { key: 'wellness', label: 'WELLNESS',  hasArrow: true },
-        // { key: 'book', label: 'BOOK',  hasArrow: true },
-        // { key: 'news', label: 'NEWS',  hasArrow: false },
-        // { key: 'shop', label: 'SHOP',  hasArrow: true }
     ]
     // 根据路径设置激活状态（示例）
     useEffect(() => {
@@ -202,12 +201,12 @@ function HeaderCompoment() {
                     {/* Mobile Action Buttons */}
                     {
                         !contIsLogin && <div className={Style.mobileActionButtons}>
-                            <Button className={Style.subscribeBtn} onClick={() => {
+                            {/* <Button className={Style.subscribeBtn} onClick={() => {
                                 navigate('/Register')
                                 setMobileMenuOpen(false)
                             }}>
                                 SUBSCRIBE
-                            </Button>
+                            </Button> */}
                             <Button className={Style.signInBtn} >
                                 <Link to={'/Login'} onClick={() => {
                                     setMobileMenuOpen(false)

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import style from './index.module.css';
 import Utils from "../../Util/webCofig";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import image1 from './../../static/Membership1.png'
 import image2 from './../../static/Membership2.png'
 import image3 from './../../static/Membership3.png'
@@ -208,14 +208,20 @@ const MembershipPage = () => {
 						<div key={key} className={style.twoColSection}>
 							<div className={style.sectionIntro}>
 								<div className={style.sectionTitle}>{item.title}	</div>
+								<img src={Utils.logoPng()} style={{ width: '100px' }} />
 								<div className={style.sectionDesc}>{item.subTitle}</div>
+								<div>
+									<Link className={style.applyLinkButton} to={'/Register'}>
+										Apply
+									</Link>
+								</div>
 							</div>
 							<div className={style.split}>
 								<div className={style.splitMedia}>
 									<img src={item.image} alt="House interior" loading="lazy" />
 								</div>
 								<div className={style.splitContent}>
-									<ul>
+									<ul className={style.splitContentUl}>
 										{
 											item?.perks?.map((it, kt) => <li key={kt} >
 												{it}
@@ -237,7 +243,7 @@ const MembershipPage = () => {
 					<h1>
 						Important things to note regarding your membership:
 					</h1>
-					<ul>
+					<ul className={style.splitContentUl}>
 						<li>
 							<span>Flexibility:</span>You can cancel anytime and receive a refund for the remaining months. Please note the activation fee is a one-time fee that is non-refundable.
 						</li>

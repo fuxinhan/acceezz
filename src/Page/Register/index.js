@@ -22,7 +22,7 @@ const RegisterPage = () => {
     // 其他字段状态
     const [hearAbout, setHearAbout] = useState([]);
     const [artWorkAttention, setArtWorkAttention] = useState("");
-    const [currentStatus, setCurrentStatus] = useState([]);
+    const [currentStatus, setCurrentStatus] = useState('');
     const [motivations, setMotivations] = useState([]);
     const [additionalInfo, setAdditionalInfo] = useState("")
     const [membership, setMembership] = useState("")
@@ -40,17 +40,17 @@ const RegisterPage = () => {
 
 
     // 你目前的艺术收藏状况如何
-    const handleCurrentStatusChange = (value) => {
-        if (currentStatus.includes(value)) {
-            setCurrentStatus(currentStatus.filter(item => item !== value));
-        } else {
-            setCurrentStatus([...currentStatus, value]);
-        }
-        setCheckboxStatus(pre => ({
-            ...pre,
-            collecting: false,
-        }))
-    };
+    // const handleCurrentStatusChange = (value) => {
+    //     if (currentStatus.includes(value)) {
+    //         setCurrentStatus(currentStatus.filter(item => item !== value));
+    //     } else {
+    //         setCurrentStatus([...currentStatus, value]);
+    //     }
+    //     setCheckboxStatus(pre => ({
+    //         ...pre,
+    //         collecting: false,
+    //     }))
+    // };
 
     // 是什么促使你加入Accezz？
     const handleMotivationsChange = (value) => {
@@ -87,7 +87,7 @@ const RegisterPage = () => {
             data: formData,
             actionType: ActionType().PostRegister,
             Success: (data) => {
-                console.log(data)
+                // console.log(data)
                 setFileID(data?.cloud_id);
                 setResume(file)
             },
@@ -109,12 +109,7 @@ const RegisterPage = () => {
             message.warning("Resume file is required. Please select a file before submitting.");
             return;
         }
-        if (currentStatus.length === 0) {
-            setCheckboxStatus(pre => ({
-                ...pre,
-                collecting: true
-            }))
-        }
+
         if (motivations.length === 0) {
             setCheckboxStatus(pre => ({
                 ...pre,
@@ -127,7 +122,7 @@ const RegisterPage = () => {
                 about: true
             }))
         }
-        if (hearAbout.length === 0 || currentStatus.length === 0 || motivations.length === 0) {
+        if (hearAbout.length === 0 || motivations.length === 0) {
             message.warning('多选框最少选一个')
             return;
         }
@@ -142,7 +137,7 @@ const RegisterPage = () => {
         formData.append("instagram", instagramHandle)
         formData.append("resume", fileID)
 
-        formData.append("current_status", JSON.stringify(currentStatus))
+        formData.append("current_status", JSON.stringify([currentStatus]))
         formData.append("motivations", JSON.stringify(motivations))
         formData.append("how_did_you_hear", JSON.stringify(hearAbout))
         formData.append("membership_tier", membership)
@@ -368,8 +363,8 @@ const RegisterPage = () => {
 
                     {/* 你目前的艺术收藏状况如何 */}
                     <div className={style.section}>
-                        <h2 className={style.sectionTitle} style={{ color: checkboxStatus?.collecting ? 'red' : 'black' }}>What is your current status in art collecting?  *</h2>
-                        <div className={style.checkboxGroup}>
+                        <h2 className={style.sectionTitle} >What is your current status in art collecting?  *</h2>
+                        <div className={style.radioGroup}>
                             {[
                                 "I have an established collection",
                                 "I’ve collected 5 or more works",
@@ -377,16 +372,17 @@ const RegisterPage = () => {
                                 "I want to start but don’t know where to begin",
                                 "I’ve never considered collecting until now"
                             ].map((option, index) => (
-                                <label key={index} className={style.checkboxLabel}>
+                                <label key={index} className={style.radioLabel}>
                                     <input
                                         name="currentStatus"
-                                        type="checkbox"
+                                        type="radio"
                                         value={option}
-                                        checked={currentStatus.includes(option)}
-                                        onChange={(e) => handleCurrentStatusChange(option)}
-                                        className={style.checkbox}
+                                        required={index === 0}
+                                        checked={currentStatus === option}
+                                        onChange={(e) => setCurrentStatus(e.target.value)}
+                                        className={style.radio}
                                     />
-                                    <span className={style.checkboxText}>{option}</span>
+                                    <span className={style.radioText}>{option}</span>
                                 </label>
                             ))}
                         </div>

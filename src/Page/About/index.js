@@ -121,13 +121,6 @@ const AboutPage = () => {
 
 
 			</section>
-			{
-				!Utils.getToken() && <section className={style.cta}>
-					<h3>Join us and discover the house closest to you</h3>
-					<button type="button" className={style.ctaBtn}>Explore</button>
-				</section>
-			}
-
 		</div>
 	)
 }

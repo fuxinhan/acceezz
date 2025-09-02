@@ -2,6 +2,7 @@
 .homeContainer {
 	background: var(--cream-bg);
 	color: var(--deep-navy);
+	font-family: 'Garamond' !important;
 }
 
 /* Hero */
@@ -277,9 +278,9 @@
 .GallerySectionCard {
 	position: relative;
 	background: #fff;
-	border-radius: 14px;
-	border: 1px solid var(--sand);
-	box-shadow: 0 6px 20px rgba(0, 0, 0, .06);
+	/* border-radius: 14px; */
+	/* border: 1px solid var(--sand); */
+	/* box-shadow: 0 6px 20px rgba(0, 0, 0, .06); */
 	padding: 1.2rem 1.2rem 1rem;
 	max-width: 1200px;
 	margin: 0 auto;
@@ -304,6 +305,10 @@
 	transform: scale(1.05);
 }
 
+.GallerySectionBody {
+	font-family: 'Garamond' !important;
+}
+
 .GallerySectionBody span {
 	font-weight: 600;
 	line-height: 2rem;
@@ -314,6 +319,35 @@
 	font-weight: 600;
 	font-size: 1.5rem;
 	line-height: 3rem;
+}
+
+.ALinkBtnA {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.ALinkBtnA a {
+	margin-top: 20px;
+	background-color: #fff;
+	border-radius: 5px;
+	width: 200px;
+	text-align: center;
+	color: #000;
+	padding: 10px;
+	transition: all 0.5s ease;
+	font-weight: 600;
+	font-size: 1.2rem;
+}
+
+.ALinkBtnA a:hover {
+	background-color: #000;
+	color: #fff;
+}
+
+.splitContent span {
+	font-weight: 700;
+	color: #000;
 }
 
 /* Desktop adjustments */

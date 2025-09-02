@@ -1,11 +1,11 @@
-
-.RouterCentent{
-    padding-top: 6vh;
+.RouterCentent {
+    padding-top: 9vh;
+    background: #fff;
 }
 
 /* 响应式设计 */
 @media (max-width: 480px) {
-    .RouterCentent{
-        padding-top: 8.5vh;
+    .RouterCentent {
+        padding-top: 10vh;
     }
 }

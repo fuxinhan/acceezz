@@ -2,7 +2,7 @@
   background: #fff;
   min-height: 80vh;
   padding: 20px 0 0;
-  font-family: 'ACCEZZFONT';
+  font-family: 'Garamond';
 }
 
 .header {
@@ -27,7 +27,7 @@
 }
 
 .carouselContainer {
-  max-width: 1314px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -65,12 +65,12 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-bottom: 16px;
+  margin: 30px auto;
 }
 
 .caroutseHeader h2 {
   margin: 0;
-  font-size: 22px;
+  font-size: 2rem;
   font-weight: 500;
   font-weight: 700;
 }
@@ -110,14 +110,14 @@
   font-size: 2rem;
   font-weight: 700;
   color: #000;
-  margin-bottom: 20px;
-  line-height: 1.2;
+  /* margin-bottom: 20px; */
+  line-height: 1.5rem;
 }
 
 .slideDescription {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: #555;
-  line-height: 1.6;
+  line-height: 1.6rem;
   margin: 0;
   max-height: 400px;
   overflow: auto;
@@ -220,11 +220,11 @@
 
 .collaboratorsTitle,
 .sponsorsTitle {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 500;
   color: #333;
   margin: 0;
-  font-family: 'ACCEZZFONT', sans-serif;
+  font-family: Garamond, sans-serif;
   letter-spacing: 0.5px;
   text-align: left;
   font-weight: 700;

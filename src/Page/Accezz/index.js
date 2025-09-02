@@ -76,40 +76,40 @@ function AccezzPage() {
     }
     // select2
     const onGetHomeSelect2Content = () => {
-        Utils.get({
-            url: 'api_back/resources_text/',
-            params: {
-                purpose_obj: homeSelect2ObgId,
-                page: 1,
-                pagesize: 100
-            },
-            actionType: ActionType().OnGetHomePageSelect2Text,
-            Success: (data) => {
-                let contentDatab = data?.results?.[0] || {}
-                let initSelect1Text = homeInitData.select2Text
-                let toData = { ...initSelect1Text, ...contentDatab }
-                setHomeInitData(prev => ({
-                    ...prev,
-                    select2Text: toData
-                }))
-            }
-        })
-        Utils.get({
-            url: 'api_back/resources_file/',
-            params: {
-                purpose_obj: homeSelect2ObgId,
-                page: 1,
-                pagesize: 100
-            },
-            actionType: ActionType().OnGetHomePageSelect2File,
-            Success: (data) => {
-                let contentDatab = data?.results
-                setHomeInitData(prev => ({
-                    ...prev,
-                    select2File: contentDatab
-                }))
-            }
-        })
+        // Utils.get({
+        //     url: 'api_back/resources_text/',
+        //     params: {
+        //         purpose_obj: homeSelect2ObgId,
+        //         page: 1,
+        //         pagesize: 100
+        //     },
+        //     actionType: ActionType().OnGetHomePageSelect2Text,
+        //     Success: (data) => {
+        //         let contentDatab = data?.results?.[0] || {}
+        //         let initSelect1Text = homeInitData.select2Text
+        //         let toData = { ...initSelect1Text, ...contentDatab }
+        //         setHomeInitData(prev => ({
+        //             ...prev,
+        //             select2Text: toData
+        //         }))
+        //     }
+        // })
+        // Utils.get({
+        //     url: 'api_back/resources_file/',
+        //     params: {
+        //         purpose_obj: homeSelect2ObgId,
+        //         page: 1,
+        //         pagesize: 100
+        //     },
+        //     actionType: ActionType().OnGetHomePageSelect2File,
+        //     Success: (data) => {
+        //         let contentDatab = data?.results
+        //         setHomeInitData(prev => ({
+        //             ...prev,
+        //             select2File: contentDatab
+        //         }))
+        //     }
+        // })
     }
 
     const handlePlayPause = () => {
@@ -224,7 +224,7 @@ function AccezzPage() {
 
 
                     <div className={Style.dictionaryEntry}>
-                        <img src={logos} className={Style.LogosImage}/>
+                        <img src={logos} className={Style.LogosImage} />
                         <div className={Style.heroLeftSub}>
                             <img src={ting} style={{ width: '40px' }} />
                             <span>
@@ -276,7 +276,7 @@ function AccezzPage() {
                     </div> */}
                 </div>
 
-                <div className={Style.heroRight}>
+                {/* <div className={Style.heroRight}>
                     <div className={Style.imageGrid}>
                         {
                             homeInitData?.select2File.map((item, key) => {
@@ -290,7 +290,7 @@ function AccezzPage() {
                             })
                         }
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
 

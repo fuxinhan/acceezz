@@ -3,6 +3,7 @@
 	background: var(--cream-bg, #f8f6f2);
 	color: var(--deep-navy, #1a1a2e);
 	padding-bottom: 20px;
+	font-family: 'Garamond' !important;
 }
 
 .hero {
@@ -15,7 +16,7 @@
 .title {
 	margin: 0 0 10px;
 	font-size: 42px;
-	font-weight: 300;
+	font-weight: 600;
 }
 
 .subtitle {
@@ -24,6 +25,7 @@
 	line-height: 1.8;
 	color: #555;
 	text-align: left;
+	font-size: 18px;
 }
 
 .pillars {

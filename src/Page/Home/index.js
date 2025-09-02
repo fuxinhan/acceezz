@@ -10,7 +10,7 @@ const HomeBnnerID = [3, 4, 5];
 // const HomeBnnerID3 = 6;
 function HomePage() {
     const [userName, setUserName] = useState("");
-    const [displayVive, setDisplayVive] = useState(true);
+    // const [displayVive, setDisplayVive] = useState(true);
     const [homeInitData, setHomeInitData] = useState({
         select1Text: {
             media_type: 'text',
@@ -22,12 +22,12 @@ function HomePage() {
             media_type: 'image',
             abs_file_obj_display: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1800&auto=format&fit=crop&q=70'
         }],
-        select2Text: {
-            media_type: 'text',
-            media_type_display: '文字',
-            text: 'It’s easy to propose a new member',
-            sub_text: "Membership applications are now open at all of our Houses, including London, New York and Los Angeles. Send your friends a personalised link to support their application.",
-        },
+        // select2Text: {
+        //     media_type: 'text',
+        //     media_type_display: '文字',
+        //     text: 'It’s easy to propose a new member',
+        //     sub_text: "Membership applications are now open at all of our Houses, including London, New York and Los Angeles. Send your friends a personalised link to support their application.",
+        // },
         select3File: [],
         select3Text: [{
             text: 'A',
@@ -57,14 +57,14 @@ function HomePage() {
                             select1Text: toData
                         }))
                     }
-                    if (item === 4) {
-                        initSelect1Text = homeInitData.select2Text
-                        let toData = { ...initSelect1Text, ...contentDatab }
-                        setHomeInitData(prev => ({
-                            ...prev,
-                            select2Text: toData
-                        }))
-                    }
+                    // if (item === 4) {
+                    //     initSelect1Text = homeInitData.select2Text
+                    //     let toData = { ...initSelect1Text, ...contentDatab }
+                    //     setHomeInitData(prev => ({
+                    //         ...prev,
+                    //         select2Text: toData
+                    //     }))
+                    // }
                     if (item === 5) {
                         setHomeInitData(prev => ({
                             ...prev,
@@ -142,7 +142,7 @@ function HomePage() {
                 </div>
             </section>
             {/* 会员申请卡片 */}
-            {
+            {/* {
                 displayVive && <section className={Style.noticeSection}>
                     <div className={Style.noticeCard}>
                         <div className={Style.noticeHeader}>{homeInitData?.select2Text?.text}</div>
@@ -155,7 +155,7 @@ function HomePage() {
                         <button className={Style.closeBtn} aria-label="close" onClick={() => setDisplayVive(false)} >×</button>
                     </div>
                 </section>
-            }
+            } */}
 
 
             {/* Upcoming 列表 */}
@@ -201,11 +201,23 @@ function HomePage() {
                             <section className={sectionClass}>
                                 <div className={Style.splitMedia}>
                                     <img src={Utils.returnFileUrl(item.abs_file_obj_display)} alt="House interior" loading="lazy" />
+                                    {
+                                        item.text && <div className={Style.ALinkBtnA} >
+                                            <a href={item.text}   >RSVP</a>
+                                        </div>
+                                    }
                                 </div>
                                 <div className={Style.splitContent}>
                                     <h2>
                                         {homeInitData?.select3Text?.[key]?.text || '--'}
                                     </h2>
+                                    {/* {
+                                        homeInitData?.select3Text?.[key]?.sub_text?.split('Location').map((label, keyL) => (
+                                            <p className={keyL === 1 && Style.fontWidth600}
+                                                dangerouslySetInnerHTML={{ __html: keyL === 1 ? 'Location' + label : label }}
+                                            />
+                                        ))
+                                    } */}
                                     <p
                                         dangerouslySetInnerHTML={{ __html: homeInitData?.select3Text?.[key]?.sub_text || '----------' }}
                                     />
@@ -218,9 +230,10 @@ function HomePage() {
 
 
             </section>
+
             <section className={Style.GallerySection}>
                 <div className={Style.GallerySectionCard}>
-                    <h1>Other Gallery and Auction Previews</h1>
+                    <h1 style={{ textAlign: 'center', lineHeight: '5rem', fontSize: '2rem' }} >Other Gallery and Auction Previews</h1>
                     <Row gutter={[16, 16]}>
                         <Col xs={24} sm={24} md={12} lg={8} xl={8} >
                             <div>
