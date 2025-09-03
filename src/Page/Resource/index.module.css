@@ -166,6 +166,10 @@
   line-height: 1.6;
 }
 
+.perksList span {
+  font-weight: 600;
+}
+
 .cradPopover {
   max-width: 300px;
   margin: 0 auto;

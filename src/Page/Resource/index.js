@@ -127,8 +127,10 @@ const ResourcesPage = () => {
                     <h3 className={style.cardTitle}>{pageDataInitText?.[12]?.[key]?.text}</h3>
                     <ul className={style.perksList}>
                         {
-                            pageDataInitText?.[12]?.[key]?.sub_text?.split(',').map((label, keyL) => (
-                                <li key={keyL}>{label}</li>
+                            pageDataInitText?.[12]?.[key]?.sub_text?.split('|').map((label, keyL) => (
+                                <li key={keyL}
+                                    dangerouslySetInnerHTML={{ __html: label }}
+                                />
                             ))
                         }
 
