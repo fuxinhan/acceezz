@@ -92,7 +92,7 @@ const RegisterPage = () => {
                 setResume(file)
             },
             Error: (data) => {
-                console.log(data)
+                // console.log(data)
                 message.warning('Accidentally failed, please try again!')
             }
         })
