@@ -3,84 +3,86 @@ import React, { useEffect, useState } from "react";
 import style from './index.module.css';
 import Utils from "../../Util/webCofig";
 import { Link, useNavigate } from "react-router-dom";
-import image1 from './../../static/Membership1.png'
-import image2 from './../../static/Membership2.png'
-import image3 from './../../static/Membership3.png'
+// import image1 from './../../static/Membership1.png'
+// import image2 from './../../static/Membership2.png'
+// import image3 from './../../static/Membership3.png'
 
-const tiers = [
-	{
-		key: 'attender',
-		title: 'The Patron',
-		subTitle: 'USD 60/month , USD 40 application fee , USD 760 USD/year',
-		image: image1,
-		perks: [
-			"Unlimited Accezz events globally, including private dinner parties at collector's homes, gallery walks, artist studio visits, auctions and more",
-			"Unlimited invite-only previews and events hosted by galleries, auction houses and others",
-			"VIP passes to selected art fairs globally",
-			"Limited edition artist drops only available to Accezz members",
-			"3 advisory sessions",
-			"Member-only trips and custom itinerary for group OR individuals",
-			"5%-20% discounts on selected programming",
-			"Unlimited access to virtual events",
-			"Connect with all other members anytime",
-			"A resource package and directory for the art world, including must-see exhibitions, podcasts, news publications and others",
-			"		Discounts at selected framers and book shops",
-			"	Monthly newsletter to events recap",
-		]
-	},
-	{
-		key: 'attender',
-		title: 'The Explorer		',
-		subTitle: 'USD 30/month , USD 40 application fee , USD 400 USD/year',
-		image: image2,
-		perks: [
-			"12 Accezz events globally, including private dinner parties at collector's homes, gallery walks, artist studio visits, auctions and more ",
-			"10 invite-only previews and events hosted by galleries, auction houses and others",
-			"Limited edition artist drops only available to Accezz members",
-			"2 advisory sessions",
-			"Member-only trips and custom itinerary for group OR individuals",
-			"5%-20% discounts on selected programming",
-			"Unlimited access to virtual events",
-			"Connect with all other members anytime",
-			"A resource package and directory for the art world, including must-see exhibitions, podcasts, news publications and others",
-			"	Discounts at selected framers and book shops",
-			"	Monthly newsletter to events recap",
-		]
-	},
-	{
-		key: 'attender',
-		title: 'The Introduction		',
-		subTitle: 'USD 5/month , USD 40 application fee , USD 100 USD/year',
-		image: image3,
-		perks: [
-			"1 Accezz event globally, including private dinner parties at collector's homes, gallery walks, artist studio visits, auctions and more",
-			"4 invite-only previews and events hosted by galleries, auction houses and others",
-			"Limited edition artist drops only available to Accezz members",
-			"1 advisory sessions",
-			"Member-only trips ",
-			"Unlimited access to virtual events",
-			"A resource package and directory for the art world, including must-see exhibitions, podcasts, news publications and others",
-			"	Monthly newsletter to events recap",
-		]
-	}
-];
+// const tiers = [
+// 	{
+// 		key: 'attender',
+// 		title: 'The Patron',
+// 		subTitle: 'USD 60/month , USD 40 application fee , USD 760 USD/year',
+// 		image: image1,
+// 		perks: [
+// 			"Unlimited Accezz events globally, including private dinner parties at collector's homes, gallery walks, artist studio visits, auctions and more",
+// 			"Unlimited invite-only previews and events hosted by galleries, auction houses and others",
+// 			"VIP passes to selected art fairs globally",
+// 			"Limited edition artist drops only available to Accezz members",
+// 			"3 advisory sessions",
+// 			"Member-only trips and custom itinerary for group OR individuals",
+// 			"5%-20% discounts on selected programming",
+// 			"Unlimited access to virtual events",
+// 			"Connect with all other members anytime",
+// 			"A resource package and directory for the art world, including must-see exhibitions, podcasts, news publications and others",
+// 			"		Discounts at selected framers and book shops",
+// 			"	Monthly newsletter to events recap",
+// 		]
+// 	},
+// 	{
+// 		key: 'attender',
+// 		title: 'The Explorer		',
+// 		subTitle: 'USD 30/month , USD 40 application fee , USD 400 USD/year',
+// 		image: image2,
+// 		perks: [
+// 			"12 Accezz events globally, including private dinner parties at collector's homes, gallery walks, artist studio visits, auctions and more ",
+// 			"10 invite-only previews and events hosted by galleries, auction houses and others",
+// 			"Limited edition artist drops only available to Accezz members",
+// 			"2 advisory sessions",
+// 			"Member-only trips and custom itinerary for group OR individuals",
+// 			"5%-20% discounts on selected programming",
+// 			"Unlimited access to virtual events",
+// 			"Connect with all other members anytime",
+// 			"A resource package and directory for the art world, including must-see exhibitions, podcasts, news publications and others",
+// 			"	Discounts at selected framers and book shops",
+// 			"	Monthly newsletter to events recap",
+// 		]
+// 	},
+// 	{
+// 		key: 'attender',
+// 		title: 'The Introduction		',
+// 		subTitle: 'USD 5/month , USD 40 application fee , USD 100 USD/year',
+// 		image: image3,
+// 		perks: [
+// 			"1 Accezz event globally, including private dinner parties at collector's homes, gallery walks, artist studio visits, auctions and more",
+// 			"4 invite-only previews and events hosted by galleries, auction houses and others",
+// 			"Limited edition artist drops only available to Accezz members",
+// 			"1 advisory sessions",
+// 			"Member-only trips ",
+// 			"Unlimited access to virtual events",
+// 			"A resource package and directory for the art world, including must-see exhibitions, podcasts, news publications and others",
+// 			"	Monthly newsletter to events recap",
+// 		]
+// 	}
+// ];
 
-const bannerId = [8, 9]
+const bannerId = [8, 9, 19, 20, 21]
 
 const MembershipPage = () => {
 	// 获取导航函数
 	const navigate = useNavigate();
-	const [pageDataInit, setPageDataInit] = useState({
-		banner1Text: {
-			text: 'Membership',
-			sub_text: 'Membership at Accezz unlocks a community of people passionate about art through collecting. It provides exclusive benefits and events to learn more about art collecting.'
-		},
-		banner1File: null,
-		banner2Text: [{
-			text: 'Membership',
-			sub_text: 'Membership at Accezz unlocks a community of people passionate about art through collecting. It provides exclusive benefits and events to learn more about art collecting.'
-		}],
-		banner2File: null,
+	const [pageDataInitText, setPageDataInitText] = useState({
+		8: [],
+		9: [],
+		19: [],
+		20: [],
+		21: [],
+	})
+	const [pageDataInitFile, setPageDataInitFile] = useState({
+		8: [],
+		9: [],
+		19: [],
+		20: [],
+		21: [],
 	})
 
 	const onGetPageData = () => {
@@ -92,26 +94,13 @@ const MembershipPage = () => {
 					page: 1,
 					pagesize: 100
 				},
-				actionType: 'getMemInit' + item,
+				actionType: 'getMemInitText' + item,
 				Success: (data) => {
-
-					let contentDatab = data?.results?.[0] || {}
-					let initSelect1Text = null
-					if (item === 8) {
-						initSelect1Text = pageDataInit.banner1Text
-						let toData = { ...initSelect1Text, ...contentDatab }
-						setPageDataInit(prev => ({
-							...prev,
-							banner1Text: toData
-						}))
-					}
-
-					if (item === 9) {
-						setPageDataInit(prev => ({
-							...prev,
-							banner2Text: data?.results
-						}))
-					}
+					let contentDatab = data?.results
+					setPageDataInitText(prev => ({
+						...prev,
+						[item]: contentDatab
+					}))
 				}
 			})
 			Utils.get({
@@ -121,17 +110,13 @@ const MembershipPage = () => {
 					page: 1,
 					pagesize: 100
 				},
-				actionType: 'getMemInitF' + item,
+				actionType: 'getMemInitFile' + item,
 				Success: (data) => {
 					let contentDatab = data?.results
-
-					if (item === 9) {
-						setPageDataInit(prev => ({
-							...prev,
-							banner2File: contentDatab
-						}))
-					}
-
+					setPageDataInitFile(prev => ({
+						...prev,
+						[item]: contentDatab
+					}))
 				}
 			})
 		})
@@ -143,18 +128,18 @@ const MembershipPage = () => {
 	const onGetToPlay = (url) => {
 		navigate(url);
 	}
-	const SectionIntro = ({ title, desc }) => (
-		<div className={style.sectionIntro}>
-			<div className={style.sectionTitle}>{title}</div>
-			<div className={style.sectionDesc}>{desc}</div>
-		</div>
-	);
+	// const SectionIntro = ({ title, desc }) => (
+	// 	<div className={style.sectionIntro}>
+	// 		<div className={style.sectionTitle}>{title}</div>
+	// 		<div className={style.sectionDesc}>{desc}</div>
+	// 	</div>
+	// );
 	return (
 		<div className={style.MembershipPage}>
 			<section className={style.hero}>
-				<h1 className={style.pageTitle}>{pageDataInit?.banner1Text?.text}</h1>
+				<h1 className={style.pageTitle}>{pageDataInitText?.[8]?.[0]?.text}</h1>
 				<p className={style.intro}
-					dangerouslySetInnerHTML={{ __html: pageDataInit?.banner1Text?.sub_text }}
+					dangerouslySetInnerHTML={{ __html: pageDataInitText?.[8]?.[0]?.sub_text }}
 				/>
 
 				{
@@ -173,16 +158,16 @@ const MembershipPage = () => {
 				</div> */}
 				<div className={style.tiersGrid}>
 					{
-						pageDataInit?.banner2File?.length !== 0 && pageDataInit?.banner2File?.map((item, key) => (
+						pageDataInitFile?.[9]?.length !== 0 && pageDataInitFile?.[9]?.map((item, key) => (
 							<div key={key} className={style.card}>
 								<div className={style.cardImageWrap}>
 									<img src={Utils.returnFileUrl(item?.abs_file_obj_display)} alt={item.purpose_obj_display} className={style.cardImage} loading="lazy" />
 								</div>
 								<div className={style.cardBody}>
-									<h3 className={style.cardTitle}>{pageDataInit?.banner2Text?.[key]?.text}</h3>
+									<h3 className={style.cardTitle}>{pageDataInitText?.[9]?.[key]?.text}</h3>
 									{/* <ul className={style.perksList}>
 										{
-											pageDataInit?.banner2Text?.[key]?.sub_text?.split(',').map((label, keyL) => (
+											pageDataInitText?.[9]?.[key]?.sub_text?.split(',').map((label, keyL) => (
 												<li key={keyL}>{label}</li>
 											))
 										}
@@ -204,12 +189,12 @@ const MembershipPage = () => {
 					<div className={style.underline} />
 				</div>
 				{
-					tiers.map((item, key) => (
+					pageDataInitText?.[19].map((item, key) => (
 						<div key={key} className={style.twoColSection}>
 							<div className={style.sectionIntro}>
-								<div className={style.sectionTitle}>{item.title}	</div>
-								<img src={Utils.logoPng()} style={{ width: '100px' }} />
-								<div className={style.sectionDesc}>{item.subTitle}</div>
+								<div className={style.sectionTitle}>{item.text}	</div>
+								<img src={Utils.returnFileUrl(pageDataInitFile?.[19]?.[key]?.abs_file_obj_display)} style={{ width: '100px' }} />
+								<div className={style.sectionDesc}>{item.sub_text}</div>
 								<div>
 									<Link className={style.applyLinkButton} to={'/Register'}>
 										Apply
@@ -218,16 +203,18 @@ const MembershipPage = () => {
 							</div>
 							<div className={style.split}>
 								<div className={style.splitMedia}>
-									<img src={item.image} alt="House interior" loading="lazy" />
+									{console.log(pageDataInitFile?.[20]?.[key])}
+									<img src={Utils.returnFileUrl(pageDataInitFile?.[20]?.[key]?.abs_file_obj_display)} alt="House interior" loading="lazy" />
 								</div>
 								<div className={style.splitContent}>
 									<ul className={style.splitContentUl}>
 										{
-											item?.perks?.map((it, kt) => <li key={kt} >
-												{it}
-											</li>)
+											pageDataInitFile?.[20]?.[key]?.remark?.split('|').map((label, keyL) => (
+												<li key={keyL}
+													dangerouslySetInnerHTML={{ __html: label }}
+												/>
+											))
 										}
-
 									</ul>
 
 								</div>
@@ -241,6 +228,18 @@ const MembershipPage = () => {
 			<section className={style.tiersSection}>
 				<div className={style.tiersThings}>
 					<h1>
+						{pageDataInitText?.[21]?.[0]?.text}
+					</h1>
+					<ul className={style.splitContentUl}>
+						{
+							pageDataInitText?.[21]?.[0]?.sub_text?.split('|').map((label, keyL) => (
+								<li key={keyL}
+									dangerouslySetInnerHTML={{ __html: label }}
+								/>
+							))
+						}
+					</ul>
+					{/* <h1>
 						Important things to note regarding your membership:
 					</h1>
 					<ul className={style.splitContentUl}>
@@ -264,7 +263,7 @@ const MembershipPage = () => {
 							<span>Privacy:  </span>When you apply for our membership, we are committed to safeguarding your personal information. By joining, you consent to being photographed at events, which may be shared publicly unless you specify otherwise. Rest assured, we will never sell your data to third parties.
 
 						</li>
-					</ul>
+					</ul> */}
 				</div>
 
 			</section>

@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Router, Routes } from 'react-router-dom';
 import Style from "./index.module.css"
 import HeaderCompoment from "../Compoment/Header";
 import HomePage from "../Page/Home";
@@ -18,6 +18,9 @@ const RegisterPage = lazy(() => import('../Page/Register'))
 const AccezzPage = lazy(() => import('../Page/Accezz'))
 const ResourcesPage = lazy(() => import('../Page/Resource'))
 const UserInfoPage = lazy(() => import('../Page/UserInfo'))
+const TermsAndConditions = lazy(() => import('./../Page/TermsAndConditions'))
+const PrivacyDataProtectionPolicy = lazy(() => import('../Page/PrivacyDataProtectionPolicy'))
+const CommunityGuidelines = lazy(() => import('../Page/CommunityGuidelines'))
 const contIsLogin = Utils.getToken()
 function AppRouter() {
     return (
@@ -34,6 +37,9 @@ function AppRouter() {
                     <Route path='/Register' element={<RegisterPage />} />
                     <Route path='/Resources' element={IsLogin(ResourcesPage)} />
                     <Route path='/UserInfo' element={IsLogin(UserInfoPage)} />
+                    <Route path='/TermsAndConditions' element={<TermsAndConditions />} />
+                    <Route path='/PrivacyDataProtectionPolicy' element={<PrivacyDataProtectionPolicy />} />
+                    <Route path='/CommunityGuidelines' element={<CommunityGuidelines />} />
                     <Route path='*' element={<NotPage />} />
                 </Routes>
             </Content>

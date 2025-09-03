@@ -227,6 +227,10 @@
 	font-size: 1.2rem;
 }
 
+.splitContentUl span {
+	font-weight: 600;
+}
+
 .applyLinkButton {
 	display: block;
 	width: 80%;

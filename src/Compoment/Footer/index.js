@@ -3,6 +3,7 @@ import Style from './index.module.css';
 import { Layout, Button, Select, Divider } from 'antd';
 import { AppstoreOutlined, DownOutlined } from '@ant-design/icons';
 import Utils from "../../Util/webCofig";
+import { Link } from "react-router-dom";
 
 const { Footer } = Layout;
 
@@ -113,14 +114,14 @@ function FooterCompoment() {
 
                             </ul>
                             <ul className={Style.columnLinks}>
-                                <li><a className={Style.footerLink} href="https://www.theaccezz.com/TermsAndConditions">Terms and Conditions</a></li>
+                                <li><Link className={Style.footerLink} to={'/TermsAndConditions'}>Terms and Conditions</Link></li>
                                 <li>
-                                    <a className={Style.footerLink} href="https://www.theaccezz.com/PrivacyDataProtectionPolicy" >Privacy & Data Protection Policy</a>
+                                    <Link className={Style.footerLink} to={'/PrivacyDataProtectionPolicy'} >Privacy & Data Protection Policy</Link>
                                 </li>
 
                             </ul>
                             <ul className={Style.columnLinks}>
-                                <li><a className={Style.footerLink} href="https://www.theaccezz.com/CommunityGuidelines">Community guidelines</a></li>
+                                <li><Link className={Style.footerLink} to={'/CommunityGuidelines'}>Community guidelines</Link></li>
                                 <li>
                                     <a className={Style.footerLink} href="mailto:contact@theaccezz.com" >Contact</a>
                                 </li>
