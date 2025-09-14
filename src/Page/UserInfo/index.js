@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState, useRef } from "react";
 import style from './index.module.css';
-import { Avatar, Button, Form, Input, DatePicker, Modal, message, Slider, Radio } from 'antd';
+import { Avatar, Button, Form, Input, DatePicker, Modal, message, Slider, Radio, Checkbox } from 'antd';
 import { CheckCircleTwoTone } from '@ant-design/icons';
 import Utils from "../../Util/webCofig";
 import ActionType from "../../Store/actionType";
@@ -34,12 +34,15 @@ function toInitialProfile() {
         address: info.address || null,
         phone: info.phone || null,
         preferred_name: info.preferred_name || null,
-        communication_preference: info.communication_preference || null,
-        favorite_status: info.favorite_status || false,
+        preferred_communication: info.preferred_communication || null,
+        collecting_status: info.collecting_status || false,
         hobbies: info.hobbies || null,
         favorite_artist: info.favorite_artist || null,
         coffee_order: info.coffee_order || null,
-        dietary_restrictions: info.dietary_restrictions || null
+        dietary_restrictions: info.dietary_restrictions || null,
+        goals: info.goals || null,
+        art_interests: info.art_interests || null,
+        medium_interests: info.medium_interests || null,
     };
 }
 
@@ -461,39 +464,55 @@ const UserInfoPage = () => {
                                     <div className={style.fieldLabel}>Location</div>
                                     <div className={style.fieldValue}>{profile.location || '-'}</div>
                                 </div>
-                                {/* <div className={style.fieldRow}>
+                                <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}>Phone</div>
                                     <div className={style.fieldValue}>{profile.phone || '-'}</div>
-                                </div> */}
+                                </div>
                                 <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}>Gender</div>
                                     <div className={style.fieldValue}>{profile.gender || '-'}</div>
                                 </div>
                                 <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}>Communication preference</div>
-                                    <div className={style.fieldValue}>{profile.communication_preference || '-'}</div>
+                                    <div className={style.fieldValue}>{profile?.preferred_communication.map((goal) => (
+                                        goal + ','
+                                    ))}</div>
                                 </div>
                                 <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}>Collecting status </div>
-                                    <div className={style.fieldValue}>{profile?.favorite_status && <CheckCircleTwoTone twoToneColor="#52c41a" />}</div>
+                                    <div className={style.fieldValue}>{profile?.collecting_status || '-'}</div>
                                 </div>
                                 <div className={style.fieldRow}>
-                                    <div className={style.fieldLabel}>Interests</div>
-                                    <div className={style.fieldValue}>{profile.hobbies || '-'}</div>
+                                    <div className={style.fieldLabel}>Goals </div>
+                                    <div className={style.fieldValue}>{
+                                        profile?.goals?.map((goal) => (
+                                            goal + ','
+                                        ))
+                                    }
+                                    </div>
                                 </div>
                                 <div className={style.fieldRow}>
-                                    <div className={style.fieldLabel}>Favourite artists</div>
-                                    <div className={style.fieldValue}>{profile.favorite_artist || '-'}</div>
+                                    <div className={style.fieldLabel}>Art Interests </div>
+                                    <div className={style.fieldValue}>{profile?.art_interests.map((goal) => (
+                                        goal + ','
+                                    ))}</div>
+                                </div>
+                                <div className={style.fieldRow}>
+                                    <div className={style.fieldLabel}>Medium Interests</div>
+                                    <div className={style.fieldValue}>{profile?.medium_interests.map((goal) => (
+                                        goal + ','
+                                    ))}</div>
                                 </div>
                                 <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}>Coffee order</div>
-                                    <div className={style.fieldValue}>{profile.coffee_order || '-'}</div>
+                                    <div className={style.fieldValue}>{profile?.coffee_order || '-'}</div>
                                 </div>
                                 <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}> Dietary restrictions</div>
-                                    <div className={style.fieldValue}>{profile.dietary_restrictions || '-'}</div>
+                                    <div className={style.fieldValue}>{profile?.dietary_restrictions || '-'}</div>
                                 </div>
                             </div>
+                            {console.log(profile)}
 
                             <Button className={style.primaryBtn} onClick={() => setEditOpen(true)}>Personal center form</Button>
 
@@ -502,52 +521,109 @@ const UserInfoPage = () => {
                                 open={editOpen}
                                 onCancel={() => setEditOpen(false)}
                                 footer={null}
+                                width={720}
                                 destroyOnClose
                             >
                                 <Form layout="vertical" initialValues={profile} onFinish={handleEditSubmit}>
-                                    <Form.Item label="Preferred name" name="preferred_name" rules={[{ required: true, message: 'Please enter your Preferred name' }]}>
-                                        <Input placeholder="preferred_name" />
-                                    </Form.Item>
-                                    <Form.Item
-                                        label="Date of birth"
-                                        name="date_of_birth"
-                                        getValueProps={(value) => ({ value: value ? dayjs(value) : null })}
-                                        normalize={(value) => value ? dayjs(value).format('YYYY-MM-DD') : null}
-                                    >
-                                        <DatePicker style={{ width: '100%' }} />
-                                    </Form.Item>
-                                    <Form.Item label="Location" name="location">
-                                        <Input placeholder="location" />
-                                    </Form.Item>
-                                    {/* <Form.Item label="Phone" name="phone">
-                                        <Input placeholder="Phone" />
-                                    </Form.Item> */}
-                                    <Form.Item label="Gender" name="gender">
+                                    <div className={style.twoColumnRow}>
+                                        <Form.Item label="Preferred name" name="preferred_name" rules={[{ required: true, message: 'Please enter your Preferred name' }]}>
+                                            <Input placeholder="preferred_name" />
+                                        </Form.Item>
+                                        <Form.Item
+                                            label="Birthday"
+                                            name="date_of_birth"
+                                            getValueProps={(value) => ({ value: value ? dayjs(value) : null })}
+                                            normalize={(value) => value ? dayjs(value).format('YYYY-MM-DD') : null}
+                                        // rules={[{ required: true, message: 'Please enter your Birthday' }]}
+                                        >
+                                            <DatePicker style={{ width: '100%' }} />
+                                        </Form.Item>
+                                    </div>
+                                    <div className={style.twoColumnRow}>
+                                        <Form.Item label="Location" name="location" rules={[{ required: true, message: 'Please enter your Location' }]}>
+                                            <Input placeholder="location" />
+                                        </Form.Item>
+                                        <Form.Item label="Phone" name="phone">
+                                            <Input placeholder="Phone" />
+                                        </Form.Item>
+                                    </div>
+
+                                    <Form.Item label="Gender" name="gender" rules={[{ required: true, message: 'Please select your  Gender' }]}>
                                         <Radio.Group>
                                             <Radio value="Female"> Female </Radio>
                                             <Radio value="Male"> Male </Radio>
                                             <Radio value="Other"> Other </Radio>
                                         </Radio.Group>
                                     </Form.Item>
-                                    <Form.Item label="Communication preference" name="communication_preference">
-                                        <Input placeholder="communication_preference" />
+                                    <Form.Item label="Prefered communication" name="preferred_communication" rules={[{ required: true, message: 'Please enter your Prefered communication' }]}>
+
+                                        <Checkbox.Group>
+                                            <Checkbox value="Email">Email</Checkbox>
+                                            <Checkbox value="Instagram DM">Instagram DM</Checkbox>
+                                            <Checkbox value="WhatsApp">WhatsApp</Checkbox>
+                                            <Checkbox value="Text">Text</Checkbox>
+                                            <Checkbox value="Physical mail">Physical mail</Checkbox>
+                                        </Checkbox.Group>
+
                                     </Form.Item>
-                                    <Form.Item label="Collecting status" name="favorite_status">
+                                    <Form.Item label="What is your current status in art collecting?" name="collecting_status" rules={[{ required: true, message: 'Please select your  status in art collecting' }]}>
                                         <Radio.Group>
-                                            <Radio value={true}> YES </Radio>
-                                            <Radio value={false} >NO </Radio>
+                                            <Radio value={'I have an extensive collection (30+ works)'}> I have an extensive collection (30+ works) </Radio>
+                                            <Radio value={'I have been collecting for a few years (10+ works)'}> I have been collecting for a few years (10+ works) </Radio>
+                                            <Radio value={'Just started (1-2 works)'}> Just started (1-2 works) </Radio>
+                                            <Radio value={'Yet to start (0 works)'}> Yet to start (0 works) </Radio>
                                         </Radio.Group>
                                     </Form.Item>
-                                    <Form.Item label="Interests" name="hobbies">
-                                        <Input placeholder="hobbies" />
+                                    <Form.Item label="Goals" name="goals" rules={[{ required: true, message: 'Please enter your Prefered Goals' }]}>
+                                        <Checkbox.Group>
+                                            {[
+                                                "Collect or build an art collection",
+                                                "Learn more about art",
+                                                "Visit gallery and museum exhibitions",
+                                                "Attend parties and exhibit openings",
+                                                "Build connections in the art world",
+                                                "Meet new people",
+                                                "Other"
+                                            ].map((option, index) => (
+                                                <Checkbox value={option}>{option}</Checkbox>
+                                            ))}
+                                        </Checkbox.Group>
                                     </Form.Item>
-                                    <Form.Item label="Favourite artists" name="favorite_artist">
-                                        <Input placeholder="favorite_artist" />
+                                    <Form.Item label="Art interests" name="art_interests" rules={[{ required: true, message: 'Please enter your Prefered communication' }]}>
+                                        <Checkbox.Group>
+                                            {[
+                                                "Contemporary art",
+                                                "Modern art",
+                                                "Pre modern art",
+                                                "Other art periods ",
+                                            ].map((option, index) => (
+                                                <Checkbox value={option}>{option}</Checkbox>
+                                            ))}
+                                        </Checkbox.Group>
                                     </Form.Item>
-                                    <Form.Item label="Coffee order" name="coffee_order">
+
+                                    <Form.Item label="Medium interests" name="medium_interests" rules={[{ required: true, message: 'Please enter your Prefered communication' }]}>
+                                        <Checkbox.Group>
+                                            {[
+                                                "Painting or drawing",
+                                                "Print",
+                                                "Sculpture",
+                                                "Textile ",
+                                                "Film or video ",
+                                                "Performance art ",
+                                                "Digital art ",
+                                                "NFTs ",
+                                            ].map((option, index) => (
+                                                <Checkbox value={option}>{option}</Checkbox>
+                                            ))}
+                                        </Checkbox.Group>
+                                    </Form.Item>
+
+
+                                    <Form.Item label="Coffee order" name="coffee_order" rules={[{ required: true, message: 'Please enter your Coffee order' }]}>
                                         <Input placeholder="coffee_order" />
                                     </Form.Item>
-                                    <Form.Item label="Dietary restrictions" name="dietary_restrictions">
+                                    <Form.Item label="Dietary restrictions" name="dietary_restrictions" rules={[{ required: true, message: 'Please enter your Dietary restrictions' }]}>
                                         <Input placeholder="dietary_restrictions" />
                                     </Form.Item>
                                     <div className={style.modalActions}>

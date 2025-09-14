@@ -201,12 +201,12 @@
 
 .split {
 	max-width: 1200px;
-	margin: 0 auto 30px;
-	padding: 0 20px;
+	margin: 0 auto 80px;
+	padding: 0;
 	display: grid;
 	grid-template-columns: 1.1fr 1fr;
 	gap: 28px;
-	align-items: center;
+	/* align-items: center; */
 	/* box-shadow: 0 10px 30px rgba(0, 0, 0, .10); */
 	/* background: #ffff; */
 	/* border-radius: 10px; */

@@ -90,7 +90,7 @@ const Grid = ({ items }) => (
 //     </div>
 // );
 
-const bannerId = [10, 11, 12]
+const bannerId = [10, 11, 12, 23]
 const ResourcesPage = () => {
     const [pageDataInitText, setPageDataInitText] = useState({
         10: {
@@ -101,7 +101,8 @@ const ResourcesPage = () => {
             text: "I'm interested in",
             sub_text: 'Please select your preferred art forms (you can select more than one item)'
         },
-        12: []
+        12: [],
+        23: []
     })
     const [pageDataInitFile, setPageDataInitFile] = useState({
         10: [],
@@ -243,6 +244,23 @@ const ResourcesPage = () => {
                     <div className={style.subTitle}>Learn more?</div>
                     <div className={style.subDesc}>Please move the mouse over the image</div>
                     <div className={style.tiersGrid}>
+                        {
+                            pageDataInitFile?.[23]?.map((item, key) => (<div className={style.card}>
+                                <div className={style.cardImageWrap}>
+                                    {
+                                        item?.text && <a href={item?.text?.startsWith('http') ? item.text : `https://${item.text}`} target="_blank" rel="noreferrer">
+                                            <img src={Utils.returnFileUrl(item?.abs_file_obj_display)} alt={item.purpose_obj_display} className={style.cardImage} loading="lazy" />
+                                        </a>
+                                    }
+                                    {
+                                        !item?.text && <img src={Utils.returnFileUrl(item?.abs_file_obj_display)} alt={item.purpose_obj_display} className={style.cardImage} loading="lazy" />
+                                    }
+                                    {/* <img src={Utils.returnFileUrl(item?.abs_file_obj_display)} className={style.cardImage} loading="lazy" /> */}
+                                </div>
+                            </div>))
+
+                        }
+
                         <div className={style.card}>
                             <div className={style.cardImageWrap}>
                                 <Popover
@@ -306,7 +324,7 @@ const ResourcesPage = () => {
                                 <img src={image54} className={style.cardImage} loading="lazy" />
                             </div>
                         </div>
-                        <div className={style.card}>
+                        {/* <div className={style.card}>
                             <div className={style.cardButtonLink}>
                                 <h2>In house art advisory</h2>
                                 <a href="https://calendly.com/theaccezz/30min" target='_blank'>
@@ -320,14 +338,14 @@ const ResourcesPage = () => {
                         <div className={style.card}>
                             <div className={style.cardButtonLink}>
                                 <h2>Find trusted art advisors </h2>
-                                <a href={mailtoLink} target="_self" >
+                                <a href={'https://forms.gle/QyKkRgfZ9caK9Fpr8'} target='_blank' >
                                     <button>
                                         Inquire
                                     </button>
                                 </a>
 
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
