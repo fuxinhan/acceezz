@@ -474,7 +474,7 @@ const UserInfoPage = () => {
                                 </div>
                                 <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}>Communication preference</div>
-                                    <div className={style.fieldValue}>{profile?.preferred_communication.map((goal) => (
+                                    <div className={style.fieldValue}>{profile?.preferred_communication?.map((goal) => (
                                         goal + ','
                                     ))}</div>
                                 </div>
@@ -493,13 +493,13 @@ const UserInfoPage = () => {
                                 </div>
                                 <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}>Art Interests </div>
-                                    <div className={style.fieldValue}>{profile?.art_interests.map((goal) => (
+                                    <div className={style.fieldValue}>{profile?.art_interests?.map((goal) => (
                                         goal + ','
                                     ))}</div>
                                 </div>
                                 <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}>Medium Interests</div>
-                                    <div className={style.fieldValue}>{profile?.medium_interests.map((goal) => (
+                                    <div className={style.fieldValue}>{profile?.medium_interests?.map((goal) => (
                                         goal + ','
                                     ))}</div>
                                 </div>
