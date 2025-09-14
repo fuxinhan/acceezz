@@ -68,7 +68,7 @@
 
 .tiersThings {
 	padding: 30px 10px;
-	background-color: #c6a972;
+	background-color: #e6e6e6;
 	border-radius: 5px;
 	/* color: #fff; */
 }
@@ -107,7 +107,7 @@
 
 /* 新 card */
 .twoColSection {
-	display: grid;
+	/* display: grid; */
 	grid-template-columns: 300px 1fr;
 	gap: 2rem;
 	max-width: 1200px;
@@ -207,9 +207,9 @@
 	grid-template-columns: 1.1fr 1fr;
 	gap: 28px;
 	align-items: center;
-	box-shadow: 0 10px 30px rgba(0, 0, 0, .10);
-	background: #ffff;
-	border-radius: 10px;
+	/* box-shadow: 0 10px 30px rgba(0, 0, 0, .10); */
+	/* background: #ffff; */
+	/* border-radius: 10px; */
 }
 
 .splitMedia img {
@@ -223,9 +223,11 @@
 
 .splitContentUl {
 	display: grid;
-	gap: 18px;
-	font-size: 1.2rem;
+	gap: 36px;
+	font-size: 1rem;
 }
+
+
 
 .splitContentUl span {
 	font-weight: 600;

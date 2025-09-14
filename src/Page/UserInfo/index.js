@@ -461,10 +461,10 @@ const UserInfoPage = () => {
                                     <div className={style.fieldLabel}>Location</div>
                                     <div className={style.fieldValue}>{profile.location || '-'}</div>
                                 </div>
-                                <div className={style.fieldRow}>
+                                {/* <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}>Phone</div>
                                     <div className={style.fieldValue}>{profile.phone || '-'}</div>
-                                </div>
+                                </div> */}
                                 <div className={style.fieldRow}>
                                     <div className={style.fieldLabel}>Gender</div>
                                     <div className={style.fieldValue}>{profile.gender || '-'}</div>
@@ -495,7 +495,7 @@ const UserInfoPage = () => {
                                 </div>
                             </div>
 
-                            <Button className={style.primaryBtn} onClick={() => setEditOpen(true)}>Edit information</Button>
+                            <Button className={style.primaryBtn} onClick={() => setEditOpen(true)}>Personal center form</Button>
 
                             <Modal
                                 title="Edit profile"
@@ -519,9 +519,9 @@ const UserInfoPage = () => {
                                     <Form.Item label="Location" name="location">
                                         <Input placeholder="location" />
                                     </Form.Item>
-                                    <Form.Item label="Phone" name="phone">
+                                    {/* <Form.Item label="Phone" name="phone">
                                         <Input placeholder="Phone" />
-                                    </Form.Item>
+                                    </Form.Item> */}
                                     <Form.Item label="Gender" name="gender">
                                         <Radio.Group>
                                             <Radio value="Female"> Female </Radio>

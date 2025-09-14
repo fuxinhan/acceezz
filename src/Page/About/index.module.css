@@ -1,6 +1,7 @@
 /* 主题变量沿用 :root（src/index.module.css） */
 .AboutPage {
-	background: var(--cream-bg, #f8f6f2);
+	/* background: var(--cream-bg, #f8f6f2); */
+	background: blue;
 	color: var(--deep-navy, #1a1a2e);
 	padding-bottom: 20px;
 	font-family: 'Garamond' !important;
@@ -11,19 +12,21 @@
 	margin: 0 auto;
 	padding: 56px 20px 24px;
 	text-align: center;
+
 }
 
 .title {
-	margin: 0 0 10px;
+	margin: 0 0 80px;
 	font-size: 42px;
 	font-weight: 600;
+	color: #fff;
 }
 
 .subtitle {
 	/* max-width: 860px; */
 	margin: 0 auto;
 	line-height: 1.8;
-	color: #555;
+	color: #fff;
 	text-align: left;
 	font-size: 18px;
 }
@@ -60,7 +63,7 @@
 
 .pillarDesc {
 	margin: 0;
-	color: #666;
+	color: #555;
 	line-height: 1.7;
 }
 
@@ -97,12 +100,13 @@
 
 .splitContent h2 {
 	margin: 0 0 10px;
+	color: #fff;
 	font-size: 26px;
 }
 
 .splitContent p {
 	margin: 0 0 10px;
-	color: #555;
+	color: #fff;
 	line-height: 1.9;
 }
 
@@ -128,10 +132,11 @@
 	font-size: 24px;
 	margin-bottom: 4px;
 	color: var(--deep-navy, #1a1a2e);
+	/* color: #fff; */
 }
 
 .statItem span {
-	color: #666;
+	color: #fff;
 }
 
 .cta {
@@ -148,6 +153,7 @@
 	border: 1px solid var(--accent-gold, #c6a972);
 	background: transparent;
 	color: var(--accent-gold, #c6a972);
+	/* color: var(--accent-gold, #c6a972); */
 	cursor: pointer;
 	transition: var(--transition, all .3s ease);
 }

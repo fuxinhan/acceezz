@@ -85,7 +85,7 @@ const HighlightsPage = () => {
                 clearInterval(autoPlayRef.current);
             }
         };
-    }, [isAutoPlaying, pageFile?.[7]?.length])
+    }, [])
 
 
     return (

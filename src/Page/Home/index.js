@@ -65,7 +65,7 @@ function HomePage() {
         try {
             const userInfo = JSON.parse(localStorage.getItem('userInfo'));
             if (userInfo && userInfo.user_info && userInfo.user_info.username) {
-                setUserName(userInfo.user_info.username);
+                setUserName(userInfo.user_info.preferred_name);
             } else {
                 setUserName('Accezz');
             }

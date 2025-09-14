@@ -191,7 +191,7 @@ const MembershipPage = () => {
 				{
 					pageDataInitText?.[19].map((item, key) => (
 						<div key={key} className={style.twoColSection}>
-							<div className={style.sectionIntro}>
+							{/* <div className={style.sectionIntro}>
 								<div className={style.sectionTitle}>{item.text}	</div>
 								<img src={Utils.returnFileUrl(pageDataInitFile?.[19]?.[key]?.abs_file_obj_display)} style={{ width: '100px' }} />
 								<div className={style.sectionDesc}>{item.sub_text}</div>
@@ -200,11 +200,20 @@ const MembershipPage = () => {
 										Apply
 									</Link>
 								</div>
-							</div>
+							</div> */}
 							<div className={style.split}>
 								<div className={style.splitMedia}>
-									{console.log(pageDataInitFile?.[20]?.[key])}
+									{/* {console.log(pageDataInitFile?.[20]?.[key])} */}
+									<div className={style.sectionTitle}>{item.text}	</div>
 									<img src={Utils.returnFileUrl(pageDataInitFile?.[20]?.[key]?.abs_file_obj_display)} alt="House interior" loading="lazy" />
+									{/* <div className={style.sectionDesc}>{item.sub_text}</div> */}
+									{
+										item.sub_text?.split('|').map((label, keyL) => (
+											<div key={keyL}
+												dangerouslySetInnerHTML={{ __html: label }}
+											/>
+										))
+									}
 								</div>
 								<div className={style.splitContent}>
 									<ul className={style.splitContentUl}>

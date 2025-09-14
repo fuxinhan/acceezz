@@ -5,6 +5,7 @@ import { MenuOutlined, RightOutlined } from '@ant-design/icons';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 // import IsLogin from "../../Util/isLogin";
 import Utils from "../../Util/webCofig";
+import ActionType from "../../Store/actionType";
 
 const { Header } = Layout
 
@@ -26,8 +27,34 @@ function HeaderCompoment() {
         // { key: 'Resources', label: 'RESOURCES', hasArrow: true },
         { key: 'About', label: 'ABOUT', hasArrow: true },
     ]
+    const onGetUserInfo = () => {
+        Utils.get({
+            url: 'api_v1/user/-1/',
+            actionType: ActionType().GetUserInfo,
+            Success: (data) => {
+                let raw = localStorage.getItem('userInfo');
+                let prev = raw ? JSON.parse(raw) : {};
+                prev.user_info = {
+                    ...prev?.user_info,
+                    ...data,
+                }
+                localStorage.setItem('userInfo', JSON.stringify(prev))
+                setUserInfo(prev)
+                //
+                console.log('data', prev);
+                // localStorage.setItem('userInfo', JSON.stringify({ ...prev, ...data }))
+            }
+        })
+    }
+    useEffect(() => {
+        // setProfile(toInitialProfile());
+
+    }, []);
     // 根据路径设置激活状态（示例）
     useEffect(() => {
+        if (Utils.getToken()) {
+            onGetUserInfo()
+        }
         const pathKey = location.pathname.replace('/', '');
         if (menuItems.some(item => item.key === pathKey)) {
             setMenuItemsState(pathKey);
@@ -115,8 +142,8 @@ function HeaderCompoment() {
                             }
                         // color={'#f8f6f2'}
                         >
-                            {userInfo && userInfo.user_info.cover && <img src={Utils.returnFileUrl(userInfo.user_info.cover)} alt={userInfo.user_info.username} />}
-                            {userInfo && !userInfo.user_info.cover && <span className={Style.loginUserName}>{userInfo.user_info.username}</span>}
+                            {userInfo && userInfo.user_info.cover_display && <img src={Utils.returnFileUrl(userInfo.user_info.cover_display)} alt={userInfo.user_info.username} />}
+                            {userInfo && !userInfo.user_info.cover_display && <span className={Style.loginUserName}>{userInfo.user_info.username}</span>}
                         </Popover>
                         {/* <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&h=900&fit=crop" /> */}
 

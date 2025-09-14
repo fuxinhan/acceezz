@@ -1,58 +1,58 @@
-import React, { useState } from "react";
+
 import Style from './index.module.css';
-import { Layout, Button, Select, Divider } from 'antd';
-import { AppstoreOutlined, DownOutlined } from '@ant-design/icons';
+import { Layout } from 'antd';
+// import { AppstoreOutlined, DownOutlined } from '@ant-design/icons';
 import Utils from "../../Util/webCofig";
 import { Link } from "react-router-dom";
 
 const { Footer } = Layout;
 
 function FooterCompoment() {
-    const [language, setLanguage] = useState('English (UK)');
+    // const [language, setLanguage] = useState('English (UK)');
 
-    const footerColumns = [
-        {
-            title: "Policies",
-            links: [
-                { text: "Terms and policies", href: "#" },
-                { text: "Opt out of sale", href: "#" },
-                { text: "Personal data request", href: "#" },
-                { text: "Supplier relations", href: "#" }
-            ]
-        },
-        {
-            title: "Membership",
-            links: [
-                { text: "Membership", href: "#" },
-                { text: "House Foundations", href: "#" },
-                { text: "Careers", href: "#" },
-                { text: "Our partners", href: "#" }
-            ]
-        },
-        {
-            title: "Contact",
-            links: [
-                { text: "Contact", href: "#" },
-                { text: "Download app", href: "#" },
-                { text: "About", href: "#" },
-                { text: "Legal Notice - France", href: "#" }
-            ]
-        },
-        {
-            title: "Other Services",
-            links: [
-                { text: "Bedrooms gift cards", href: "#" },
-                { text: "@sohohouse", href: "#" },
-                { text: "Investor Relations", href: "#" }
-            ]
-        }
-    ];
+    // const footerColumns = [
+    //     {
+    //         title: "Policies",
+    //         links: [
+    //             { text: "Terms and policies", href: "#" },
+    //             { text: "Opt out of sale", href: "#" },
+    //             { text: "Personal data request", href: "#" },
+    //             { text: "Supplier relations", href: "#" }
+    //         ]
+    //     },
+    //     {
+    //         title: "Membership",
+    //         links: [
+    //             { text: "Membership", href: "#" },
+    //             { text: "House Foundations", href: "#" },
+    //             { text: "Careers", href: "#" },
+    //             { text: "Our partners", href: "#" }
+    //         ]
+    //     },
+    //     {
+    //         title: "Contact",
+    //         links: [
+    //             { text: "Contact", href: "#" },
+    //             { text: "Download app", href: "#" },
+    //             { text: "About", href: "#" },
+    //             { text: "Legal Notice - France", href: "#" }
+    //         ]
+    //     },
+    //     {
+    //         title: "Other Services",
+    //         links: [
+    //             { text: "Bedrooms gift cards", href: "#" },
+    //             { text: "@sohohouse", href: "#" },
+    //             { text: "Investor Relations", href: "#" }
+    //         ]
+    //     }
+    // ];
 
-    const footerLink = [
-        { text: "Bedrooms gift cards", href: "#" },
-        { text: "Bedrooms gift cards", href: "#" },
-        { text: "Bedrooms gift cards", href: "#" },
-    ]
+    // const footerLink = [
+    //     { text: "Bedrooms gift cards", href: "#" },
+    //     { text: "Bedrooms gift cards", href: "#" },
+    //     { text: "Bedrooms gift cards", href: "#" },
+    // ]
 
     return (
         <Footer className={Style.footer}>
